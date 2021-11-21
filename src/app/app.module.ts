@@ -9,11 +9,13 @@ import { ExamplesModule } from './examples/examples.module';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
     declarations: [
         AppComponent,
-        NavbarComponent
+        NavbarComponent,
+        RegisterComponent
     ],
     imports: [
         BrowserAnimationsModule,
