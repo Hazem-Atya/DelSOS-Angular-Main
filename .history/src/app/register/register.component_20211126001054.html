@@ -10,8 +10,7 @@
                           <!--   <img src="assets/logo/11.png" alt="" width = "70" > -->
                             <h6>Become a shopper</h6>
                             <div class="dots" >
-                                <span class=" active step" id="0" (click)="onChangeStep(0)" ></span>
-                                <span class=" step" *ngFor="let step of steps" id={{step}} (click)="onChangeStep(step)" ></span>
+                                <span class="step" *ngFor="let step of steps" id={{step}} (click)="onChangeStep(step)" ></span>
                               </div>
                         </div>
                    
@@ -20,10 +19,10 @@
                        <p>Login info:</p>
                     </div>
                     <div class="step-title" *ngIf="step ===1">
-                        <p>Personal info</p>
+                        <p>Personal info</h7>
                      </div>
                      <div class="step-title" *ngIf="step ===2">
-                        <p>bank info</p>
+                        <h7>bank info</h7>
                      </div>
                      <br>
                     <div class="content" *ngIf="step ===0">

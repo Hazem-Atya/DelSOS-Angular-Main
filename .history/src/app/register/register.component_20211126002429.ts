@@ -14,22 +14,18 @@ export class RegisterComponent implements OnInit {
     step: number = 0;
  constructor() { }
     onChangeStep(s?: any) {
-        if (s !== undefined) this.step = s;
+        console.log("s: "+s)
+        if (s) this.step = s;
         else
         if (this.step === 2) this.step = 0;
-        else this.step++;
+       else this.step++;
         console.log(this.step);
 
         var dot;
         for (let i = 0; i < 3; i++) {
             dot = document.getElementById(i.toString());
-            if (this.step > i) {
-                dot.classList.remove('active');
-                dot.classList.add('finish');
-            }
-            else if (this.step < i ) {
-                dot.classList.remove('active');
-          }
+            if (this.step !== i) dot.classList.remove('active');
+                else if(this.step < i && !s) dot.classList.add('finish');
             else dot.classList.add('active');
       
           }

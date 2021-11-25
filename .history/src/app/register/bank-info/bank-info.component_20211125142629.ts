@@ -6,8 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./bank-info.component.css']
 })
 export class BankInfoComponent implements OnInit {
-  focus: any;
-  focus1: any;
+
   constructor() { }
 
   ngOnInit(): void {

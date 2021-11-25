@@ -23,13 +23,8 @@ export class RegisterComponent implements OnInit {
         var dot;
         for (let i = 0; i < 3; i++) {
             dot = document.getElementById(i.toString());
-            if (this.step > i) {
-                dot.classList.remove('active');
-                dot.classList.add('finish');
-            }
-            else if (this.step < i ) {
-                dot.classList.remove('active');
-          }
+            if (this.step !== i) {dot.classList.remove('active');}
+                else if(this.step === i && s === undefined) dot.classList.add('finish');
             else dot.classList.add('active');
       
           }
