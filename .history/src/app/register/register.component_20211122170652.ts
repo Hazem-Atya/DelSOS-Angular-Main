@@ -11,7 +11,7 @@ export class RegisterComponent implements OnInit {
     focus: any;
     focus1: any;
 
- constructor() { }
+  /*   constructor() { }
 
     ngOnInit() {
         var body = document.getElementsByTagName('body')[0];
@@ -26,7 +26,7 @@ export class RegisterComponent implements OnInit {
 
         var navbar = document.getElementsByTagName('nav')[0];
         navbar.classList.remove('navbar-transparent');
-    } 
+    } */
 
 
 }

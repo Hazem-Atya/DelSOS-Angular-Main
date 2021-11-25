@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -8,10 +7,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class RegisterComponent implements OnInit {
     data : Date = new Date();
-    focus: any;
-    focus1: any;
+    focus;
+    focus1;
 
- constructor() { }
+    constructor() { }
 
     ngOnInit() {
         var body = document.getElementsByTagName('body')[0];
@@ -26,7 +25,6 @@ export class RegisterComponent implements OnInit {
 
         var navbar = document.getElementsByTagName('nav')[0];
         navbar.classList.remove('navbar-transparent');
-    } 
-
+    }
 
 }

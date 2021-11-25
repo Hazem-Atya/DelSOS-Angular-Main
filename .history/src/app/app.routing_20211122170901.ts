@@ -9,14 +9,12 @@ import { ProfileComponent } from './examples/profile/profile.component';
 import { NucleoiconsComponent } from './components/nucleoicons/nucleoicons.component';
 import {RegisterComponent} from './register/register.component'
 const routes: Routes =[
-    { path: '', redirectTo: 'login', pathMatch: 'full' },
+    { path: '', redirectTo: 'loggin', pathMatch: 'full' },
     { path: 'index',                component: ComponentsComponent },
     { path: 'nucleoicons',          component: NucleoiconsComponent },
     { path: 'examples/landing',     component: LandingComponent },
     { path: 'login',       component: LoginComponent },
-    { path: 'shopper-register', component: RegisterComponent },
-    { path: 'partner-register', component: RegisterComponent },
-    { path: 'deliveries',       component: ComponentsComponent },
+    { path: 'shopper-register',       component: RegisterComponent },
     { path: 'examples/profile',     component: ProfileComponent }
 ];
 
