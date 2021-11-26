@@ -21,7 +21,7 @@ export class RegisterComponent implements OnInit {
         console.log('submit');
     }
     back() {
-        this.step--;
+        
     }
     onChangeStep(s?: any) {
         

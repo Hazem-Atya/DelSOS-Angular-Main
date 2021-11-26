@@ -15,27 +15,21 @@ export class RegisterComponent implements OnInit {
     constructor() { }
     next() {
         
-        console.log('next');
+        this.onChangeStep();
     }
     submit() {
-        console.log('submit');
-    }
-    back() {
-        this.step--;
+
     }
     onChangeStep(s?: any) {
         
         if (s !== undefined) this.step = s;
         else
             if (this.step === 2) {
-                this.submit();
-                //this.step = 0;
+                print('')
+                this.step = 0;
             }
-            else {
-                this.next();
-                this.step++;
-            }
-       
+        else this.step++;
+        console.log(this.step);
 
         var dot;
         for (let i = 0; i < 3; i++) {

@@ -20,9 +20,6 @@ export class RegisterComponent implements OnInit {
     submit() {
         console.log('submit');
     }
-    back() {
-        this.step--;
-    }
     onChangeStep(s?: any) {
         
         if (s !== undefined) this.step = s;

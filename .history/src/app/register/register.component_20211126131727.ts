@@ -20,16 +20,13 @@ export class RegisterComponent implements OnInit {
     submit() {
         console.log('submit');
     }
-    back() {
-        this.step--;
-    }
     onChangeStep(s?: any) {
         
         if (s !== undefined) this.step = s;
         else
             if (this.step === 2) {
-                this.submit();
-                //this.step = 0;
+             this.submit()
+                this.step = 0;
             }
             else {
                 this.next();
