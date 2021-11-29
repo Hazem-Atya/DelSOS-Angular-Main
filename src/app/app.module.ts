@@ -9,11 +9,19 @@ import { ExamplesModule } from './examples/examples.module';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
+import { HomepageComponent } from './delsos/homepage/homepage.component';
+import { NavigationBarComponent } from './delsos/navigation-bar/navigation-bar.component';
+import { SignUpComponent } from './delsos/sign-up/sign-up.component';
+import { SignInComponent } from './delsos/sign-in/sign-in.component';
 
 @NgModule({
     declarations: [
         AppComponent,
-        NavbarComponent
+        NavbarComponent,
+        HomepageComponent,
+        NavigationBarComponent,
+        SignUpComponent,
+        SignInComponent
     ],
     imports: [
         BrowserAnimationsModule,
