@@ -1,0 +1,91 @@
+<div class="page-header" filter-color="orange">
+    <div class="page-header-image" style="background-image:url(assets/img/login.jpg)"></div>
+    <div class="container">
+        <div class="col-md-4 content-center">
+            <div class="card card-login card-plain">
+                <form class="form" method="" action="">
+                    <div class="header header-primary text-center">
+                        <div class="logo-register-page ">
+
+                            <img src="assets/logo/delsos.png" alt="" width = "300" >
+                            <h6>Register</h6>
+                            <!-- <img src="assets/logo/10.png" alt="" width = "300" > -->
+                        </div>
+                   
+                    </div>
+                    <div class="content">
+         
+                      <div class="input-group form-group-no-border input-lg" [ngClass]="{'input-group-focus':focus===true}">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">  
+                                <i class="now-ui-icons users_circle-08"></i>
+                            </span>
+                        </div>
+                          <input type="text" class="form-control" placeholder="Email" (focus)="focus=true" (blur)="focus=false" >
+                      </div>
+                      <div class="input-group form-group-no-border input-lg" [ngClass]="{'input-group-focus':focus===true}">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">  
+                                <i class="now-ui-icons users_circle-08"></i>
+                            </span>
+                        </div>
+                          <input type="text" class="form-control" placeholder="Password" (focus)="focus=true" (blur)="focus=false" >
+                      </div>
+                      <div class="input-group form-group-no-border input-lg" [ngClass]="{'input-group-focus':focus===true}">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">  
+                                <i class="now-ui-icons users_circle-08"></i>
+                            </span>
+                        </div>
+                          <input type="text" class="form-control" placeholder="Confirm password" (focus)="focus=true" (blur)="focus=false" >
+                      </div>
+   
+                    </div>
+                    <div class="footer text-center">
+                        <a href="#pablo" class="btn btn-primary btn-round btn-lg btn-block">Next</a>
+                    </div>
+                    <div class="pull-left">
+                        <h6>
+                          <p>Already have an account?  <a href="/login" class="link"> Login</a> </p>
+                        </h6>
+                    </div>
+                    <div class="pull-right">
+                        <h6>
+                            <a href="#pablo" class="link">Need Help?</a>
+                        </h6>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        <div class="container">
+            <nav>
+                <ul>
+                    <li>
+                        <a href="#">
+                            Home Page
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            About Us
+                        </a>
+                    </li>
+                   
+                    <li>
+                        <a href="https://github.com/creativetimofficial/now-ui-kit/blob/master/LICENSE.md">
+                            MIT License
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="copyright">
+                &copy;
+              {{data | date: 'yyyy'}}, Designed by
+                <a href="https://www.invisionapp.com" target="_blank">Invision</a>. Coded by
+                <a href="https://www.creative-tim.com" target="_blank">DelSOS Team</a>.
+            </div>
+        </div>
+    </footer>
+</div>

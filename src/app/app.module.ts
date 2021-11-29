@@ -6,13 +6,18 @@ import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
 import { ExamplesModule } from './examples/examples.module';
-
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { HomepageComponent } from './delsos/homepage/homepage.component';
 import { NavigationBarComponent } from './delsos/navigation-bar/navigation-bar.component';
 import { SignUpComponent } from './delsos/sign-up/sign-up.component';
 import { SignInComponent } from './delsos/sign-in/sign-in.component';
+import { RegisterComponent } from './register/register.component';
+import { FooterComponent } from './shared/footer/footer.component';
+import { PersonalInfoComponent } from './register/personal-info/personal-info.component';
+import { LoginInfoComponent } from './register/login-info/login-info.component';
+import { BankInfoComponent } from './register/bank-info/bank-info.component';
+
 
 @NgModule({
     declarations: [
@@ -21,7 +26,12 @@ import { SignInComponent } from './delsos/sign-in/sign-in.component';
         HomepageComponent,
         NavigationBarComponent,
         SignUpComponent,
-        SignInComponent
+        SignInComponent,
+        RegisterComponent,
+        FooterComponent,
+        PersonalInfoComponent,
+        LoginInfoComponent,
+        BankInfoComponent,
     ],
     imports: [
         BrowserAnimationsModule,
