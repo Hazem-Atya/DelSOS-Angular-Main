@@ -1,0 +1,46 @@
+<form [formGroup]="registerForm">
+    <div class="input-group form-group-no-border input-lg" [ngClass]="{'input-group-focus':focus===true}">
+        <div class="input-group-prepend">
+        <span class="input-group-text">
+            <i class="now-ui-icons users_circle-08"></i>
+        </span>
+        </div>
+        <input
+                id="cardNumber"
+                formControlName="cardNumber"
+                type="text" class="form-control"
+                placeholder="Card Number"
+                (focus)="focus=true" (blur)="focus=false">
+    </div>
+    <div class="input-group form-group-no-border input-lg" [ngClass]="{'input-group-focus':focus===true}">
+        <div class="input-group-prepend">
+        <span class="input-group-text">
+            <i class="now-ui-icons users_circle-08"></i>
+        </span>
+        </div>
+        <input
+                formControlName="owner"
+                type="text"
+                class="form-control"
+                placeholder="Card owner"
+                (focus)="focus=true" (blur)="focus=false">
+    </div>
+    <div class="input-group form-group-no-border input-lg" [ngClass]="{'input-group-focus':focus===true}">
+
+        <div class="input-group-prepend">
+        <span class="input-group-text">
+            <i class="now-ui-icons users_circle-08"></i>
+        </span>
+        </div>
+        <input
+            #expirationDate
+            (focusin)="toggleType($event,expirationDate)"
+            (focusout)="toggleType($event,expirationDate)"
+            formControlName="expirationDate"
+            type="text" class="form-control"
+            placeholder="Expiration date"
+            (focus)="focus=true" (blur)="focus=false">
+    </div>
+
+</form>
+

@@ -4,5 +4,8 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  // logoPath: "assets/img/bg/delivery-logo.jpg",
+  logoPath: "assets/logo/11.png",
+  apiURL: 'http://localhost:3000',
 };
