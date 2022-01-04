@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {environment} from 'environments/environment';
 import {ActivatedRoute} from '@angular/router';
 import {IAlert} from '../components/notif/notif.component';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
     selector: 'app-sign-in',
@@ -12,13 +13,14 @@ export class SignInComponent implements OnInit {
     focus;
     focus1;
     createdAccount = false;
-    accountCreatedAlert: IAlert={
-        type:"success",
-        strong:"Account created successfully",
-        message:'please login'
+    accountCreatedAlert: IAlert = {
+        type: 'success',
+        strong: 'Account created successfully',
+        message: 'please login'
     };
 
     constructor(
+        private toastr: ToastrService,
         private activatedRoute: ActivatedRoute) {
         activatedRoute.queryParams.subscribe(
             (param) => this.createdAccount = param['createdAccount']
@@ -28,6 +30,11 @@ export class SignInComponent implements OnInit {
     public logoPath: String = environment.logoPath;
 
     ngOnInit() {
+        if (this.createdAccount) {
+            this.toastr.success(
+                'Please type your credentials to log in',
+                'Account created successfully!');
+        }
         // if(this.createdAccount)
         //     this.toastr.success("Account created!")
         var body = document.getElementsByTagName('body')[0];
