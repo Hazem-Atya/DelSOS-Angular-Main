@@ -45,7 +45,7 @@ import { NotifComponent } from './delsos/components/notif/notif.component';
         ComponentsModule,
         ExamplesModule,
         HttpClientModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
     ],
     providers: [],
     bootstrap: [AppComponent]

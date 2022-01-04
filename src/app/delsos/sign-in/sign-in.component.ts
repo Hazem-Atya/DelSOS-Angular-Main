@@ -18,7 +18,8 @@ export class SignInComponent implements OnInit {
         message:'please login'
     };
 
-    constructor(private activatedRoute: ActivatedRoute) {
+    constructor(
+        private activatedRoute: ActivatedRoute) {
         activatedRoute.queryParams.subscribe(
             (param) => this.createdAccount = param['createdAccount']
         )
@@ -27,6 +28,8 @@ export class SignInComponent implements OnInit {
     public logoPath: String = environment.logoPath;
 
     ngOnInit() {
+        // if(this.createdAccount)
+        //     this.toastr.success("Account created!")
         var body = document.getElementsByTagName('body')[0];
         body.classList.add('login-page');
 
