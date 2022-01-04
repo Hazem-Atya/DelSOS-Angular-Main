@@ -21,6 +21,7 @@ export class RegisterComponent implements OnInit {
     focus1: any;
     steps: Array<number> = [1, 2];
     step: number = 0;
+    loading= false;
 
     constructor(
         private router: Router,
@@ -47,6 +48,7 @@ export class RegisterComponent implements OnInit {
         if (s !== undefined) {
             this.step = s;
         } else if (this.step === 2) {
+            this.loading=true;
              this.addShopper();
 
         } else {
@@ -103,10 +105,12 @@ export class RegisterComponent implements OnInit {
                     {
                         queryParams:{'createdAccount':true}
                     });
+              this.loading=false;
             },
             (error: HttpErrorResponse) => {
                 console.log('There is an error :(');
-                console.log(error)
+                console.log(error);
+                this.loading=false;
             }
         )
     }

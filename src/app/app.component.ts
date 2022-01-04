@@ -1,5 +1,5 @@
 import {Component, OnInit, Inject, Renderer2, ElementRef, ViewChild} from '@angular/core';
-import {Router, NavigationEnd} from '@angular/router';
+import {Router, NavigationEnd, RouterEvent, NavigationStart, NavigationCancel, NavigationError} from '@angular/router';
 import {Subscription} from 'rxjs/Subscription';
 import 'rxjs/add/operator/filter';
 import {DOCUMENT} from '@angular/common';
@@ -15,7 +15,13 @@ export class AppComponent implements OnInit {
     private _router: Subscription;
     @ViewChild(NavbarComponent) navbar: NavbarComponent;
 
-    constructor(private renderer: Renderer2, private router: Router, @Inject(DOCUMENT,) private document: any, private element: ElementRef, public location: Location) {
+    constructor(
+        private renderer: Renderer2,
+        private router: Router,
+        @Inject(DOCUMENT,) private document: any,
+        private element: ElementRef, public location: Location) {
+
+
     }
 
     ngOnInit() {
@@ -45,4 +51,5 @@ export class AppComponent implements OnInit {
             });
         });
     }
+
 }

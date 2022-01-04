@@ -19,6 +19,9 @@ import { BankInfoComponent } from './delsos/register/bank-info/bank-info.compone
 import { FooTerComponent } from './delsos/components/foo-ter/foo-ter.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NotifComponent } from './delsos/components/notif/notif.component';
+import { LoadingComponent } from './delsos/components/loading/loading.component';
+import { NotFoundPageComponent } from './delsos/components/not-found-page/not-found-page.component';
+import {ToastrModule} from 'ngx-toastr';
 
 
 @NgModule({
@@ -35,6 +38,9 @@ import { NotifComponent } from './delsos/components/notif/notif.component';
         BankInfoComponent,
         FooTerComponent,
         NotifComponent,
+        LoadingComponent,
+        NotFoundPageComponent,
+
     ],
     imports: [
         BrowserAnimationsModule,
@@ -46,6 +52,8 @@ import { NotifComponent } from './delsos/components/notif/notif.component';
         ExamplesModule,
         HttpClientModule,
         ReactiveFormsModule,
+        ToastrModule.forRoot(), // ToastrModule added
+
     ],
     providers: [],
     bootstrap: [AppComponent]
