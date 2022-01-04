@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {environment} from 'environments/environment';
 import {ActivatedRoute} from '@angular/router';
+import {IAlert} from '../components/notif/notif.component';
 
 @Component({
     selector: 'app-sign-in',
@@ -11,6 +12,11 @@ export class SignInComponent implements OnInit {
     focus;
     focus1;
     createdAccount = false;
+    accountCreatedAlert: IAlert={
+        type:"success",
+        strong:"Account created successfully",
+        message:'please login'
+    };
 
     constructor(private activatedRoute: ActivatedRoute) {
         activatedRoute.queryParams.subscribe(

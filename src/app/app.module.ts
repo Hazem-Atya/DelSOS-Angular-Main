@@ -18,6 +18,7 @@ import { LoginInfoComponent } from './delsos/register/login-info/login-info.comp
 import { BankInfoComponent } from './delsos/register/bank-info/bank-info.component';
 import { FooTerComponent } from './delsos/components/foo-ter/foo-ter.component';
 import { HttpClientModule } from '@angular/common/http';
+import { NotifComponent } from './delsos/components/notif/notif.component';
 
 
 @NgModule({
@@ -33,6 +34,7 @@ import { HttpClientModule } from '@angular/common/http';
         LoginInfoComponent,
         BankInfoComponent,
         FooTerComponent,
+        NotifComponent,
     ],
     imports: [
         BrowserAnimationsModule,
