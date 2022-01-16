@@ -12,25 +12,24 @@ export class LoginInfoComponent implements OnInit {
     focus: any;
     focus1: any;
     @Input() registerForm:FormGroup;
+    @Input() nextButton ;
     constructor() {
     }
 
     ngOnInit(): void {
         const el= document.getElementById('email');
         el.focus();
+        console.log('here it is:',this.nextButton)
     }
 
     ngOnDestroy(){
+
     }
 
-    isUsernameUsed(username):boolean {
-        return false;
-        return true;
-        // vérifier si le username est déja utilisé
-    }
-    isEmailUsed(username):boolean {
-        return false;
-        return true;
-        // vérifier si le username est déja utilisé
+
+    get f() { return this.registerForm.controls; }
+
+    checkFormValidity() {
+        this.nextButton.disabled=this.f.password.invalid ||this.f.email.invalid;
     }
 }

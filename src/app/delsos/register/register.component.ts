@@ -5,6 +5,8 @@ import {environment} from 'environments/environment';
 import {Shopper} from '../model/Shopper';
 import {ShopperService} from './service/shopper.service';
 import {Router} from '@angular/router';
+import {ToastrService} from 'ngx-toastr';
+import {validate} from 'codelyzer/walkerFactory/walkerFn';
 
 @Component({
     selector: 'app-register',
@@ -16,14 +18,15 @@ export class RegisterComponent implements OnInit {
 
     logoPath = environment.logoPath;
     registerFormData: FormGroup;
-
+    nextOrSubmitButton;
     focus: any;
     focus1: any;
     steps: Array<number> = [1, 2];
     step: number = 0;
-    loading= false;
+    loading = false;
 
     constructor(
+        private toastr: ToastrService,
         private router: Router,
         private shopperService: ShopperService,
         private fb: FormBuilder
@@ -31,7 +34,7 @@ export class RegisterComponent implements OnInit {
     }
 
     next() {
-
+        this.nextOrSubmitButton.disabled=true;
         console.log('next');
     }
 
@@ -40,6 +43,7 @@ export class RegisterComponent implements OnInit {
     }
 
     back() {
+        this.nextOrSubmitButton.disabled=false;
         this.step--;
     }
 
@@ -48,8 +52,8 @@ export class RegisterComponent implements OnInit {
         if (s !== undefined) {
             this.step = s;
         } else if (this.step === 2) {
-            this.loading=true;
-             this.addShopper();
+            this.loading = true;
+            this.addShopper();
 
         } else {
             this.next();
@@ -85,6 +89,8 @@ export class RegisterComponent implements OnInit {
         navbar.classList.add('navbar-transparent');
 
         this.createForm();
+        console.log(this.registerFormData)
+        this.nextOrSubmitButton={disabled:true};
     }
 
     ngOnDestroy() {
@@ -97,40 +103,75 @@ export class RegisterComponent implements OnInit {
 
     addShopper() {
 
-        console.log(this.registerFormData.value);
+        console.log(this.registerFormData);
         this.shopperService.addShopper(this.registerFormData.value).subscribe(
             (response) => {
                 console.log(response);
                 this.router.navigate(['sign-in'],
                     {
-                        queryParams:{'createdAccount':true}
+                        queryParams: {'createdAccount': true}
                     });
-              this.loading=false;
+                this.loading = false;
             },
             (error: HttpErrorResponse) => {
                 console.log('There is an error :(');
                 console.log(error);
-                this.loading=false;
+                const errorMessages = error.error.message;
+                if (typeof errorMessages === 'string') {
+                    this.toastr.error(errorMessages, '', {
+                        disableTimeOut: true,
+                        extendedTimeOut: 4000
+                        //       timeOut:5000
+                    })
+                } else {
+                    errorMessages.forEach(
+                        (msg) => {
+                            this.toastr.error(msg, '', {
+                                extendedTimeOut: 4000
+                                //       timeOut:5000
+                            });
+                        }
+                    );
+                }
+
+                this.loading = false;
+
             }
         )
     }
 
     createForm() {
-        this
+
         this.registerFormData = this.fb.group({
-            name: '',
-            age: '',
-            phoneNumber: '',
-            email: '',
-            password: '',
-            owner: '',
-            cardNumber: '',
-            expirationDate: ''
+            name: ['',
+                Validators.required],
+            age: ['',
+                Validators.required],
+            phoneNumber: ['',
+                [Validators.required, Validators.minLength(8),
+                  Validators.pattern('[0-9]+')]
+                ],
+
+            email: ['',
+                [Validators.required, Validators.email]],
+            password: ['',
+                [Validators.required,Validators.minLength(5)]],
+            owner: ['',
+                [Validators.required, Validators.minLength(5)]],
+            cardNumber: ['',
+                [Validators.required, Validators.minLength(5),
+                    Validators.pattern('[0-9]+')
+                ]],
+            expirationDate: ['',
+                Validators.required]
         })
     }
+    // convenience getter for easy access to form fields
+
     clickNextOrSubmit(event) {
-        if(event.key=='Enter')
+        if (event.key == 'Enter' && this.nextOrSubmitButton.disabled===false) {
             this.onChangeStep();
+        }
         // else if((event.key=='Backspace')&&(this.step!=0))
         // {
         //     this.back();

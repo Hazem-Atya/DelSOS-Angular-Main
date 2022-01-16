@@ -1,4 +1,5 @@
 <form
+        (keyup)="checkFormValidity()"
         [formGroup]="registerForm">
     <div class="input-group form-group-no-border input-lg" [ngClass]="{'input-group-focus':focus===true}">
         <div class="input-group-prepend">
@@ -15,6 +16,9 @@
                 placeholder="Full name"
                 (focus)="focus=true" (blur)="focus=false">
     </div>
+    <div class="badge badge-danger" *ngIf="f.name.touched && f.name.invalid">
+        Name should not be empty
+    </div>
     <div class="input-group form-group-no-border input-lg" [ngClass]="{'input-group-focus':focus===true}">
         <div class="input-group-prepend">
         <span class="input-group-text">
@@ -28,7 +32,16 @@
                 class="form-control"
                 placeholder="Phone number"
                 (focus)="focus=true" (blur)="focus=false">
+
     </div>
+    <div class="badge badge-danger" *ngIf="
+     f.phoneNumber.touched&&(f.phoneNumber.errors?.required||f.phoneNumber.errors?.minlength)">
+        Phone number must have at least 8 digits
+    </div>
+    <div class="badge badge-danger" *ngIf=" f.phoneNumber.errors?.pattern">
+        Phone must be a number
+    </div>
+
     <div class="input-group form-group-no-border input-lg" [ngClass]="{'input-group-focus':focus===true}">
         <div class="input-group-prepend">
         <span class="input-group-text">
@@ -41,8 +54,13 @@
                 class="form-control"
                 placeholder="Age"
                 (focus)="focus=true" (blur)="focus=false">
-    </div>
 
+    </div>
+    <div class="badge badge-danger" *ngIf="f.age.touched && f.age.invalid">
+        Age should not be empty
+    </div>
+    <br>
+    <br>
     <!--    <div class="input-group form-group-no-border input-lg" [ngClass]="{'input-group-focus':focus===true}">-->
 <!--        <div class="input-group-prepend">-->
 <!--        <span class="input-group-text">-->

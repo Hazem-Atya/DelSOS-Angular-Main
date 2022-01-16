@@ -10,8 +10,9 @@ export class PersonalInfoComponent implements OnInit {
     focus: any;
     focus1: any;
     @Input() registerForm: FormGroup;
-
+    @Input() nextButton
     constructor() {
+
     }
 
     ngOnInit(): void {
@@ -21,6 +22,13 @@ export class PersonalInfoComponent implements OnInit {
 
     ngOnDestroy() {
     }
+    get f() { return this.registerForm.controls; }
 
+    checkFormValidity() {
+        this.nextButton.disabled=this.f.name.invalid ||this.f.phoneNumber.invalid
+            || this.f.age.invalid;
+        console.log(this.registerForm);
+
+    }
 
 }
