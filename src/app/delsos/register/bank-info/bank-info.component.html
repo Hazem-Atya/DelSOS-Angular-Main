@@ -1,0 +1,62 @@
+<form
+        (keyup)="checkFormValidity()"
+        [formGroup]="registerForm">
+    <div class="input-group form-group-no-border input-lg" [ngClass]="{'input-group-focus':focus===true}">
+        <div class="input-group-prepend">
+        <span class="input-group-text">
+            <i class="now-ui-icons users_circle-08"></i>
+        </span>
+        </div>
+        <input
+                id="cardNumber"
+                formControlName="cardNumber"
+                type="text" class="form-control"
+                placeholder="Card Number"
+                (focus)="focus=true" (blur)="focus=false">
+    </div>
+    <div class="badge badge-danger" *ngIf="
+     f.cardNumber?.touched&&(f.cardNumber.errors?.required||f.cardNumber.errors?.minlength)">
+        Card number must have at least 8 digits
+    </div>
+    <div class="badge badge-danger" *ngIf=" f.cardNumber.errors?.pattern">
+        Card number must be a number
+    </div>
+    <div class="input-group form-group-no-border input-lg" [ngClass]="{'input-group-focus':focus===true}">
+        <div class="input-group-prepend">
+        <span class="input-group-text">
+            <i class="now-ui-icons users_circle-08"></i>
+        </span>
+        </div>
+        <input
+                formControlName="owner"
+                type="text"
+                class="form-control"
+                placeholder="Card owner"
+                (focus)="focus=true" (blur)="focus=false">
+    </div>
+    <div class="badge badge-danger" *ngIf="f.owner.touched && f.owner.invalid">
+        Card owner should have at least 5 characters
+    </div>
+    <div class="input-group form-group-no-border input-lg" [ngClass]="{'input-group-focus':focus===true}">
+
+        <div class="input-group-prepend">
+        <span class="input-group-text">
+            <i class="now-ui-icons users_circle-08"></i>
+        </span>
+        </div>
+        <input
+            #expirationDate
+            (focusin)="toggleType($event,expirationDate)"
+            (focusout)="toggleType($event,expirationDate)"
+            formControlName="expirationDate"
+            type="text" class="form-control"
+            placeholder="Expiration date"
+            (focus)="focus=true" (blur)="focus=false">
+    </div>
+    <div class="badge badge-danger" *ngIf="f.expirationDate.touched && f.expirationDate.invalid">
+        Expiration date should not be empty
+    </div>
+    <br>
+    <br>
+</form>
+

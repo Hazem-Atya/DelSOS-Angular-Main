@@ -1,0 +1,66 @@
+<div
+        (keyup)="clickNextOrSubmit($event)"
+
+        class=" page-header" filter-color="orange">
+    <div class="page-header-image" style="background-image:url(assets/img/bg/fast-delivery.jpg)"></div>
+    <div class="container">
+        <div class="col-md-4 content-center">
+            <div class="card card-login card-plain">
+                <form class="form" #registerForm="ngForm">
+                    <div class="header header-primary text-center">
+                        <div class="logo-register-page ">
+
+                            <img src="{{logoPath}}" alt="" width="70">
+                            <h6>Become a shopper</h6>
+                            <div class="dots">
+                                <span class=" active step" id="0" (click)="onChangeStep(0)"></span>
+                                <span class=" step" *ngFor="let step of steps" id={{step}}
+                                      (click)="onChangeStep(step)"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="step-title" *ngIf="step ===0">
+                        <p>Login info:</p>
+                    </div>
+                    <div class="step-title" *ngIf="step ===1">
+                        <p>Personal info</p>
+                    </div>
+                    <div class="step-title" *ngIf="step ===2">
+                        <p>bank info</p>
+                    </div>
+                    <br>
+                    <div class="content" *ngIf="step ===0">
+                        <app-login-info [nextButton]="nextOrSubmitButton" [registerForm]="registerFormData"></app-login-info>
+                    </div>
+                    <div class="content" *ngIf="step ===1">
+                        <app-personal-info  [nextButton]="nextOrSubmitButton" [registerForm]="registerFormData"></app-personal-info>
+                    </div>
+                    <div class="content" *ngIf="step ===2">
+                        <app-bank-info [submitButton]="nextOrSubmitButton" [registerForm]="registerFormData"></app-bank-info>
+                    </div>
+                    <div class="footer text-center">
+                        <button class="btn btn-primary btn-round btn-lg btn-block"
+                            [disabled]="nextOrSubmitButton.disabled"
+                           (click)="onChangeStep()">{{step < 2 ? "Next" : "Submit"}} </button>
+                        <p class="link btn-secondary btn btn-round"
+                           (click)="back()"
+                           *ngIf="step !== 0">Back</p>
+                    </div>
+                    <div class="pull-left">
+                        <h6>
+                            <p>
+                                Already have an account?
+                                <a   [routerLink]="['/sign-in']" class=""> Login</a>
+                            </p>
+                        </h6>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+    <app-foo-ter></app-foo-ter>
+</div>
+<app-loading *ngIf="loading"></app-loading>
+
