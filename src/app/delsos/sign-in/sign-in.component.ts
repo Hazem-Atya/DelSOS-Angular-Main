@@ -29,7 +29,7 @@ export class SignInComponent implements OnInit {
     constructor(
         private toastr: ToastrService,
         private shopperService: ShopperService,
-        private router: Router,
+        private router: ActivatedRoute,
       ) {
 
     }
@@ -37,6 +37,11 @@ export class SignInComponent implements OnInit {
     public logoPath: String = environment.logoPath;
 
     ngOnInit() {
+        this.router.queryParams.subscribe(queryParam=>{
+
+            this.loggedin=queryParam['createdAccount'];
+            console.log(this.loggedin)
+        })
         if (this.loggedin) {
             this.toastr.success(
                 'Please type your credentials to login',
