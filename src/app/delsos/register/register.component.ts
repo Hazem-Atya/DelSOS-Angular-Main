@@ -34,7 +34,7 @@ export class RegisterComponent implements OnInit {
     }
 
     next() {
-        this.nextOrSubmitButton.disabled=true;
+       // this.nextOrSubmitButton.disabled=true;
         console.log('next');
     }
 
@@ -119,11 +119,10 @@ export class RegisterComponent implements OnInit {
                 const errorMessages = error.error.message;
                 if (typeof errorMessages === 'string') {
                     this.toastr.error(errorMessages, '', {
-                        disableTimeOut: true,
                         extendedTimeOut: 4000
                         //       timeOut:5000
                     })
-                } else {
+                } else if (errorMessages){
                     errorMessages.forEach(
                         (msg) => {
                             this.toastr.error(msg, '', {
@@ -132,6 +131,8 @@ export class RegisterComponent implements OnInit {
                             });
                         }
                     );
+                }else {
+                    this.toastr.error('Server error, please contact the admin');
                 }
 
                 this.loading = false;
@@ -154,6 +155,8 @@ export class RegisterComponent implements OnInit {
 
             email: ['',
                 [Validators.required, Validators.email]],
+            address: ['',
+                [Validators.required, Validators.minLength(6)]],
             password: ['',
                 [Validators.required,Validators.minLength(5)]],
             owner: ['',
