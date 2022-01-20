@@ -1,5 +1,6 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
+import { SigninService } from 'app/delsos/sign-in/sign-in.service';
 
 @Component({
     selector: 'app-navbar',
@@ -10,7 +11,8 @@ export class NavbarComponent implements OnInit {
     private toggleButton: any;
     private sidebarVisible: boolean;
 
-    constructor(public location: Location, private element : ElementRef) {
+    constructor(public location: Location, private element: ElementRef,
+        public signinService: SigninService) {
         this.sidebarVisible = false;
     }
 
@@ -45,6 +47,12 @@ export class NavbarComponent implements OnInit {
         }
     };
   
+    isAuthenticated() {
+        return this.signinService.isAuthenticated()
+    }
+    logout() {
+        this.signinService.logout()
+    }
     isDocumentation() {
         var titlee = this.location.prepareExternalUrl(this.location.path());
         if( titlee === '/documentation' ) {

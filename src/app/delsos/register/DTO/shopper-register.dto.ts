@@ -8,3 +8,24 @@ export class ShopperRegister {
     cardNumber: string;
     expirationDate: string;
 }
+
+
+export interface Shopper {
+    bankDetails: {
+        owner: String,
+        cardNumber: String,
+        expirationDate: String
+    },
+    id: String,
+    name: String,
+    email: String,
+    username: String,
+    age: Number,
+    phoneNumber:String,
+    range: Number,
+    address: String,
+    status: String,
+    createdAt: String,
+    updatedAt:String,
+
+}

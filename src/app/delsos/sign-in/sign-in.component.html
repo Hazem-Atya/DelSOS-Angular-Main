@@ -3,9 +3,7 @@
     <div class="container">
         <div class="col-md-4 content-center">
             <div class="card card-login card-plain">
-                <form class="form" method="" action="" (ngSubmit)="login()" 
-                [formGroup]="signinFormData"
-               >
+                <form class="form" method="" action="" #signinForm="ngForm" (ngSubmit)="login(signinForm)" >
                     <div class="header header-primary text-center">
                         <div class="logo-container">
                             <img (click)="printPath()" src="{{logoPath}}" alt="logo">
@@ -20,9 +18,11 @@
                             </div>
 
                             <input type="email" 
-                            required
-                            formControlName="email"
                             ngModel
+                            email
+                            name="email"
+                            #email="ngModel"
+                            required
                             class="form-control" placeholder="Email ..."
                                    (focus)="focus=true" (blur)="focus=false">
                         </div>
@@ -41,10 +41,11 @@
                                     <i class="now-ui-icons ui-1_lock-circle-open  "></i></span>
                             </div>
                             <input type="password" required
-                            formControlName="password"
+                            
                             ngModel
-                            (change)="test()"
-                            minLength="8"
+                            #password="ngModel"
+                            minlength="8"
+                            name="password"
                             placeholder="Password..." class="form-control" (focus)="focus1=true"
                                    (blur)="focus1=false"/>
                                    
@@ -58,7 +59,7 @@
                                 </div>
                     </div>
                     <div class="footer text-center">
-                        <button type="submit" [disabled]="status.toString() === 'INVALID' "  class="btn btn-primary btn-round btn-lg btn-block">Sign in </button>
+                        <button type="submit" [disabled]="signinForm.invalid"  class="btn btn-primary btn-round btn-lg btn-block">Sign in </button>
                     </div>
                     <div class="pull-left">
                         <h6>

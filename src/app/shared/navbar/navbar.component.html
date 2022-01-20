@@ -34,15 +34,23 @@
               <li class="nav-item">
                 <a class="nav-link" href="/shopper-register" target="_blank">
                 <!--   <i class="fa fa-home" aria-hidden="true"></i> -->
-                    <p> Become a shopper</p>
+                    <p> Become a </p>
                 </a>
             </li>
            
                 <li class="nav-item">
-                    <a class="nav-link btn btn-neutral" href="/login" target="_blank">
+                    <a class="nav-link btn btn-neutral" href="/login" 
+                    *ngIf="!isAuthenticated()"
+                    target="_blank">
                         <!-- <i class="now-ui-icons users_circle-08"></i> -->
-                        <p> Login</p>
+                       Login
                     </a>
+                    <button class="nav-link btn btn-neutral" (click)="logout()"
+                    *ngIf="isAuthenticated()"
+                    target="_blank">
+                        <!-- <i class="now-ui-icons users_circle-08"></i> -->
+                       Logout
+                </button>
                 </li>
             
             </ul>

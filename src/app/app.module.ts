@@ -22,6 +22,9 @@ import { NotifComponent } from './delsos/components/notif/notif.component';
 import { LoadingComponent } from './delsos/components/loading/loading.component';
 import { NotFoundPageComponent } from './delsos/components/not-found-page/not-found-page.component';
 import {ToastrModule} from 'ngx-toastr';
+import { ShopperProfileComponent } from './delsos/shopper-profile/shopper-profile.component';
+import { ComponentsComponent } from './components/components.component';
+import { AuthentificationInterceptorProvider } from './interceptors/auth.interceptor';
 
 
 @NgModule({
@@ -35,11 +38,14 @@ import {ToastrModule} from 'ngx-toastr';
         FooterComponent,
         PersonalInfoComponent,
         LoginInfoComponent,
+        ShopperProfileComponent,
         BankInfoComponent,
         FooTerComponent,
         NotifComponent,
         LoadingComponent,
         NotFoundPageComponent,
+    
+        
 
     ],
     imports: [
@@ -55,7 +61,7 @@ import {ToastrModule} from 'ngx-toastr';
         ToastrModule.forRoot(), // ToastrModule added
 
     ],
-    providers: [],
+    providers: [AuthentificationInterceptorProvider],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

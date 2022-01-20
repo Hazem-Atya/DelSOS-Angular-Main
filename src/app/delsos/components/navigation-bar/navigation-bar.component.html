@@ -20,30 +20,56 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/deliveries" >
+          <a class="nav-link" 
+          *ngIf="isShopper()"
+          href="/deliveries" >
             <!--    <i class="now-ui-icons shopping_box"></i> -->
-            <p>Deliveries</p>
+            Deliveries
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/partner-register']"  >
+          <a class="nav-link" [routerLink]="['/partner-register']" *ngIf="isShopper()" >
             <!--   <i class="fa fa-home" aria-hidden="true"></i> -->
-            <p> Become a partner</p>
+             Become a partner
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/shopper-register']" >
+          <a class="nav-link" [routerLink]="['/shopper-register']"  *ngIf="!isShopper()">
             <!--   <i class="fa fa-home" aria-hidden="true"></i> -->
-            <p> Become a shopper</p>
+            Become a shopper
           </a>
         </li>
-
+<li class="nav-item">
+  <a   class="nav-link btn btn-primary " 
+  *ngIf="isShopper()"
+  [routerLink]="['/shopper/profile']" 
+  target="_blank">
+      <!-- <i class="now-ui-icons users_circle-08"></i> -->
+     Profile
+</a >
+<a   class="nav-link btn btn-primary " 
+*ngIf="!isShopper()"
+[routerLink]="['/profile']" 
+target="_blank">
+    <!-- <i class="now-ui-icons users_circle-08"></i> -->
+   Profile
+</a >
+</li>
         <li class="nav-item">
-          <a class="nav-link btn btn-neutral" [routerLink]="['/sign-in']" >
-            <!-- <i class="now-ui-icons users_circle-08"></i> -->
-            <p> Login</p>
+          <a class="nav-link btn btn-neutral" [routerLink]="['/sign-in']" 
+          *ngIf="!isAuthenticated()"
+          target="_blank">
+              <!-- <i class="now-ui-icons users_circle-08"></i> -->
+             Login
           </a>
-        </li>
+   
+          <button class="nav-link btn btn-neutral" (click)="logout()"
+          *ngIf="isAuthenticated()"
+          target="_blank">
+              <!-- <i class="now-ui-icons users_circle-08"></i> -->
+             Logout
+      </button>
+      </li>
 
       </ul>
     </div>
