@@ -24,7 +24,7 @@ export class RegisterComponent implements OnInit {
     steps: Array<number> = [1, 2];
     step: number = 0;
     loading = false;
-
+   
     constructor(
         private toastr: ToastrService,
         private router: Router,
@@ -82,9 +82,7 @@ export class RegisterComponent implements OnInit {
         body.classList.add('login-page');
 
         var dot = document.getElementsByClassName('step');
-        console.log(dot);
-        //dot.classList.add('active'); 
-
+  
         var navbar = document.getElementsByTagName('nav')[0];
         navbar.classList.add('navbar-transparent');
 
@@ -103,7 +101,7 @@ export class RegisterComponent implements OnInit {
 
     addShopper() {
 
-        console.log(this.registerFormData);
+
         this.shopperService.addShopper(this.registerFormData.value).subscribe(
             (response) => {
                 console.log(response);

@@ -28,4 +28,7 @@ export class ShopperService {
   public deleteShopper(shopperId: number): Observable<void> {
     return this.http.delete<void>(`${this.apiServerUrl}/employee/delete/${shopperId}`);
   }
+  public login(credentials : any) {
+    return this.http.post<any>(`${this.apiServerUrl}/auth/login`, credentials)
+  }
 }
