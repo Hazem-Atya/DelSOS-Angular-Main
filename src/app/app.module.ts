@@ -25,6 +25,8 @@ import {ToastrModule} from 'ngx-toastr';
 import { ShopperProfileComponent } from './delsos/shopper-profile/shopper-profile.component';
 import { ComponentsComponent } from './components/components.component';
 import { AuthentificationInterceptorProvider } from './interceptors/auth.interceptor';
+import { NgbdModalBasic } from './delsos/components/modal/modal.component';
+import { NgCircleProgressModule } from 'ng-circle-progress';
 
 
 @NgModule({
@@ -44,6 +46,7 @@ import { AuthentificationInterceptorProvider } from './interceptors/auth.interce
         NotifComponent,
         LoadingComponent,
         NotFoundPageComponent,
+        NgbdModalBasic
     
         
 
@@ -58,7 +61,17 @@ import { AuthentificationInterceptorProvider } from './interceptors/auth.interce
         ExamplesModule,
         HttpClientModule,
         ReactiveFormsModule,
-        ToastrModule.forRoot(), // ToastrModule added
+        ToastrModule.forRoot(),
+        NgCircleProgressModule.forRoot({
+            // set defaults here
+            radius: 100,
+            outerStrokeWidth: 16,
+            innerStrokeWidth: 8,
+            outerStrokeColor: "#78C000",
+            innerStrokeColor: "#C7E596",
+            animationDuration: 300,
+        
+          }) // ToastrModule added
 
     ],
     providers: [AuthentificationInterceptorProvider],

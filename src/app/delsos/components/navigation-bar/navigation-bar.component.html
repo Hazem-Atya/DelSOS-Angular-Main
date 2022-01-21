@@ -3,9 +3,11 @@
 
     <div class="navbar-translate">
       <a class="navbar-brand" [routerLink]="['/home']" placement="bottom" ngbTooltip="Go to the homepage">
-        <img src="assets/logo/8.png" width="200" height="50"  />
+        <img src="assets/logo/8.png" width="200" height="50" />
       </a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation" (click)="sidebarToggle()">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler"
+        aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation"
+        (click)="sidebarToggle()">
         <span class="navbar-toggler-bar bar1"></span>
         <span class="navbar-toggler-bar bar2"></span>
         <span class="navbar-toggler-bar bar3"></span>
@@ -14,62 +16,52 @@
     <div class="collapse navbar-collapse" data-nav-image="assets/img/blurred-image-1.jpg" data-color="orange">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/home']" >
+          <a class="nav-link" [routerLink]="['/home']">
             <!--   <i class="fa fa-home" aria-hidden="true"></i> -->
             <p> Home Page</p>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" 
-          *ngIf="isShopper()"
-          href="/deliveries" >
+          <a class="nav-link" *ngIf="isAuthenticated() && isShopper()" [routerLink]="['/deliveries']" >
             <!--    <i class="now-ui-icons shopping_box"></i> -->
             Deliveries
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/partner-register']" *ngIf="isShopper()" >
+          <a class="nav-link" [routerLink]="['/partner/register']" *ngIf="!isAuthenticated() || isShopper()">
             <!--   <i class="fa fa-home" aria-hidden="true"></i> -->
-             Become a partner
+            Become a partner
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/shopper-register']"  *ngIf="!isShopper()">
+          <a class="nav-link" [routerLink]="['/shopper/register']" *ngIf="!isAuthenticated() || !isShopper()">
             <!--   <i class="fa fa-home" aria-hidden="true"></i> -->
             Become a shopper
           </a>
         </li>
-<li class="nav-item">
-  <a   class="nav-link btn btn-primary " 
-  *ngIf="isShopper()"
-  [routerLink]="['/shopper/profile']" 
-  target="_blank">
-      <!-- <i class="now-ui-icons users_circle-08"></i> -->
-     Profile
-</a >
-<a   class="nav-link btn btn-primary " 
-*ngIf="!isShopper()"
-[routerLink]="['/profile']" 
-target="_blank">
-    <!-- <i class="now-ui-icons users_circle-08"></i> -->
-   Profile
-</a >
-</li>
         <li class="nav-item">
-          <a class="nav-link btn btn-neutral" [routerLink]="['/sign-in']" 
-          *ngIf="!isAuthenticated()"
-          target="_blank">
-              <!-- <i class="now-ui-icons users_circle-08"></i> -->
-             Login
+          <a class="nav-link btn btn-primary " *ngIf="isAuthenticated() && isShopper()"
+            [routerLink]="['/shopper/profile']" target="_blank">
+            <!-- <i class="now-ui-icons users_circle-08"></i> -->
+            Profile
           </a>
-   
-          <button class="nav-link btn btn-neutral" (click)="logout()"
-          *ngIf="isAuthenticated()"
-          target="_blank">
-              <!-- <i class="now-ui-icons users_circle-08"></i> -->
-             Logout
-      </button>
-      </li>
+          <a class="nav-link btn btn-primary " *ngIf="isAuthenticated() && !isShopper()" [routerLink]="['/profile']"
+            target="_blank">
+            <!-- <i class="now-ui-icons users_circle-08"></i> -->
+            Profile
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link btn btn-neutral" [routerLink]="['/sign-in']" *ngIf="!isAuthenticated()" target="_blank">
+            <!-- <i class="now-ui-icons users_circle-08"></i> -->
+            Login
+          </a>
+
+          <button class="nav-link btn btn-neutral" (click)="logout()" *ngIf="isAuthenticated()" target="_blank">
+            <!-- <i class="now-ui-icons users_circle-08"></i> -->
+            Logout
+          </button>
+        </li>
 
       </ul>
     </div>

@@ -1,6 +1,6 @@
 import { Component, OnInit, SimpleChanges } from '@angular/core';
 import { environment } from 'environments/environment';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, CanDeactivate } from '@angular/router';
 import { IAlert } from '../components/notif/notif.component';
 import { ToastrService } from 'ngx-toastr';
 import { FormBuilder, FormControl, FormGroup, NgForm, NgModel, Validators } from '@angular/forms';
@@ -39,6 +39,9 @@ export class SignInComponent implements OnInit {
     public logoPath: String = environment.logoPath;
 
     ngOnInit() {
+        if (this.signinService.isAuthenticated()) {
+            this.router.navigateByUrl('/home')
+        }
         if (this.loggedin) {
             this.toastr.success(
                 'Please type your credentials to login',
@@ -61,9 +64,13 @@ export class SignInComponent implements OnInit {
                 (response) => {
                     console.log(response)
                     this.localStorageService.set('token', response.access_token)
+                    
                     this.signinService.getProfile(response.access_token).subscribe(
                         (user) => {
-                            this.router.navigateByUrl('/shopper/profile',{ state: user });
+                            this.localStorageService.set('role', user.role)
+                            if (user['role'] == 'SHOPPER')
+                            this.router.navigateByUrl('/deliveries',{ state: user });
+                            this.router.navigateByUrl('/store/profile',{ state: user });
                             this.loading = false;
                             this.toastr.success("Welcome Back !");
                         },
@@ -96,6 +103,7 @@ export class SignInComponent implements OnInit {
     printPath() {
 
     }
+
     onSubmit(formulaire: NgForm) {
         console.log(formulaire);
     }

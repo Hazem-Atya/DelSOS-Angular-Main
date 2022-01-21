@@ -12,20 +12,21 @@ export class ShopperRegister {
 
 export interface Shopper {
     bankDetails: {
-        owner: String,
-        cardNumber: String,
-        expirationDate: String
+        owner: string,
+        cardNumber: string,
+        expirationDate: string
     },
-    id: String,
-    name: String,
-    email: String,
-    username: String,
+    id: string,
+    name: string,
+    email: string,
+    username: string,
     age: Number,
-    phoneNumber:String,
+    role: string,
+    phoneNumber:string,
     range: Number,
-    address: String,
-    status: String,
-    createdAt: String,
-    updatedAt:String,
+    address: string,
+    status: string,
+    createdAt: string,
+    updatedAt:string,
 
 }

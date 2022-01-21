@@ -65,7 +65,8 @@ export class NavigationBarComponent implements OnInit {
     }
 
     isShopper() {
-        return true
+        console.log(this.signinService.isShopper())
+       return  this.signinService.isShopper()
     }
     logout() {
         this.signinService.logout()

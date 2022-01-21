@@ -12,7 +12,8 @@ import { SignInComponent } from './delsos/sign-in/sign-in.component';
 import { RegisterComponent } from './delsos/register/register.component'
 import { ShopperProfileComponent } from './delsos/shopper-profile/shopper-profile.component';
 import {NotFoundPageComponent} from './delsos/components/not-found-page/not-found-page.component';
-import { SigninGuard } from './guards/signin.guard';
+import {  SigninGuard } from './guards/signin.guard';
+
 
 const routes: Routes = [
 
@@ -38,7 +39,7 @@ const routes: Routes = [
     { path: 'examples/login', component: LoginComponent },
     { path: 'profile', component: ProfileComponent, canActivate: [SigninGuard] },
     { path: 'home', component: HomepageComponent },
-    { path: 'sign-in', component: SignInComponent },
+    { path: 'sign-in', component: SignInComponent, },
     { path: 'login', component: LoginComponent },
     {path: '**',component:NotFoundPageComponent }
 ]

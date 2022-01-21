@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
-import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from "@angular/router";
+import { ActivatedRouteSnapshot, CanActivate, CanDeactivate, Router, RouterStateSnapshot, UrlTree } from "@angular/router";
+import { SignInComponent } from "app/delsos/sign-in/sign-in.component";
 import { SigninService } from "app/delsos/sign-in/sign-in.service";
 import { Observable } from "rxjs";
 
@@ -24,3 +25,5 @@ export class SigninGuard implements CanActivate{
   }
 
 }
+
+
