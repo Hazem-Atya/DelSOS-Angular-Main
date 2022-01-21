@@ -52,12 +52,12 @@ export class ShopperProfileComponent implements OnInit {
     var navbar = document.getElementsByTagName('nav')[0];
     navbar.classList.remove('navbar-transparent');
   }
-  percent = 100;
+  percent = 40;
 
   outerStrokeColor() {
     if(this.percent >= 100){
       return "#28a745"
-    }else if(this.percent >= 50){
+    }else if(this.percent > 0){
       return "#fd7e14" 
 
     }else {
@@ -67,7 +67,7 @@ export class ShopperProfileComponent implements OnInit {
   formatSubtitle = (percent: number) : string => {
     if(percent >= 100){
       return "Delivered!"
-    }else if(percent >= 50){
+    }else if(percent > 0){
       return "On the road"
 
     }else {
