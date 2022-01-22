@@ -27,7 +27,7 @@ const routes: Routes = [
         ]
     },
     {
-        path: 'sotre',
+        path: 'store',
         children: [
             { path: 'profile', component: ShopperProfileComponent, canActivate: [SigninGuard], },
             { path: 'register', component: RegisterComponent, },
@@ -37,7 +37,8 @@ const routes: Routes = [
     { path: 'nucleoicons', component: NucleoiconsComponent },
     { path: 'examples/landing', component: LandingComponent },
     { path: 'examples/login', component: LoginComponent },
-    { path: 'profile', component: ProfileComponent, canActivate: [SigninGuard] },
+    // { path: 'profile', component: ProfileComponent, canActivate: [SigninGuard] },
+    { path: 'profile', component: ProfileComponent },
     { path: 'home', component: HomepageComponent },
     { path: 'sign-in', component: SignInComponent, },
     { path: 'login', component: LoginComponent },

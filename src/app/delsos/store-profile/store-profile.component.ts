@@ -58,8 +58,8 @@ export class StoreProfileComponent implements OnInit {
         "address":fulladdress
       }).subscribe(
         updatedstore =>{
-          this.store = updatedstore
-          this.subAddress += updatedstore.address.country+"-"+updatedstore.address.city+"-"+updatedstore.address.postalCode
+          this.store = updatedstore 
+          // this.subAddress += updatedstore.address.country+"-"+updatedstore.address.city+"-"+updatedstore.address.postalCode
           this.toastr.success("profile updated successfully")
         },
         error => {

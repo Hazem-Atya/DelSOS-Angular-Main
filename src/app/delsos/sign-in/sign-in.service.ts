@@ -30,6 +30,7 @@ export class SigninService{
   
   public logout() {
     this.localStorageService.remove('token')
+    this.localStorageService.remove('role')
     this.router.navigateByUrl('/sign-in');
   }
   
