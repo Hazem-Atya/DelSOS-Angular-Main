@@ -29,6 +29,8 @@ import { NgbdModalBasic } from './delsos/components/modal/modal.component';
 import { NgCircleProgressModule } from 'ng-circle-progress';
 import { StoreProfileComponent } from './delsos/store-profile/store-profile.component';
 import { InfoItemComponent } from './delsos/store-profile/info-item/info-item/info-item.component';
+import { StoreRegisterComponent } from './delsos/store-register/register.component';
+import { CommonModule } from '@angular/common';
 
 
 @NgModule({
@@ -51,6 +53,7 @@ import { InfoItemComponent } from './delsos/store-profile/info-item/info-item/in
         NgbdModalBasic,
         StoreProfileComponent,
         InfoItemComponent,
+        StoreRegisterComponent,
 
     ],
     imports: [
@@ -63,6 +66,7 @@ import { InfoItemComponent } from './delsos/store-profile/info-item/info-item/in
         ExamplesModule,
         HttpClientModule,
         ReactiveFormsModule,
+        CommonModule,
         ToastrModule.forRoot(),
         NgCircleProgressModule.forRoot({
             // set defaults here

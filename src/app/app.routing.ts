@@ -14,6 +14,7 @@ import { ShopperProfileComponent } from './delsos/shopper-profile/shopper-profil
 import {NotFoundPageComponent} from './delsos/components/not-found-page/not-found-page.component';
 import {  SigninGuard } from './guards/signin.guard';
 import { StoreProfileComponent } from './delsos/store-profile/store-profile.component';
+import { StoreRegisterComponent } from './delsos/store-register/register.component';
 
 const routes: Routes = [
 
@@ -27,11 +28,13 @@ const routes: Routes = [
         ]
     },
     {
-        path: 'sotre',
+        path: 'store',
         children: [
             { path: 'profile', component: ShopperProfileComponent, canActivate: [SigninGuard], },
-            { path: 'register', component: RegisterComponent, },
-    ]},
+            { path: 'register', component: StoreRegisterComponent, },
+        ]
+    },
+    { path: 'test' , component : StoreRegisterComponent},
     { path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: 'index', component: ComponentsComponent },
     { path: 'nucleoicons', component: NucleoiconsComponent },
@@ -40,7 +43,6 @@ const routes: Routes = [
     { path: 'profile', component: ProfileComponent, canActivate: [SigninGuard] },
     { path: 'home', component: HomepageComponent },
     { path: 'sign-in', component: SignInComponent, },
-    { path: 'login', component: LoginComponent },
     {path: '**',component:NotFoundPageComponent }
 ]
 

@@ -1,7 +1,8 @@
 .logo-register-page{
 
 font-size: 30px;
-
+padding-top: 25%;
+//padding-bottom: 10%;
 
 img{
     padding-bottom: 5%;  
@@ -59,21 +60,57 @@ img{
 .footer{
     margin-top:-50px !important;
 }
-.btn:hover{
+
+.small-message{
+    font-size: 12px !important;
+    font-stretch: normal !important;
+    width: 100% !important;
+    
 }
 
+.input-file{
+    display: none;
+}
+
+.custom-file-upload {
+    //content: 'Select some files';
+    display: inline-block;
+    background: linear-gradient(top, #f9f9f9, #e3e3e3);
+  //  border: 1px solid #999;
+   // border-radius: 3px;
+    padding: 5px 8px;
+    outline: none;
+    white-space: nowrap;
+    -webkit-user-select: none;
+    cursor: pointer;
+    text-shadow: 1px 1px black;
+    font-weight: 600;
+    font-size: 10pt;
+}
+
+hr{
+    background-color : white
+}
+
+.divider{
+    height : 10vh;
+}
+.page-headerimage{
+    //background-repeat: no-repeat;
+    background-position: right top;
+    background-attachment: scroll;
+background-size: cover;
+}
+
+
 .scrollable-bg{
-  //  margin-top: 1%;
-   height: 85vh !important;
-    max-height: 85vh !important;
+    margin-top: 1%;
+   height: 80vh !important;
+    max-height: 80vh !important;
     overflow-y: scroll;
 
 }
 
 .scrollable-bg::-webkit-scrollbar {
     display: none;
-}
-
-.divider{
-    height : 10vh;
 }

@@ -1,0 +1,126 @@
+<div class=" page-header " filter-color="orange">
+    <div class="page-header-image" style="background-image:url(assets/img/bg/fast-delivery.jpg)"></div>
+    <div class="divider"></div>
+    <div class="container scrollable-bg ">
+        <div class="col-md-12 content-center ">
+            <div class="card card-login card-plain">
+                <form class="form" #registerForm="ngForm">
+                    <div class="header header-primary text-center">
+                        <div class="logo-register-page ">
+
+                            <img src="{{logoPath}}" alt="" width="70">
+                            <h6>Become a Partner</h6>
+
+                        </div>
+                    </div>
+                    <span class="small-message"> <i class="now-ui-icons travel_info"></i>
+                        In the file section please provide us any official paper that prove that you are a company /
+                        store ... </span>
+
+
+                    <div class="content">
+                        <br>
+                        <form [formGroup]="registerFormData">
+                            <div class="input-group form-group-no-border input-lg"
+                                [ngClass]="{'input-group-focus':focus===true}">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="now-ui-icons shopping_shop"></i>
+                                    </span>
+                                </div>
+                                <input id="name" formControlName="name" name="name" type="text" class="form-control"
+                                    placeholder="Company Name" (focus)="focus=true" (blur)="focus=false">
+                            </div>
+                            <div class="badge badge-danger" *ngIf="f.name.touched && f.name.invalid">
+                                Name should not be empty
+                            </div>
+                            <div class="input-group form-group-no-border input-lg"
+                                [ngClass]="{'input-group-focus':focus===true}">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="now-ui-icons objects_globe"></i>
+                                    </span>
+                                </div>
+                                <input id="website" formControlName="website" name="name" type="link"
+                                    class="form-control" placeholder="Website" (focus)="focus=true"
+                                    (blur)="focus=false">
+                            </div>
+                            <div class="badge badge-danger" *ngIf="f.address?.touched && f.address?.invalid">
+                                Your Website sould be in this format : https://www.domainename.com
+                            </div>
+                            <div class="input-group form-group-no-border input-lg"
+                                [ngClass]="{'input-group-focus':focus===true}">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="now-ui-icons ui-1_email-85"></i>
+                                    </span>
+                                </div>
+                                <input formControlName="email" type="email" class="form-control" placeholder="E-mail"
+                                    (focus)="focus=true" (blur)="focus=false">
+
+                            </div>
+                            <div class="badge badge-danger" *ngIf="
+                             f.phoneNumber.touched&&(f.phoneNumber.errors?.required||f.phoneNumber.errors?.minlength)">
+                                Invalid Email Format : foulen@gmail.com
+                            </div>
+                            <div class="badge badge-danger" *ngIf=" f.phoneNumber.errors?.pattern">
+                                Phone must be a number
+                            </div>
+
+                            <div class="input-group form-group-no-border input-lg"
+                                [ngClass]="{'input-group-focus':focus===true}">
+
+                                <div class="input-group-prepend">
+
+                                    <span class="input-group-text">
+                                        <i class="now-ui-icons files_paper"></i>
+
+                                    </span>
+                                </div>
+                                <label class="custom-file-upload form-control">
+
+                                    <i class="fa fa-upload" aria-hidden="true"></i>
+                                    Select your paper
+                                    <input formControlName="file" type="file" class="form-control input-file"
+                                        placeholder="File" (focus)="focus=true" (blur)="focus=false">
+                                </label>
+
+                            </div>
+                            <div class="badge badge-danger" *ngIf="f.age.touched && f.age.invalid">
+                                You should import a file
+                            </div>
+                            <br>
+                            <br>
+                        </form>
+                    </div>
+
+                    <div class="footer text-center">
+                        
+                        <span class="small-message">
+                            By submitting this form you are sending a request to the admin to become one of the official
+                            partner to DelSOS.
+                            <br> You will receive a response via mail
+                        </span>
+
+                        <button class="btn btn-primary btn-round btn-lg btn-block" (click)="onSubmit()"> Submit your
+                            request</button>
+
+
+                    </div>
+                    <div class="pull-left">
+                        <h6>
+                            <p>
+                                Already have an account?
+                                <a [routerLink]="['/sign-in']" class=""> Login</a>
+                            </p>
+                        </h6>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+    <app-foo-ter></app-foo-ter>
+</div>
+
+<app-loading *ngIf="loading"></app-loading>

@@ -39,7 +39,7 @@ export class StoreProfileComponent implements OnInit {
       this.storeProfileService.getStore().subscribe(
         store => {
           this.store = store
-          this.subAddress += store.address.country+"-"+store.address.city+"-"+store.address.postalCode
+          this.subAddress += store.address['country']+"-"+store.address['city']+"-"+store.address['postalCode']
         }
       )    
     }
@@ -59,7 +59,7 @@ export class StoreProfileComponent implements OnInit {
       }).subscribe(
         updatedstore =>{
           this.store = updatedstore
-          this.subAddress += updatedstore.address.country+"-"+updatedstore.address.city+"-"+updatedstore.address.postalCode
+          this.subAddress += updatedstore.address['country']+"-"+updatedstore.address['city']+"-"+updatedstore.address['postalCode']
           this.toastr.success("profile updated successfully")
         },
         error => {
