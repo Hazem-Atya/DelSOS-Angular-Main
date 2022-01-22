@@ -12,6 +12,7 @@ import { SignInComponent } from './delsos/sign-in/sign-in.component';
 import { RegisterComponent } from './delsos/register/register.component'
 import { ShopperProfileComponent } from './delsos/shopper-profile/shopper-profile.component';
 import {NotFoundPageComponent} from './delsos/components/not-found-page/not-found-page.component';
+import { StoreProfileComponent } from './delsos/store-profile/store-profile.component';
 
 const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -25,8 +26,9 @@ const routes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'shopper-register', component: RegisterComponent },
     { path: 'partner-register', component: RegisterComponent },
-    {path: 'shopper/profile',component:ShopperProfileComponent },
-    {path: '**',component:NotFoundPageComponent }
+    { path: 'store/profile', component: StoreProfileComponent },
+    { path: 'shopper/profile',component:ShopperProfileComponent },
+    { path: '**',component:NotFoundPageComponent }
 ]
 
 @NgModule({

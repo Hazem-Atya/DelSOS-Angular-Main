@@ -22,6 +22,8 @@ import { NotifComponent } from './delsos/components/notif/notif.component';
 import { LoadingComponent } from './delsos/components/loading/loading.component';
 import { NotFoundPageComponent } from './delsos/components/not-found-page/not-found-page.component';
 import {ToastrModule} from 'ngx-toastr';
+import { StoreProfileComponent } from './delsos/store-profile/store-profile.component';
+import { InfoItemComponent } from './delsos/store-profile/info-item/info-item/info-item.component';
 
 
 @NgModule({
@@ -40,6 +42,8 @@ import {ToastrModule} from 'ngx-toastr';
         NotifComponent,
         LoadingComponent,
         NotFoundPageComponent,
+        StoreProfileComponent,
+        InfoItemComponent,
 
     ],
     imports: [
