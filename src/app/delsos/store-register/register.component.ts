@@ -1,10 +1,10 @@
-import {HttpErrorResponse} from '@angular/common/http';
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {environment} from 'environments/environment';
-import {StoreService} from './service/store.service';
-import {Router} from '@angular/router';
-import {ToastrService} from 'ngx-toastr';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { environment } from 'environments/environment';
+import { StoreService } from './service/store.service';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -16,11 +16,12 @@ export class StoreRegisterComponent implements OnInit {
 
     logoPath = environment.logoPath;
     registerFormData: FormGroup;
-    nextOrSubmitButton;
     focus: any;
     focus1: any;
     loading = false;
-   
+    filename;
+
+
     constructor(
         private toastr: ToastrService,
         private router: Router,
@@ -30,24 +31,22 @@ export class StoreRegisterComponent implements OnInit {
     }
 
 
-    onSubmit() {
-        console.log('submit');
+
+
+    get f() {
+        return this.registerFormData.controls;
     }
-
-
-    get f() { return this.registerFormData.controls; }
     ngOnInit() {
         var body = document.getElementsByTagName('body')[0];
         body.classList.add('login-page');
 
         var dot = document.getElementsByClassName('step');
-  
+
         var navbar = document.getElementsByTagName('nav')[0];
         navbar.classList.add('navbar-transparent');
 
         this.createForm();
-        console.log(this.registerFormData)
-        this.nextOrSubmitButton={disabled:true};
+
     }
 
     ngOnDestroy() {
@@ -58,75 +57,70 @@ export class StoreRegisterComponent implements OnInit {
         navbar.classList.remove('navbar-transparent');
     }
 
-    addShopper() {
+    sendRequest(file: FormData) {
+        console.log(this.registerFormData)
+        file.append('website', this.registerFormData.value.website);
+        file.append('email', this.registerFormData.value.email);
+        file.append('name', this.registerFormData.value.name);
 
 
-        this.storeService.addShopper(this.registerFormData.value).subscribe(
+        this.storeService.sendRequest(file).subscribe(
             (response) => {
                 console.log(response);
-                this.router.navigate(['sign-in'],
-                    {
-                        queryParams: {'createdAccount': true}
-                    });
+                this.router.navigate(['home'])
                 this.loading = false;
+                this.toastr.success('your request has been successfully sent, wait for the admin approvement')
+
             },
             (error: HttpErrorResponse) => {
-                console.log('There is an error :(');
+                this.toastr.error('There is an error')
                 console.log(error);
-                const errorMessages = error.error.message;
-                if (typeof errorMessages === 'string') {
-                    this.toastr.error(errorMessages, '', {
-                        extendedTimeOut: 4000
-                        //       timeOut:5000
-                    })
-                } else if (errorMessages){
-                    errorMessages.forEach(
-                        (msg) => {
-                            this.toastr.error(msg, '', {
-                                extendedTimeOut: 4000
-                                //       timeOut:5000
-                            });
-                        }
-                    );
-                }else {
-                    this.toastr.error('Server error, please contact the admin');
-                }
-
                 this.loading = false;
 
             }
         )
     }
 
+
+
+
     createForm() {
+        const urlreg = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
 
         this.registerFormData = this.fb.group({
             name: ['',
                 Validators.required],
-            age: ['',
-                Validators.required],
-            phoneNumber: ['',
-                [Validators.required, Validators.minLength(8),
-                  Validators.pattern('[0-9]+')]
-                ],
-
+            website: ['',
+                Validators.pattern(urlreg)],
+            file: ['',
+                Validators.required,],
             email: ['',
                 [Validators.required, Validators.email]],
-            address: ['',
-                [Validators.required, Validators.minLength(6)]],
-            password: ['',
-                [Validators.required,Validators.minLength(5)]],
-            owner: ['',
-                [Validators.required, Validators.minLength(5)]],
-            cardNumber: ['',
-                [Validators.required, Validators.minLength(5),
-                    Validators.pattern('[0-9]+')
-                ]],
-            expirationDate: ['',
-                Validators.required]
+
         })
     }
-    // convenience getter for easy access to form fields
 
-   
+    onFileSelect(event) {
+
+        if (event.target.files.length > 0) {
+            const file = event.target.files[0];
+            console.log(file)
+            this.filename = file.name;
+            this.registerFormData.get('file').setValue(file);
+        }
+    }
+    onSubmit() {
+        if (this.registerFormData.valid) {
+            const formData = new FormData();
+            formData.append('file', this.registerFormData.get('file').value);
+
+            this.sendRequest(formData)
+        }
+        else {
+
+            console.log('not valid')
+        }
+        console.log('submit');
+    }
+
 }

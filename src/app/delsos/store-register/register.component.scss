@@ -1,7 +1,9 @@
+@import '../../../assets/sass/variables.scss' ;
+
 .logo-register-page{
 
 font-size: 30px;
-padding-top: 25%;
+padding-top: 55%;
 //padding-bottom: 10%;
 
 img{
@@ -62,22 +64,32 @@ img{
 }
 
 .small-message{
-    font-size: 12px !important;
+    font-size: 11px !important;
     font-stretch: normal !important;
     width: 100% !important;
+
     
+}
+.bg-error{
+    border : 2px solid $red;
+    border-radius: 50px;
+    
+}
+.icon-error{
+    color: $red;
+}
+.label{
+    margin-left: 5% !important;
+    margin-bottom: 2%;
 }
 
 .input-file{
-    display: none;
+    display:none;
 }
 
 .custom-file-upload {
-    //content: 'Select some files';
     display: inline-block;
     background: linear-gradient(top, #f9f9f9, #e3e3e3);
-  //  border: 1px solid #999;
-   // border-radius: 3px;
     padding: 5px 8px;
     outline: none;
     white-space: nowrap;

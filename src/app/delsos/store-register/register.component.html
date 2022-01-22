@@ -13,97 +13,132 @@
 
                         </div>
                     </div>
-                    <span class="small-message"> <i class="now-ui-icons travel_info"></i>
-                        In the file section please provide us any official paper that prove that you are a company /
-                        store ... </span>
 
-
+                   <span class="small">* Required</span> 
                     <div class="content">
                         <br>
                         <form [formGroup]="registerFormData">
-                            <div class="input-group form-group-no-border input-lg"
-                                [ngClass]="{'input-group-focus':focus===true}">
+                            <span class="float-left  label">Comany name * </span>
+                            <div class="input-group form-group-no-border  input-lg"
+                            
+                                [ngClass]="{'input-group-focus':focus===true, 'bg-error':(f.name.touched && f.name.invalid)} ">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">
-                                        <i class="now-ui-icons shopping_shop"></i>
+                                        <i class="now-ui-icons shopping_shop "  [ngClass]="{'icon-error':f.name.touched && f.name.invalid}"></i>
                                     </span>
                                 </div>
-                                <input id="name" formControlName="name" name="name" type="text" class="form-control"
+                                <input id="name" formControlName="name" name="name"  type="text" class="form-control "
                                     placeholder="Company Name" (focus)="focus=true" (blur)="focus=false">
                             </div>
-                            <div class="badge badge-danger" *ngIf="f.name.touched && f.name.invalid">
+                            <div class="text-danger" *ngIf="f.name.touched && f.name.invalid">
                                 Name should not be empty
+                              
                             </div>
+                            <div><span class="float-left  label">E-mail *</span></div>
+                            
                             <div class="input-group form-group-no-border input-lg"
-                                [ngClass]="{'input-group-focus':focus===true}">
+                            [ngClass]="{'input-group-focus':focus===true, 'bg-error':f.email.touched && f.email.invalid}">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <i class="now-ui-icons ui-1_email-85" [ngClass]="{'icon-error':f.email.touched && f.email.invalid}"></i>
+                                </span>
+                            </div>
+                            <input formControlName="email" type="email" class="form-control" placeholder="E-mail"
+                                (focus)="focus=true" (blur)="focus=false">
+
+                        </div>
+                        <div class="text-danger" *ngIf=" f.email.touched &&  f.email.errors?.required">
+                            Email should not be empty
+                        </div>
+                        <div class="text-danger" *ngIf=" f.email.touched &&  f.email.errors?.email">
+                            Invalid Email Format : xxxx@xxxxx.xxx
+                        </div>
+                        <span class="float-left  label">Website </span>
+                            <div class="input-group form-group-no-border input-lg"
+                                [ngClass]="{'input-group-focus':focus===true, 'bg-error':f.website.touched && f.website.invalid}">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">
-                                        <i class="now-ui-icons objects_globe"></i>
+                                        <i class="now-ui-icons objects_globe" [ngClass]="{'icon-error':f.website.touched && f.website.invalid}"></i>
                                     </span>
                                 </div>
-                                <input id="website" formControlName="website" name="name" type="link"
+                                <input id="website" formControlName="website" name="website" type="url"
                                     class="form-control" placeholder="Website" (focus)="focus=true"
                                     (blur)="focus=false">
                             </div>
-                            <div class="badge badge-danger" *ngIf="f.address?.touched && f.address?.invalid">
-                                Your Website sould be in this format : https://www.domainename.com
+                            <div class="text-danger" *ngIf="f.website?.touched && f.website.invalid">
+                                Your Website sould be in this format : https:\\www.domaine-name.xx
                             </div>
+              
+                            <span class="float-left  label ">Official paper * </span>
                             <div class="input-group form-group-no-border input-lg"
-                                [ngClass]="{'input-group-focus':focus===true}">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">
-                                        <i class="now-ui-icons ui-1_email-85"></i>
-                                    </span>
-                                </div>
-                                <input formControlName="email" type="email" class="form-control" placeholder="E-mail"
-                                    (focus)="focus=true" (blur)="focus=false">
-
-                            </div>
-                            <div class="badge badge-danger" *ngIf="
-                             f.phoneNumber.touched&&(f.phoneNumber.errors?.required||f.phoneNumber.errors?.minlength)">
-                                Invalid Email Format : foulen@gmail.com
-                            </div>
-                            <div class="badge badge-danger" *ngIf=" f.phoneNumber.errors?.pattern">
-                                Phone must be a number
-                            </div>
-
-                            <div class="input-group form-group-no-border input-lg"
-                                [ngClass]="{'input-group-focus':focus===true}">
+                                [ngClass]="{'input-group-focus':focus===true, 'bg-error':f.file.touched && f.file.invalid}">
 
                                 <div class="input-group-prepend">
 
                                     <span class="input-group-text">
-                                        <i class="now-ui-icons files_paper"></i>
+                                        <i class="now-ui-icons files_paper"  [ngClass]="{'icon-error':f.file.touched && f.file.invalid}"></i>
 
                                     </span>
                                 </div>
-                                <label class="custom-file-upload form-control">
-
-                                    <i class="fa fa-upload" aria-hidden="true"></i>
-                                    Select your paper
-                                    <input formControlName="file" type="file" class="form-control input-file"
-                                        placeholder="File" (focus)="focus=true" (blur)="focus=false">
-                                </label>
+                            
+                                    
+                             
+                                
+                                     <div class="file-upload form-control">
+                                        <input id="file" formControlName="file" name="file"
+                                        class="form-control input-file bg-transparent" 
+                                        type="file" id="formFile"
+                                        (change)="onFileSelect($event)"
+                                        #fileUpload
+                                        >
+                                        {{filename || "No file yet."}}
+                                     
+                                         <button mat-mini-fab color="primary" class=" btn btn-round upload-btn"
+                                           (click)="fileUpload.click()">
+                                            <i class="fa fa-upload" aria-hidden="true"></i>
+                                         </button>
+                                     </div>
+                       
+                          
 
                             </div>
-                            <div class="badge badge-danger" *ngIf="f.age.touched && f.age.invalid">
+                            <div class="text-danger " *ngIf="f.file.touched && f.file.invalid">
                                 You should import a file
                             </div>
+                            <div>
+                            <span class="small-message text-secondary"> <i class="now-ui-icons travel_info"> </i>
+                                Official prove that you are a company,
+                                store ...
+                            </span></div>
                             <br>
                             <br>
+                         
+                            <button class="btn btn-primary btn-round btn-lg btn-block" (click)="onSubmit()"> Submit your
+                                request</button>
                         </form>
+                   
+   <br>
                     </div>
 
                     <div class="footer text-center">
-                        
-                        <span class="small-message">
-                            By submitting this form you are sending a request to the admin to become one of the official
-                            partner to DelSOS.
-                            <br> You will receive a response via mail
-                        </span>
+                   
 
-                        <button class="btn btn-primary btn-round btn-lg btn-block" (click)="onSubmit()"> Submit your
-                            request</button>
+                        <p>
+                            <button class="btn btn-link" type="button" data-toggle="collapse"
+                                data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                                know more
+                            </button>
+
+                        </p>
+                        <div class="collapse" id="collapseExample">
+                            <div class=" small-message">
+                                By submitting this form you are sending a request to the admin to become one of the
+                                official
+                                partner of DelSOS.
+                                <br> You will receive a response via mail
+                            </div>
+                        </div>
+
 
 
                     </div>
