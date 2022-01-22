@@ -4,7 +4,7 @@ import {FormGroup} from '@angular/forms';
 @Component({
     selector: 'app-bank-info',
     templateUrl: './bank-info.component.html',
-    styleUrls: ['./bank-info.component.css']
+    styleUrls: ['./bank-info.component.scss']
 })
 export class BankInfoComponent implements OnInit {
     focus: any;

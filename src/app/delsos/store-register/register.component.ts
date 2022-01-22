@@ -20,6 +20,7 @@ export class StoreRegisterComponent implements OnInit {
     focus1: any;
     loading = false;
     filename;
+    valid = false;
 
 
     constructor(

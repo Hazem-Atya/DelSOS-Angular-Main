@@ -1,46 +1,33 @@
 <form (keyup)="checkFormValidity()" [formGroup]="registerForm">
 
 
-    <div class="input-group  form-group-no-border input-lg" [ngClass]="{'input-group-focus':focus===true}">
+    <div class="input-group  form-group-no-border input-lg" [ngClass]="{'input-group-focus':focus===true, 'bg-error':f.email.touched && f.email.invalid}">
         <div class="input-group-prepend">
-        <span class="input-group-text">
-            <i class="now-ui-icons users_circle-08"></i>
-        </span>
+            <span class="input-group-text">
+                <i class="now-ui-icons users_circle-08" [ngClass]="{'icon-error':f.email.touched && f.email.invalid}"></i>
+            </span>
         </div>
-        <input
-
-                id="email"
-                formControlName="email"
-                name="email"
-                type="text" class="form-control"
-                placeholder="Email" (focus)="focus=true" (blur)="focus=false">
+        <input id="email" formControlName="email" name="email" type="text" class="form-control" placeholder="Email"
+            (focus)="focus=true" (blur)="focus=false">
     </div>
-        <div class="badge badge-danger" *ngIf="f.email.touched && f.email.invalid">
-            Please type a valid email
-        </div>
+    <div class="text-danger" *ngIf="f.email.touched && f.email.invalid">
+        Please type a valid email
+    </div>
 
-    <div class="input-group form-group-no-border input-lg" [ngClass]="{'input-group-focus':focus===true}">
+    <div class="input-group form-group-no-border input-lg" [ngClass]="{'input-group-focus':focus===true, 'bg-error':f.password.touched && f.password.invalid}">
         <div class="input-group-prepend">
-        <span class="input-group-text">
-            <i class="now-ui-icons users_circle-08"></i>
-        </span>
+            <span class="input-group-text">
+                <i class="now-ui-icons ui-1_lock-circle-open" [ngClass]="{'icon-error':f.password.touched && f.password.invalid}"></i>
+            </span>
         </div>
-        <input
-
-                formControlName="password"
-
-                type="password" class="form-control"  placeholder="Password"
-                (focus)="focus=true" (blur)="focus=false">
+        <input formControlName="password" type="password" class="form-control" placeholder="Password"
+            (focus)="focus=true" (blur)="focus=false">
     </div>
-    <div class="badge badge-danger" *ngIf="f.password.touched && f.password.errors">
-       Password should have at least 5 characters
+    <div class="text-danger" *ngIf="f.password.touched && f.password.errors">
+        Password should have at least 5 characters
     </div>
-<!--    <div class="badge badge-danger" *ngIf="passwordInput.invalid&&passwordInput.touched">-->
-<!--        Password should have at least 8 characters-->
-<!--        <br>-->
-<!--    </div>-->
-    <br>
-    <button [disabled]="form" id="submitButton" [ngStyle]="{display:'none'}" type="submit"></button>
+
+    
+
     <br>
 </form>
-
