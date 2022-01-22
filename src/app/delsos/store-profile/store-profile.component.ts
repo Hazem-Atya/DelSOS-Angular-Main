@@ -76,10 +76,7 @@ export class StoreProfileComponent implements OnInit {
       }else{
         this.storeProfileService.updatePassword(passwordData).subscribe(
           done => this.toastr.success("Password updated successfully !"),
-          error => console.log(error)
-          
-          
-  
+          error => this.toastr.error("Something went wrong !")
         )
       }
     }
