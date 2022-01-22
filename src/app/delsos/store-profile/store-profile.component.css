@@ -1,0 +1,54 @@
+.card-container {
+    margin-top: -45vh;
+    max-width: 90%;
+    margin-left: 5%;
+}
+
+.outer {
+    height: 80vh;
+    width: 100%;
+}
+
+.now-ui-icons {
+    color: darkred;
+}
+
+.info-tab{
+    height: 55vh;
+}
+
+.left-side-info {
+    border-right: solid 1px grey;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+}
+
+.right-side-info{
+    margin-top: 5vh;
+}
+
+.description{
+    overflow: auto;
+    word-wrap: break-word;
+}
+label{
+    display: flex;
+}
+
+.button-wrapper{
+    display: flex;
+    align-items: center;
+    align-content: center;
+}
+
+.errors{
+    color: lightgreen;
+}
+.errors > p {
+    text-align: left;
+}
+.error{
+    color: red;
+}

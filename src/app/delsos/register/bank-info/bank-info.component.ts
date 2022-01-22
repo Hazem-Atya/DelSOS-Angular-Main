@@ -18,6 +18,7 @@ export class BankInfoComponent implements OnInit {
     ngOnInit(): void {
         const el = document.getElementById('cardNumber');
         el.focus();
+        this.checkFormValidity()
     }
 
     toggleType(event: FocusEvent, expirationDate: HTMLInputElement) {

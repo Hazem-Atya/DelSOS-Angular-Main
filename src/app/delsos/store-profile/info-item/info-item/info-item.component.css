@@ -1,0 +1,14 @@
+.odd{
+    background-color: #faf0f0;
+}
+
+.item-wrapper{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 8vh;
+    width: 95%;
+    border-radius: 10px;
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+}

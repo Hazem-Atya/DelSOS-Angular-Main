@@ -27,6 +27,8 @@ import { ComponentsComponent } from './components/components.component';
 import { AuthentificationInterceptorProvider } from './interceptors/auth.interceptor';
 import { NgbdModalBasic } from './delsos/components/modal/modal.component';
 import { NgCircleProgressModule } from 'ng-circle-progress';
+import { StoreProfileComponent } from './delsos/store-profile/store-profile.component';
+import { InfoItemComponent } from './delsos/store-profile/info-item/info-item/info-item.component';
 
 
 @NgModule({
@@ -46,9 +48,9 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
         NotifComponent,
         LoadingComponent,
         NotFoundPageComponent,
-        NgbdModalBasic
-    
-        
+        NgbdModalBasic,
+        StoreProfileComponent,
+        InfoItemComponent,
 
     ],
     imports: [

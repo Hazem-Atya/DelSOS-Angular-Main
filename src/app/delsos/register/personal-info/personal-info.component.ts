@@ -18,6 +18,8 @@ export class PersonalInfoComponent implements OnInit {
     ngOnInit(): void {
         const el= document.getElementById('fullName');
         el.focus();
+        this.checkFormValidity()
+
     }
 
     ngOnDestroy() {

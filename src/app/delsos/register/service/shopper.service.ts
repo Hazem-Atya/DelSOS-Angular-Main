@@ -16,11 +16,11 @@ export class ShopperService {
   }
 
   public getShoppers(): Observable<Shopper[]> {
-    return this.http.get<Shopper[]>(`${this.apiServerUrl}/employee/all`);
+    return this.http.get<Shopper[]>(`${this.apiServerUrl}/shopper/all`);
   }
 
   public addShopper(shopper: Shopper): Observable<Shopper> {
-    return this.http.post<Shopper>(`${this.apiServerUrl}/user/create-shopper`, shopper);
+    return this.http.post<Shopper>(`${this.apiServerUrl}/shopper/register`, shopper);
   }
 
   public updateShopper(shopper: Shopper): Observable<Shopper> {

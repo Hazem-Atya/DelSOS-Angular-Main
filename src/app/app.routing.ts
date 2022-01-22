@@ -13,7 +13,7 @@ import { RegisterComponent } from './delsos/register/register.component'
 import { ShopperProfileComponent } from './delsos/shopper-profile/shopper-profile.component';
 import {NotFoundPageComponent} from './delsos/components/not-found-page/not-found-page.component';
 import {  SigninGuard } from './guards/signin.guard';
-
+import { StoreProfileComponent } from './delsos/store-profile/store-profile.component';
 
 const routes: Routes = [
 
