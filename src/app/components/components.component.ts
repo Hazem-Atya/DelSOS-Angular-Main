@@ -16,7 +16,7 @@ import * as Rellax from 'rellax';
 export class ComponentsComponent implements OnInit, OnDestroy {
     data : Date = new Date();
 
-    page = 4;
+    pd
     page1 = 5;
     page2 = 3;
     focus;

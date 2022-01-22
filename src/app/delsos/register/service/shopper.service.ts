@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'environments/environment';
 import { Observable } from 'rxjs';
@@ -8,6 +8,7 @@ import { Shopper } from '../../model/Shopper';
   providedIn: 'root'
 })
 export class ShopperService {
+
 
   private apiServerUrl = environment.apiURL;
 
@@ -28,7 +29,5 @@ export class ShopperService {
   public deleteShopper(shopperId: number): Observable<void> {
     return this.http.delete<void>(`${this.apiServerUrl}/employee/delete/${shopperId}`);
   }
-  public login(credentials : any) {
-    return this.http.post<any>(`${this.apiServerUrl}/auth/login`, credentials)
-  }
+  
 }

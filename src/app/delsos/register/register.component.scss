@@ -1,8 +1,8 @@
 .logo-register-page{
 
 font-size: 30px;
-padding-top: 45%;
-padding-bottom: 10%;
+padding-top: 25%;
+//padding-bottom: 10%;
 
 img{
     padding-bottom: 5%;  
@@ -10,11 +10,11 @@ img{
 
 .dots{
     text-align:center;
-    margin-top:10px;
+    //@at-root:10px;
     .step{
         height: 12px;
         width: 12px;
-        margin: 0 2px;
+     margin: 0 2px;
         background-color: #bbbbbb;
         border: none;
         border-radius: 50%;

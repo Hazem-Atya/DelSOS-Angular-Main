@@ -1,11 +1,13 @@
 import { Component, OnInit, SimpleChanges } from '@angular/core';
 import { environment } from 'environments/environment';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, CanDeactivate } from '@angular/router';
 import { IAlert } from '../components/notif/notif.component';
 import { ToastrService } from 'ngx-toastr';
 import { FormBuilder, FormControl, FormGroup, NgForm, NgModel, Validators } from '@angular/forms';
-import { ShopperService } from '../register/service/shopper.service';
+
 import { HttpErrorResponse } from '@angular/common/http';
+import { SigninService } from './sign-in.service';
+import { LocalStorageService } from './localstorage.service';
 
 @Component({
     selector: 'app-sign-in',
@@ -19,7 +21,6 @@ export class SignInComponent implements OnInit {
     loggedin = false;
     loading = false;
     isValid = false;
-    signinFormData: FormGroup;
     accountCreatedAlert: IAlert = {
         type: 'success',
         strong: 'Account created successfully',
@@ -28,20 +29,20 @@ export class SignInComponent implements OnInit {
 
     constructor(
         private toastr: ToastrService,
-        private shopperService: ShopperService,
-        private router: ActivatedRoute,
-      ) {
+        private signinService: SigninService,
+        private localStorageService: LocalStorageService,
+        private router: Router,
+    ) {
 
     }
 
     public logoPath: String = environment.logoPath;
 
     ngOnInit() {
-        this.router.queryParams.subscribe(queryParam=>{
-
-            this.loggedin=queryParam['createdAccount'];
-            console.log(this.loggedin)
-        })
+        if (this.signinService.isAuthenticated()) {
+            this.router.navigateByUrl('/home')
+        }
+       
         if (this.loggedin) {
             this.toastr.success(
                 'Please type your credentials to login',
@@ -53,50 +54,44 @@ export class SignInComponent implements OnInit {
 
         var navbar = document.getElementsByTagName('nav')[0];
         navbar.classList.add('navbar-transparent');
-
-        this.createForm();
-    
     }
-    get status() { return this.signinFormData.status }
-    get form() { return this.signinFormData; }
-    get email() { return this.signinFormData.get('email') }
-    get password() { return this.signinFormData.get('password') }
-    createForm() {
-        this.signinFormData = new FormGroup({
-            email: new FormControl('', [
-                Validators.required,
-                Validators.minLength(4),
-                Validators.email
 
-            ]),
 
-            password: new FormControl('', [Validators.required, Validators.minLength(8)])
-        });
+    login(signinForm : NgForm) {
 
-        console.log(this.signinFormData)
-    }
-test(){
-    console.log(this.signinFormData)
-}
-    login() {
-        console.log(this.signinFormData.value)
-        if (this.signinFormData.value === 'VALID') {
-             /* this.shopperService.login(this.signinFormData.value).subscribe(
-             (response) => {
-                 console.log(response);
-                 this.router.navigate(['profile'],
-                     {
-                         queryParams: {'token' : response.token}
-                     });
-                 this.loading = false;
-             },
-             (error: HttpErrorResponse) => { console.log(error) }
-         )**/
+        if (signinForm.status === 'VALID') {
+           
+            this.signinService.login(signinForm.value).subscribe(
+                (response) => {
+                    console.log(response)
+                    this.localStorageService.set('token', response.access_token)
+                    
+                    this.signinService.getProfile(response.access_token).subscribe(
+                        (user) => {
+                            this.localStorageService.set('role', user.role)
+                            if (user['role'] == 'SHOPPER')
+                            this.router.navigateByUrl('/deliveries',{ state: user });
+                            this.router.navigateByUrl('/store/profile',{ state: user });
+                            this.loading = false;
+                            this.toastr.success("Welcome Back !");
+                        },
+                        (error) => {
+                            console.log(error)
+                            this.toastr.error("Something went wrong, please try again ! ");
+                        }
+                    )
+
+                },
+                (error: HttpErrorResponse) => {
+                    console.log(error)
+                    this.toastr.error("Wrong credentials");
+                }
+            )
         }
         else {
             this.toastr.error("Please give valid data");
         }
-       
+
     }
     ngOnDestroy() {
         var body = document.getElementsByTagName('body')[0];
@@ -109,6 +104,7 @@ test(){
     printPath() {
 
     }
+
     onSubmit(formulaire: NgForm) {
         console.log(formulaire);
     }

@@ -22,6 +22,11 @@ import { NotifComponent } from './delsos/components/notif/notif.component';
 import { LoadingComponent } from './delsos/components/loading/loading.component';
 import { NotFoundPageComponent } from './delsos/components/not-found-page/not-found-page.component';
 import {ToastrModule} from 'ngx-toastr';
+import { ShopperProfileComponent } from './delsos/shopper-profile/shopper-profile.component';
+import { ComponentsComponent } from './components/components.component';
+import { AuthentificationInterceptorProvider } from './interceptors/auth.interceptor';
+import { NgbdModalBasic } from './delsos/components/modal/modal.component';
+import { NgCircleProgressModule } from 'ng-circle-progress';
 import { StoreProfileComponent } from './delsos/store-profile/store-profile.component';
 import { InfoItemComponent } from './delsos/store-profile/info-item/info-item/info-item.component';
 
@@ -37,11 +42,13 @@ import { InfoItemComponent } from './delsos/store-profile/info-item/info-item/in
         FooterComponent,
         PersonalInfoComponent,
         LoginInfoComponent,
+        ShopperProfileComponent,
         BankInfoComponent,
         FooTerComponent,
         NotifComponent,
         LoadingComponent,
         NotFoundPageComponent,
+        NgbdModalBasic,
         StoreProfileComponent,
         InfoItemComponent,
 
@@ -56,10 +63,20 @@ import { InfoItemComponent } from './delsos/store-profile/info-item/info-item/in
         ExamplesModule,
         HttpClientModule,
         ReactiveFormsModule,
-        ToastrModule.forRoot(), // ToastrModule added
+        ToastrModule.forRoot(),
+        NgCircleProgressModule.forRoot({
+            // set defaults here
+            radius: 100,
+            outerStrokeWidth: 16,
+            innerStrokeWidth: 8,
+            outerStrokeColor: "#78C000",
+            innerStrokeColor: "#C7E596",
+            animationDuration: 300,
+        
+          }) // ToastrModule added
 
     ],
-    providers: [],
+    providers: [AuthentificationInterceptorProvider],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

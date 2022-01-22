@@ -12,23 +12,36 @@ import { SignInComponent } from './delsos/sign-in/sign-in.component';
 import { RegisterComponent } from './delsos/register/register.component'
 import { ShopperProfileComponent } from './delsos/shopper-profile/shopper-profile.component';
 import {NotFoundPageComponent} from './delsos/components/not-found-page/not-found-page.component';
+import {  SigninGuard } from './guards/signin.guard';
 import { StoreProfileComponent } from './delsos/store-profile/store-profile.component';
 
 const routes: Routes = [
+
+    {
+        path: 'shopper',
+        children :[
+    
+            { path: 'profile', component: ShopperProfileComponent, canActivate: [SigninGuard], }, 
+            { path: 'register', component: RegisterComponent,},
+
+        ]
+    },
+    {
+        path: 'sotre',
+        children: [
+            { path: 'profile', component: ShopperProfileComponent, canActivate: [SigninGuard], },
+            { path: 'register', component: RegisterComponent, },
+    ]},
     { path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: 'index', component: ComponentsComponent },
     { path: 'nucleoicons', component: NucleoiconsComponent },
     { path: 'examples/landing', component: LandingComponent },
     { path: 'examples/login', component: LoginComponent },
-    { path: 'examples/profile', component: ProfileComponent },
+    { path: 'profile', component: ProfileComponent, canActivate: [SigninGuard] },
     { path: 'home', component: HomepageComponent },
-    { path: 'sign-in', component: SignInComponent },
+    { path: 'sign-in', component: SignInComponent, },
     { path: 'login', component: LoginComponent },
-    { path: 'shopper-register', component: RegisterComponent },
-    { path: 'partner-register', component: RegisterComponent },
-    { path: 'store/profile', component: StoreProfileComponent },
-    { path: 'shopper/profile',component:ShopperProfileComponent },
-    { path: '**',component:NotFoundPageComponent }
+    {path: '**',component:NotFoundPageComponent }
 ]
 
 @NgModule({
