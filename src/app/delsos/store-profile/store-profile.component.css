@@ -52,3 +52,76 @@ label{
 .error{
     color: red;
 }
+.destination-wrapper{
+    display: flex;
+    justify-content: space-between;
+}
+.progress-bar-animated{
+    -webkit-animation: progress-bar-stripes 1s linear infinite;
+    animation: progress-bar-stripes 1s linear infinite
+}
+td,th   {
+    text-align: center;
+    vertical-align: middle;
+}
+.pagination-store{
+    
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+
+.deliveries-tab{
+    height: 64vh;
+    display: flex;
+    align-content: space-between;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.choices-wrapper{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+.priority-choice{
+    display: flex;
+}
+
+.delivery-button{
+    margin-left: 40%;
+}
+.delivery-button > button{
+    width: 30%;
+}
+
+@media screen and (max-width: 1000px) {
+    .outer {
+      overflow: scroll;
+      height: 71vh;
+    }
+    .info-tab{
+        display: flex; 
+        flex-wrap: nowrap;
+        flex-direction: column;
+        margin-right: 0px;
+        margin-left: 0px;
+    }
+    .left-side-info,.right-side-info {
+        flex:none;
+        max-width: 100%;
+    }
+
+    .right-side-info{
+        gap: 2vh;
+        display: flex;
+        flex-direction: column;
+    }
+    .delivery-button{
+        width: 65%;
+        margin-left: 13%;
+    }
+    .delivery-button > Button{
+        width: 50%;
+    }
+  }

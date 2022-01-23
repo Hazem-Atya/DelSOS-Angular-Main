@@ -4,6 +4,7 @@ import { Store } from '../model/Store';
 import { StoreProfileService } from './service/store-service.service';
 import { InfoItemComponent } from './info-item/info-item/info-item.component';
 import { ToastrService } from 'ngx-toastr';
+import { Delivery } from '../model/delivery';
 
 @Component({
   selector: 'app-store-profile',
@@ -11,7 +12,6 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./store-profile.component.css']
 })
 export class StoreProfileComponent implements OnInit {
-
   zoom: number = 14;
   lat: number = 44.445248;
   lng: number = 26.099672;
@@ -21,6 +21,7 @@ export class StoreProfileComponent implements OnInit {
     focus1;
   
     store : Store = null
+    deliveries : Delivery[] = []
 
     subAddress : string = ''
     constructor(
@@ -28,7 +29,17 @@ export class StoreProfileComponent implements OnInit {
       private toastr : ToastrService
     ) { }
 
-    ngOnInit() {
+    passwordData = {
+      "newPassword":'',
+      "currentPassword":'',
+      "confirmPassword":'',
+    }
+
+    DELIVERY_TYPE = ['breakable','hazardous','furniture','package','liquid','can expire','electronics']
+
+    PRIORITE = ['High','Normal','Low']
+
+    async ngOnInit() {
       var rellaxHeader = new Rellax('.rellax-header');
 
         var body = document.getElementsByTagName('body')[0];
@@ -36,15 +47,24 @@ export class StoreProfileComponent implements OnInit {
         var navbar = document.getElementsByTagName('nav')[0];
         navbar.classList.add('navbar-transparent');
       
-      this.storeProfileService.getStore().subscribe(
+      await this.storeProfileService.getStore().subscribe(
         store => {
           this.store = store
-          this.subAddress += store.address.country+"-"+store.address.city+"-"+store.address.postalCode
-        }
+          this.subAddress += store.address['country']+"-"+store.address['city']+"-"+store.address['postalCode']
+        },
+        error => this.toastr.error("error in fetching store, contact admin")
       )    
+    
+      await this.storeProfileService.getDeliveries().subscribe(
+        deliveries =>{
+          console.log(deliveries);
+          this.deliveries = deliveries
+        },
+        error => this.toastr.error("something went wrong when fetching deliveries, contact admin ! ")
+      )
     }
 
-    sumbitUpdateForm(updateForm){
+    async sumbitUpdateForm(updateForm){
       const {city,country,address,postalCode, ...info} = updateForm.value
       const fulladdress = {
         "city":city,
@@ -52,14 +72,14 @@ export class StoreProfileComponent implements OnInit {
         "address":address,
         "postalCode":postalCode,
       }
-
-      this.storeProfileService.updateStore({
+     
+      await this.storeProfileService.updateStore({
         ...info,
         "address":fulladdress
       }).subscribe(
         updatedstore =>{
           this.store = updatedstore 
-          // this.subAddress += updatedstore.address.country+"-"+updatedstore.address.city+"-"+updatedstore.address.postalCode
+          this.subAddress += updatedstore.address['country']+"-"+updatedstore.address['city']+"-"+updatedstore.address['postalCode']
           this.toastr.success("profile updated successfully")
         },
         error => {
@@ -74,10 +94,50 @@ export class StoreProfileComponent implements OnInit {
       if(passwordData.confirmPassword != passwordData.newPassword){
         this.toastr.error("passwords must be identical")
       }else{
+        console.log(passwordData);
+        
         this.storeProfileService.updatePassword(passwordData).subscribe(
           done => this.toastr.success("Password updated successfully !"),
           error => this.toastr.error("Something went wrong !")
         )
       }
     }
+
+    submitCreateDelivery(createDeliveryForm){
+      console.log("initial form",createDeliveryForm.value);
+      const {description,destination,height,priority,source,weight,width,...types} = createDeliveryForm.value
+      const propertyValues = Object.values(types);
+      const type = propertyValues.filter(item => item != '')
+      if (type.length == 0) 
+        this.toastr.error("must have at least one type !")
+      else if ( priority == '') {
+        this.toastr.error("must have a priority !")
+      }
+      else{
+        const createDelivery = {
+          description,
+          destination,
+          height,
+          priority: parseInt(priority),
+          source,
+          weight,
+          width,
+          type,
+          trackingHistory: [{
+            date: new Date(),
+            descirption: source,
+          }]
+        }
+        this.storeProfileService.createDelivery(createDelivery).subscribe(
+          delivery => {
+            this.deliveries.push(delivery)
+            this.toastr.success("Delivery created successfully, check your deliveries section !")
+          },
+          error => this.toastr.error("something went wrong")
+          
+        )
+      }
+    }
 }
+
+

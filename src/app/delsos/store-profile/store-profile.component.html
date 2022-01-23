@@ -39,9 +39,239 @@
                                 <i class="now-ui-icons shopping_cart-simple"></i> Deliveries
                               </ng-template>
                                 <ng-template ngbTabContent>
-                                    <p> I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus. I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. </p>
+                                    <div class="deliveries-tab">
+                                            <table class="table" *ngIf="deliveries.length != 0">
+                                                <thead>
+                                                <tr>
+                                                    <th scope="col" colspan="1" style="width: 30%;">Description</th>
+                                                    <th scope="col" colspan="1" style="width: 5%;">Priority</th>
+                                                    <th scope="col" colspan="1" style="width: 25%;">Characteristic</th>
+                                                    <th scope="col" colspan="3" style="width: 30%;">Delivery status</th>
+                                                    <th scope="col" colspan="1" style="width: 10%;">Actions</th> 
+                                                </thead>
+                                                <tbody>
+                                                    <tr *ngFor="let delivery of deliveries ; let i">
+                                                        <td>
+                                                            <div class="text-truncate" style="width: 24pc;">
+                                                                {{delivery.description}}aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                                                            </div>
+                                                        </td>
+                                                        <td>{{delivery.priority}}</td>
+                                                        <td>
+                                                            <div>
+                                                                <span class="badge badge-primary" *ngFor="let item of delivery.type">{{item}}</span>
+                                                            </div>
+                                                        </td>
+                                                        <td colspan="3" >
+                                                            <div class="destination-wrapper"><strong>{{delivery.source}}</strong><i> To </i><strong>{{delivery.destination}}</strong></div>
+                                                            <div class="progress">
+                                                                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
+                                                            </div>
+                                                        </td>
+                                                        <td><i class="now-ui-icons loader_gear"></i></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <div *ngIf="deliveries.length == 0">
+                                                You have no deliveries !! Lets start adding !
+                                            </div>
+                                        <ngb-pagination [collectionSize]="50" [(page)]="page" aria-label="Default pagination" class="pagination-primary pagination-store"></ngb-pagination>
+                                    </div>
                                 </ng-template>
                             </ngb-tab>
+                            <ngb-tab >
+                                <ng-template ngbTabTitle>
+                                  <i class="now-ui-icons shopping_tag-content" ></i> Add Delivery
+                                </ng-template>
+                                  <ng-template ngbTabContent>
+                                    <div class="card-body">
+                                        <form #createDeliveryForm="ngForm">
+                                            <div class="row">
+                                                <div class="col-md-4 pr-1">
+                                                    <div class="form-group">
+                                                        <label>Description</label>
+                                                        <input 
+                                                            type="text" 
+                                                            class="form-control" 
+                                                            placeholder="Delivery Description..."
+                                                            #description="ngModel"
+                                                            ngModel         
+                                                            required   
+                                                            name="description"
+                                                        >
+                                                        <div class="badge badge-danger" *ngIf="description.errors?.required && description.touched" >
+                                                            description is required
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="col-md-4 px-1">
+                                                    <div class="form-group">
+                                                        <label>Source</label>
+                                                        <input 
+                                                            minlength="4"
+                                                            type="text" 
+                                                            class="form-control" 
+                                                            placeholder="Source..."
+                                                            #source="ngModel"
+                                                            ngModel        
+                                                            required       
+                                                            name="source"
+                                                        >
+                                                        <div class="badge badge-danger" *ngIf="source.errors?.minlength && source.touched" >
+                                                            Source must have at least 8 characters
+                                                        </div>
+                                                        <div class="badge badge-danger" *ngIf="source.errors?.required && source.touched" >
+                                                            Source is required
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="col-md-4 pl-1">
+                                                    <div class="form-group">
+                                                        <label>Destination</label>
+                                                        <input 
+                                                            type="text" 
+                                                            class="form-control" 
+                                                            placeholder="Destination..."
+                                                            #destination="ngModel"
+                                                            ngModel   
+                                                            required         
+                                                            minlength="4"   
+                                                            name="destination"
+                                                        >
+                                                        <div class="badge badge-danger" *ngIf="destination.errors?.minlength && destination.touched" >
+                                                            Destination must have at least 8 characters
+                                                        </div>
+                                                        <div class="badge badge-danger" *ngIf="destination.errors?.required && destination.touched" >
+                                                            destination is required
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label>Weight <strong> (kg) </strong></label>
+                                                        <input 
+                                                            min = "0.1"
+                                                            type="number" 
+                                                            class="form-control" 
+                                                            placeholder="Weight..."
+                                                            #weight="ngModel"
+                                                            ngModel     
+                                                            required          
+                                                            name="weight"
+                                                        >
+                                                        <div class="badge badge-danger" *ngIf="weight.errors?.required && weight.touched" >
+                                                            weight is required
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label>Height <strong> (m) </strong></label>
+                                                        <input 
+                                                            min = "0.1"
+                                                            type="number" 
+                                                            class="form-control" 
+                                                            placeholder="Height..."
+                                                            #height="ngModel"
+                                                            ngModel      
+                                                            required            
+                                                            name="height"
+                                                        >
+                                                        <div class="badge badge-danger" *ngIf="height.errors?.required && height.touched" >
+                                                            height is required
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 pr-1">
+                                                    <div class="form-group">
+                                                        <label>Width    <strong> (m) </strong></label>
+                                                        <input
+                                                            min = "0.1"
+                                                            type="number" 
+                                                            class="form-control" 
+                                                            placeholder="Width..."
+                                                            #width="ngModel"
+                                                            ngModel      
+                                                            required         
+                                                            name="width"
+                                                        >
+                                                        <div class="badge badge-danger" *ngIf="width.errors?.required && width.touched" >
+                                                            width is required
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <div class="col-md-7 pl-1">
+                                                    <div class="form-group">
+                                                        <label>Delivery Type</label>
+                                                        <div class="choices-wrapper">
+                                                            <div class="form-check form-check-radio" *ngFor="let item of DELIVERY_TYPE ; let i = index">
+                                                                <label class="form-check-label">
+                                                                    <input 
+                                                                        class="form-check-input" 
+                                                                        id="exampleRadios1"
+                                                                        type="radio" 
+                                                                        ngModel
+                                                                        name="type_{{i}}" 
+                                                                        value="{{DELIVERY_TYPE[i]}}"
+                                                                    >
+                                                                    <span class="form-check-sign">{{DELIVERY_TYPE[i]}}</span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                       
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 pl-1">
+                                                    <div class="form-group">
+                                                        <label>Priority</label>
+                                                        <div class="priority-choice">
+                                                            <div class="form-check form-check-radio" *ngFor="let item of PRIORITE ; let i = index">
+                                                                <label class="form-check-label">
+                                                                    <input 
+                                                                        class="form-check-input" 
+                                                                        id="exampleRadios1"
+                                                                        type="radio" 
+                                                                        ngModel
+                                                                        name="priority" 
+                                                                        value={{i+1}}
+                                                                    > 
+                                                                    <span class="form-check-sign">{{PRIORITE[i]}}</span>
+                                                                    
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="delivery-button">
+                                                <button
+                                                [disabled]="createDeliveryForm.invalid "
+                                                (click)="submitCreateDelivery(createDeliveryForm)"
+                                                type="submit" 
+                                                class="btn btn-primary">
+                                                Add</button>
+                                            </div>
+                                            <br>
+                                        </form>
+                                    </div>
+                                  </ng-template>
+                              </ngb-tab>
+                              <ngb-tab >
+                                <ng-template ngbTabTitle>
+                                  <i class="now-ui-icons education_agenda-bookmark" ></i> Archive
+                                </ng-template>
+                                  <ng-template ngbTabContent>
+                                    archive
+                                  </ng-template>
+                              </ngb-tab>
                             <ngb-tab>
                                 <ng-template ngbTabTitle>
                                   <i class="now-ui-icons ui-1_lock-circle-open"></i> Change password
@@ -59,7 +289,7 @@
                                                                 type="password" 
                                                                 class="form-control" 
                                                                 placeholder="current password..."
-                                                                ngModel             
+                                                                [(ngModel)]="passwordData.currentPassword"             
                                                                 name="currentPassword"
                                                             >
                                                         </div>
@@ -76,7 +306,7 @@
                                                                 type="password" 
                                                                 class="form-control" 
                                                                 placeholder="new password..."
-                                                                ngModel      
+                                                                [(ngModel)]="passwordData.newPassword"      
                                                                 name="newPassword"
                                                             >
                                                         </div>
@@ -90,7 +320,7 @@
                                                                 type="password" 
                                                                 class="form-control" 
                                                                 placeholder="confirm new password..."
-                                                                ngModel       
+                                                                [(ngModel)]="passwordData.confirmPassword"       
                                                                 name="confirmPassword"
                                                             >
                                                         </div>
@@ -106,10 +336,10 @@
                                                 </div>
                                                 <br>
                                                 <div class="errors">
-                                                    <p [ngClass]="{'error':resetPasswordForm.invalid}">* current password must be longer than or equal to 8 characters</p>
-                                                    <p [ngClass]="{'error':resetPasswordForm.invalid}">* confirm password must be longer than or equal to 8 characters</p>
-                                                    <p [ngClass]="{'error':resetPasswordForm.invalid}">* new password must be longer than or equal to 8 characters</p>
-                                                    <p [ngClass]="{'error':resetPasswordForm.value.newPassword != resetPasswordForm.value.confirmPassword}">* new password must be equal to confirm password </p>
+                                                    <p [ngClass]="{'error':passwordData.currentPassword.length < 8}"><i>* current password must be longer than or equal to 8 characters</i></p>
+                                                    <p [ngClass]="{'error':passwordData.confirmPassword.length < 8}"><i>* confirm password must be longer than or equal to 8 characters</i></p>
+                                                    <p [ngClass]="{'error':passwordData.newPassword.length < 8}"><i>* new password must be longer than or equal to 8 characters</i></p>
+                                                    <p [ngClass]="{'error':passwordData.newPassword != passwordData.confirmPassword ||  passwordData.newPassword == ''}">* new password must be equal to confirm password </p>
                                                 </div>
                                             </div>
                                         </form>
@@ -134,6 +364,7 @@
                                                             [(ngModel)]="store.name"               
                                                             name="name"
                                                         >
+                                                        
                                                     </div>
                                                 </div>
                                                 <br>
