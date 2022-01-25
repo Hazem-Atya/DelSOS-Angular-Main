@@ -1,41 +1,6 @@
 
-@import '../../../assets/sass/variables.scss';
-.about{
-    .fa{
-        margin-right: 2%;
-       color: $gray-600 ;
-    }
-    .fas {
-        margin-right: 2%;
-        color: $gray-600 ;
-    }
-    
-}
-.photo-container {
-    overflow: visible !important;
-    position: relative;
-    img {
-        height: 100%;
-        width: 100%;
-    
-        border-radius: 50%;
-    
-      }
-      i {
-        position: absolute;
-        top: 80px;
-        right: -6px;
-        border-radius: 50%;
-        height: 30px;
-        width: 30px;
-        display: flex !important;
-        align-items: center;
-        justify-content: center;
-        background-color: white;
-        color: $gray-700;
-        //box-shadow: 0 0 8px 3px #B8B8B8;
-      }
-  }
+@import '../../../../assets/sass/variables.scss';
+
 
 
   .blod{
@@ -116,15 +81,13 @@ background-color: $red !important;
 .card-row{
   height: 200px;
 }
-.card{
-    height: 35%;
-}
-  .forms-buttons{
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-  }
 
-  .password{
-    margin-top: 15px;
-  }
+.card{
+    height: 160px;
+    max-height : 160px;
+    overflow-y: scroll;
+}
+
+.card::-webkit-scrollbar {
+    display: none;
+}

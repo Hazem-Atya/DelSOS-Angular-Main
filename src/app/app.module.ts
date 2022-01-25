@@ -31,6 +31,8 @@ import { StoreProfileComponent } from './delsos/store-profile/store-profile.comp
 import { InfoItemComponent } from './delsos/store-profile/info-item/info-item/info-item.component';
 import { StoreRegisterComponent } from './delsos/store-register/register.component';
 import { CommonModule } from '@angular/common';
+import { DeliveryCardShopperComponent } from './delsos/components/delivery-card-shopper/delivery-card-shopper.component';
+import { UpdatePasswordModelComponent } from './delsos/components/update-password-model/update-password-model.component';
 
 
 @NgModule({
@@ -54,6 +56,8 @@ import { CommonModule } from '@angular/common';
         StoreProfileComponent,
         InfoItemComponent,
         StoreRegisterComponent,
+        DeliveryCardShopperComponent,
+        UpdatePasswordModelComponent,
 
     ],
     imports: [

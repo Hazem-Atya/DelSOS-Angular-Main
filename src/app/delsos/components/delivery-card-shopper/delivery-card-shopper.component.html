@@ -1,0 +1,62 @@
+<div class="card card-nav-tabs text ">
+    <div class="row card-row">
+
+      <div class="col-md-8">
+        <div class="card-body ">
+          <h4 class="row ">
+            <div class="col-md-4 blod date ">{{delivery.date}}</div>
+            <div class="col-md-8">
+              <div class="row">
+                <div class="col-md-5 smaller"><i class="fas fa-map-marker-alt"></i> Hay L khadhra</div>
+                <div class="col-md-2"><i class="fas fa-arrow-right "></i></div>
+                <div class="col-md-5 smaller"><i class="fas fa-map-marker-alt"></i> Mannouba  </div>
+              </div>
+            </div>
+       
+            
+          </h4>
+          <div class="row">
+            <span class="badge bg-default badge-pill  small">BREAKABLE</span>
+            <span class="badge bg-default badge-pill  small">Package</span>
+          </div>
+          <p class="row">{{delivery.desc}}</p>
+
+
+
+          <!--
+                                   <a href="javascript:;" class="btn btn-primary btn-tracking">Tracking</a>
+                                 <div class="row text-center">
+                             
+                                  <div class="col-md-4 text-center">
+                                    <div class="row blod text-center">Height</div>
+                                    <div class="row  text-center">25 cm</div>
+                                  </div>
+                                  <div class="col-md-4 text-center">
+                                    <div class="row blod text-center">Width</div>
+                                    <div class="row text-center">25 cm</div>
+                                  </div>
+                                  <div class="col-md-4 text-center">
+                                    <div class="row blod text-center">Weight</div>
+                                    <div class="row text-center">25 g</div>
+                                  </div>
+
+                                </div>-->
+
+        </div>
+      </div>
+
+      <div class="col-md-4 card-right-side bg-light text-center">
+
+        <div class="progress-circle-container">
+          <circle-progress [percent]="percent" [radius]="60" [outerStrokeWidth]="5"
+            [innerStrokeWidth]="3" [outerStrokeColor]="outerStrokeColor()" [innerStrokeColor]="'#e9ecef'"
+            [showTitle]="true" [backgroundPadding]="0"
+            [titleFontSize]="15"
+            [title]="formatSubtitle(percent)" [showSubtitle]="false" [showUnits]="false" >
+          </circle-progress>
+        </div>
+
+      </div>
+    </div>
+
+  </div>

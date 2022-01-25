@@ -22,7 +22,9 @@ export interface Shopper {
     username: string,
     age: Number,
     role: string,
-    phoneNumber:string,
+    phoneNumber: string,
+    cinNumber: String;
+    cin: string;
     range: Number,
     address: string,
     status: string,

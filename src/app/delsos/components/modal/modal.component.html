@@ -1,20 +1,21 @@
 <button class="btn btn-primary btn-round btn-lg" (click)="open(classic,'' , '')">
-My Reviews
+{{buttonText}}
 </button>
 <ng-template #classic let-c="close" let-d="dismiss">
     <div class="modal-header justify-content-center">
         <button type="button" class="close" (click)="d('Cross click')">
             <i class="now-ui-icons ui-1_simple-remove"></i>
         </button>
-        <h4 class="title title-up">Reviews. 4.5/5</h4>
+        <h4 class="title title-up">{{title}}</h4>
     </div>
     <div class="modal-body">
-        <p> review components here 
+        <p>  <ng-content></ng-content>
         </p>
     </div>
     <div class="modal-footer">
        
         <button type="button" class="btn btn-default" (click)="c('Close click')">Close</button>
+        <button type="button" class="btn btn-primary" (click)="c('Close click')">Submit</button>
     </div>
 </ng-template>
 

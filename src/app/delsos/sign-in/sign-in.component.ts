@@ -63,12 +63,10 @@ export class SignInComponent implements OnInit {
            
             this.signinService.login(signinForm.value).subscribe(
                 (response) => {
-                    console.log(response)
-                    this.localStorageService.set('token', response.access_token)
-                    
-                    this.signinService.getProfile(response.access_token).subscribe(
+
+                    this.signinService.getProfile().subscribe(
                         (user) => {
-                            this.localStorageService.set('role', user.role)
+                            //this.localStorageService.set('role', user.role)
                             if (user['role'] == 'SHOPPER')
                             this.router.navigateByUrl('/deliveries',{ state: user });
                             this.router.navigateByUrl('/store/profile',{ state: user });
