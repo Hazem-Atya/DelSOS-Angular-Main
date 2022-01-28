@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { ConfirmedValidator } from './custom-validator/confirmPwd-validator';
-import { updataPwdService } from './services/update-pwd.service';
+import { updatePwdService } from './services/update-pwd.service';
 
 
 @Component({
@@ -15,7 +15,8 @@ export class UpdatePasswordModelComponent implements OnInit {
     closeResult: string;
     updatePasswordForm: FormGroup;
     @Input() id: string;
-    constructor(private toastr: ToastrService,private modalService: NgbModal, private formBuilder: FormBuilder,private updatePwdService: updataPwdService) { }
+    constructor(private toastr: ToastrService, private modalService: NgbModal,
+        private formBuilder: FormBuilder, private updatePwdService: updatePwdService) { }
 
     ngOnInit(): void {
         this.updatePasswordForm = this.formBuilder.group({

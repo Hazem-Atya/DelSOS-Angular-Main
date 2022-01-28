@@ -7,7 +7,7 @@ import { UpdatePwdDto } from "../DTO/update-pwd.dto";
 @Injectable({
   providedIn: 'root'
 })
-export class updataPwdService {
+export class updatePwdService {
 
   private apiServerUrl = environment.apiURL;
 

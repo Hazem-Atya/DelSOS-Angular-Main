@@ -128,3 +128,43 @@ background-color: $red !important;
   .password{
     margin-top: 15px;
   }
+  .form{
+    margin-top: 65px;
+  }
+
+  .input-file{
+    display:none;
+}
+.input-pic{
+  display: none;
+}
+.fa-edit{
+  cursor : pointer;
+}
+.input-file-container{
+  padding: 5px;
+  height: 160px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+ // border : solid 1px $gray-300;
+  align-items: center;
+  border-radius: 30px;
+  color: #2c2c2c;
+}
+
+.cin-preview{
+  border-radius: 20px;
+  width: 300px;
+  height: 160px;
+}
+
+.upload-btn{
+  margin-left : 20px;
+}
+
+.btn-update{
+  width: 170px;
+  height: 50px;
+  padding-top: 18px;
+}
