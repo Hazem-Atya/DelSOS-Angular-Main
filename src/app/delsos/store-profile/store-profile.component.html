@@ -50,10 +50,10 @@
                                                     <th scope="col" colspan="1" style="width: 10%;">Actions</th> 
                                                 </thead>
                                                 <tbody>
-                                                    <tr *ngFor="let delivery of deliveries ; let i">
+                                                    <tr *ngFor="let delivery of shownDeliveries ; let i">
                                                         <td>
                                                             <div class="text-truncate" style="width: 24pc;">
-                                                                {{delivery.description}}aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                                                                {{delivery.description}}
                                                             </div>
                                                         </td>
                                                         <td>{{delivery.priority}}</td>
@@ -63,19 +63,21 @@
                                                             </div>
                                                         </td>
                                                         <td colspan="3" >
-                                                            <div class="destination-wrapper"><strong>{{delivery.source}}</strong><i> To </i><strong>{{delivery.destination}}</strong></div>
-                                                            <div class="progress">
-                                                                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
-                                                            </div>
+                                                            <div class="destination-wrapper" *ngIf="delivery.status == 1"><t [ngClass]="{'pending':delivery.status == 1}">Pending</t> to deliver from <strong>{{delivery.source}}</strong><i> to </i><strong>{{delivery.destination}}</strong></div>
+                                                            <div class="destination-wrapper" *ngIf="delivery.status == 2"><t [ngClass]="{'on-the-way':delivery.status == 2}">On the way</t> from <strong>{{delivery.source}}</strong><i> to </i><strong>{{delivery.destination}}</strong></div>
                                                         </td>
-                                                        <td><i class="now-ui-icons loader_gear"></i></td>
+                                                        <td>
+                                                            <storeProfile-modal-component [delivery]="delivery" [type]="'TRACK'"></storeProfile-modal-component>
+                                                            <br>
+                                                            <storeProfile-modal-component [delivery]="delivery" [type]="'APPLICANT'" *ngIf="delivery.status == 1"></storeProfile-modal-component>
+                                                        </td>
                                                     </tr>
                                                 </tbody>
                                             </table>
                                             <div *ngIf="deliveries.length == 0">
                                                 You have no deliveries !! Lets start adding !
                                             </div>
-                                        <ngb-pagination [collectionSize]="50" [(page)]="page" aria-label="Default pagination" class="pagination-primary pagination-store"></ngb-pagination>
+                                        <ngb-pagination [collectionSize]="deliveries.length" [pageSize]="4" [(page)]="page" (pageChange)="changePage(False)" aria-label="Default pagination" class="pagination-primary pagination-store"></ngb-pagination>
                                     </div>
                                 </ng-template>
                             </ngb-tab>
@@ -102,6 +104,9 @@
                                                         <div class="badge badge-danger" *ngIf="description.errors?.required && description.touched" >
                                                             description is required
                                                         </div>
+                                                        <div class="badge badge-danger" *ngIf="description.errors?.minlength && description.touched" >
+                                                            description must have at least 4 characters
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <br>
@@ -119,7 +124,7 @@
                                                             name="source"
                                                         >
                                                         <div class="badge badge-danger" *ngIf="source.errors?.minlength && source.touched" >
-                                                            Source must have at least 8 characters
+                                                            Source must have at least 4 characters
                                                         </div>
                                                         <div class="badge badge-danger" *ngIf="source.errors?.required && source.touched" >
                                                             Source is required
@@ -141,7 +146,7 @@
                                                             name="destination"
                                                         >
                                                         <div class="badge badge-danger" *ngIf="destination.errors?.minlength && destination.touched" >
-                                                            Destination must have at least 8 characters
+                                                            Destination must have at least 4 characters
                                                         </div>
                                                         <div class="badge badge-danger" *ngIf="destination.errors?.required && destination.touched" >
                                                             destination is required
@@ -269,7 +274,43 @@
                                   <i class="now-ui-icons education_agenda-bookmark" ></i> Archive
                                 </ng-template>
                                   <ng-template ngbTabContent>
-                                    archive
+                                    <div class="deliveries-tab">
+                                        <table class="table" *ngIf="archive.length != 0">
+                                            <thead>
+                                            <tr>
+                                                <th scope="col" colspan="1" style="width: 30%;">Description</th>
+                                                <th scope="col" colspan="1" style="width: 5%;">Priority</th>
+                                                <th scope="col" colspan="1" style="width: 25%;">Characteristic</th>
+                                                <th scope="col" colspan="3" style="width: 30%;">Delivery status</th>
+                                                <th scope="col" colspan="1" style="width: 10%;">Actions</th> 
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let delivery of archive ; let i">
+                                                    <td>
+                                                        <div class="text-truncate" style="width: 24pc;">
+                                                            {{delivery.description}}
+                                                        </div>
+                                                    </td>
+                                                    <td>{{delivery.priority}}</td>
+                                                    <td>
+                                                        <div>
+                                                            <span class="badge badge-primary" *ngFor="let item of delivery.type">{{item}}</span>
+                                                        </div>
+                                                    </td>
+                                                    <td colspan="3" >
+                                                        <div class="destination-wrapper" *ngIf="delivery.status == 3"><t [ngClass]="{'success-deliver':delivery.status == 3}">Successfully</t> delivered from <strong>{{delivery.source}}</strong><i> to </i><strong>{{delivery.destination}}</strong></div>
+                                                    </td>
+                                                    <td>
+                                                        <storeProfile-modal-component [delivery]="delivery" [type]="'TRACK'"></storeProfile-modal-component>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <div *ngIf="archive.length == 0">
+                                            You have no archived deliveries !!
+                                        </div>
+                                    <ngb-pagination [collectionSize]="archive.length" [pageSize]="4" [(page)]="archivepage" (pageChange)="changePage(True)" aria-label="Default pagination" class="pagination-primary pagination-store"></ngb-pagination>
+                                </div>
                                   </ng-template>
                               </ngb-tab>
                             <ngb-tab>
@@ -364,7 +405,6 @@
                                                             [(ngModel)]="store.name"               
                                                             name="name"
                                                         >
-                                                        
                                                     </div>
                                                 </div>
                                                 <br>

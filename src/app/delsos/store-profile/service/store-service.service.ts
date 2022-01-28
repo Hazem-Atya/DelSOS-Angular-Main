@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable, OnInit } from '@angular/core';
 import { Delivery } from 'app/delsos/model/delivery';
 import { Store } from 'app/delsos/model/Store';
@@ -30,12 +30,16 @@ export class StoreProfileService{
         return this.http.post<Store>(`${this.apiServerUrl}/store/update-password`,newPasswordData);   
     }
 
-    public createDelivery(createDelivery): Observable<Delivery> {
-        return this.http.post<Delivery>(`${this.apiServerUrl}/delivery`,createDelivery);   
+    public createDelivery(createDelivery): Observable<HttpResponse<Delivery>> {
+        return this.http.post<Delivery>(`${this.apiServerUrl}/delivery`,createDelivery,{observe:"response"});   
     }
 
     public getDeliveries():Observable<Delivery[]> {
         return this.http.get<Delivery[]>(`${this.apiServerUrl}/delivery/all`);
+    }
+
+    public getArchive():Observable<Delivery[]> {
+        return this.http.get<Delivery[]>(`${this.apiServerUrl}/delivery/archive`);
     }
 
 }

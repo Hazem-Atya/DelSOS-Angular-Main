@@ -29,6 +29,7 @@ import { NgbdModalBasic } from './delsos/components/modal/modal.component';
 import { NgCircleProgressModule } from 'ng-circle-progress';
 import { StoreProfileComponent } from './delsos/store-profile/store-profile.component';
 import { InfoItemComponent } from './delsos/store-profile/info-item/info-item/info-item.component';
+import { StoreProfileModalComponent } from './delsos/store-profile/modal/modal.component';
 
 
 @NgModule({
@@ -51,7 +52,7 @@ import { InfoItemComponent } from './delsos/store-profile/info-item/info-item/in
         NgbdModalBasic,
         StoreProfileComponent,
         InfoItemComponent,
-
+        StoreProfileModalComponent,
     ],
     imports: [
         BrowserAnimationsModule,
