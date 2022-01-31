@@ -33,6 +33,7 @@ import { StoreRegisterComponent } from './delsos/store-register/register.compone
 import { CommonModule } from '@angular/common';
 import { DeliveryCardShopperComponent } from './delsos/components/delivery-card-shopper/delivery-card-shopper.component';
 import { UpdatePasswordModelComponent } from './delsos/components/update-password-model/update-password-model.component';
+import { StoreProfileModalComponent } from './delsos/store-profile/modal/modal.component';
 
 
 @NgModule({
@@ -59,6 +60,7 @@ import { UpdatePasswordModelComponent } from './delsos/components/update-passwor
         DeliveryCardShopperComponent,
         UpdatePasswordModelComponent,
 
+        StoreProfileModalComponent,
     ],
     imports: [
         BrowserAnimationsModule,

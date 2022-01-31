@@ -16,6 +16,7 @@ import {  SigninGuard } from './guards/signin.guard';
 import { StoreProfileComponent } from './delsos/store-profile/store-profile.component';
 import { StoreRegisterComponent } from './delsos/store-register/register.component';
 
+
 const routes: Routes = [
 
     {
@@ -34,13 +35,13 @@ const routes: Routes = [
             { path: 'register', component: StoreRegisterComponent, },
         ]
     },
-    { path: 'test' , component : StoreRegisterComponent},
     { path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: 'index', component: ComponentsComponent },
     { path: 'nucleoicons', component: NucleoiconsComponent },
     { path: 'examples/landing', component: LandingComponent },
     { path: 'examples/login', component: LoginComponent },
-    { path: 'profile', component: ProfileComponent, canActivate: [SigninGuard] },
+    // { path: 'profile', component: ProfileComponent, canActivate: [SigninGuard] },
+    { path: 'profile', component: ProfileComponent },
     { path: 'home', component: HomepageComponent },
     { path: 'sign-in', component: SignInComponent, },
     {path: '**',component:NotFoundPageComponent }
