@@ -21,6 +21,7 @@ export class StoreRegisterComponent implements OnInit {
     loading = false;
     filename;
     valid = false;
+    file;
 
 
     constructor(
@@ -59,10 +60,10 @@ export class StoreRegisterComponent implements OnInit {
     }
 
     sendRequest(file: FormData) {
-        console.log(this.registerFormData)
-        file.append('website', this.registerFormData.value.website);
-        file.append('email', this.registerFormData.value.email);
-        file.append('name', this.registerFormData.value.name);
+        console.log("send Request",this.registerFormData)
+        file.append('website', this.registerFormData.value.website.toString());
+        file.append('email', this.registerFormData.value.email.toString());
+        file.append('name', this.registerFormData.value.name.toString());
 
 
         this.storeService.sendRequest(file).subscribe(
@@ -70,7 +71,7 @@ export class StoreRegisterComponent implements OnInit {
                 console.log(response);
                 this.router.navigate(['home'])
                 this.loading = false;
-                this.toastr.success('your request has been successfully sent, wait for the admin approvement')
+                this.toastr.success('Your request has been successfully sent! wait for the admin approvement')
 
             },
             (error: HttpErrorResponse) => {
@@ -105,23 +106,23 @@ export class StoreRegisterComponent implements OnInit {
 
         if (event.target.files.length > 0) {
             const file = event.target.files[0];
-            console.log(file)
+            console.log("onFileSelect",file)
             this.filename = file.name;
-            this.registerFormData.get('file').setValue(file);
+            this.file = file;
+            console.log(this.file)
         }
     }
     onSubmit() {
         if (this.registerFormData.valid) {
             const formData = new FormData();
-            formData.append('file', this.registerFormData.get('file').value);
-
+            formData.append('file', this.file);
             this.sendRequest(formData)
         }
         else {
-
+            this.toastr.error('Something went wrong')
             console.log('not valid')
         }
-        console.log('submit');
+     
     }
 
 }

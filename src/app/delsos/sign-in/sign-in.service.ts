@@ -34,6 +34,10 @@ export class SigninService {
 
   }
 
+  public getShopper() {
+    let shopper = this.shopperSubject.subscribe()
+  return 
+  }
   public getProfile(): Observable<Shopper> {
     return this.http.get<Shopper>(`${this.apiServerUrl}/auth/profile`)
     .pipe(map(user => {

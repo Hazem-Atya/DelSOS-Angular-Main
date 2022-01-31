@@ -8,6 +8,7 @@ import { ShopperProfileService } from './services/shopper-profile.service';
 import { ToastrService } from 'ngx-toastr';
 import { SafeUrl } from '@angular/platform-browser';
 import { environment } from '../../../environments/environment';
+import { SigninService } from 'app/delsos/sign-in/sign-in.service';
 @Component({
   selector: 'app-shopper-profile',
   templateUrl: './shopper-profile.component.html',
@@ -37,32 +38,36 @@ export class ShopperProfileComponent implements OnInit {
     age: 0,
   }
 
+
   deliveries: any[] = [
     {
       name: "del1",
       desc: " Lorem Ipsum is simply dummy text of the printing and typesetting industry. ",
-      date: "20/12/2021"
+      date: "20/12/2021",
+      status : "arrived"
     },
     {
       name: "del2",
       desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. ",
-      date: "08/10/2021"
+      date: "08/10/2021",
+      status : "not_picked_up"
     }
   ]
   collectionSize = this.deliveries.length;
   // user;
-  constructor(private location: Location, private toastr: ToastrService, private LocalStorageService: LocalStorageService,
+  constructor(private location: Location, private toastr: ToastrService,
+    private signinService : SigninService,
+    private LocalStorageService: LocalStorageService,
     private shopperProfileService: ShopperProfileService) { }
 
   ngOnInit() {
-
+    console.log(this.signinService.getShopper())
     var rellaxHeader = new Rellax('.rellax-header');
     var body = document.getElementsByTagName('body')[0];
     body.classList.add('profile-page');
     var navbar = document.getElementsByTagName('nav')[0];
     navbar.classList.add('navbar-transparent');
-
-
+  
     this.user = JSON.parse(this.LocalStorageService.get('user'))
     if (this.user.cin) {
       this.cin = this.user.cin
@@ -74,8 +79,18 @@ export class ShopperProfileComponent implements OnInit {
       this.picture =  environment.apiURL +'/' + this.user.picture
     }
 
+    this.getDeliveries(2,0)
+
   }
 
+  getDeliveries(limit, skip) {
+    this.shopperProfileService.getDeliveries(limit,skip).subscribe((deliveries) => {
+      console.log(deliveries)
+    },
+      (error) => {
+      
+    })
+  }
   openModal(){
   
   }

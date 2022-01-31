@@ -8,11 +8,11 @@
         <div class="photo-container">
           <img src="{{picture}}" alt="">
           <i class="fa fa-edit" *ngIf="editable" (click)="pic.click()"></i>
-          <input  accept="image/*"  class=" input-pic" type="file" id="formFile"
-                  (change)="onPicSelect($event)" #pic>
+          <input accept="image/*" class=" input-pic" type="file" id="formFile" (change)="onPicSelect($event)" #pic>
 
         </div>
-        <button class="btn btn-round btn-primary" (click)="editPic()" *ngIf="editable && displayButton" >Confirming this picture</button>
+        <button class="btn btn-round btn-default" (click)="editPic()" *ngIf="editable && displayButton">Confirm this
+          picture</button>
         <h3 class="title" *ngIf="!editable">{{user.name}}</h3>
         <h2 class="title" *ngIf="editable">Update Profile</h2>
         <div class="content">
@@ -97,6 +97,11 @@
 
 
       <form class="form" #form="ngForm">
+        <div class="row row-links">
+          <h6><span class="link" (click)="back()">Profile</span> / <span class="disabled">Edit </span> </h6>
+          <span class="link" (click)="back()">Back</span>
+        </div>
+        <hr>
         <h4>Login Details</h4>
         <div class="row">
           <div class="col-sm-6 col-lg-3">
@@ -143,15 +148,16 @@
 
             <div class="form-group">
               <label>Birthdate</label>
-              <input type="date" name="birthdate" [ngModel]="user.birthdate | date:'yyyy-MM-dd'" (ngModel)="user.birthdate = $event" class="form-control">
+              <input type="date" name="birthdate" [ngModel]="user.birthdate | date:'yyyy-MM-dd'"
+                (ngModel)="user.birthdate = $event" class="form-control">
             </div>
-            <br/>
-            <br/>
+            <br />
+            <br />
             <div class="form-group">
               <label>Phone Number</label>
 
-              <input type="text" name="phoneNumber" minlength="8" [(ngModel)]="user.phoneNumber" placeholder="Phone Number"
-                class="form-control">
+              <input type="text" name="phoneNumber" minlength="8" [(ngModel)]="user.phoneNumber"
+                placeholder="Phone Number" class="form-control">
             </div>
 
           </div>
@@ -162,15 +168,15 @@
               <label>Range</label>
               <input type="text" name="range" [(ngModel)]="user.range" placeholder="Range" class="form-control">
             </div>
-            <br/>
-            <br/>
+            <br />
+            <br />
             <div class="form-group">
               <label>CIN Number</label>
               <input type="number" name="cinNumber" minlength="8" [(ngModel)]="user.cinNumber" placeholder="CIN Number"
                 class="form-control">
             </div>
           </div>
-   
+
           <div class="col-sm-6 col-lg-6">
 
             <div class="form-group">
@@ -178,11 +184,11 @@
               <div class="input-file-container">
                 <input id="cin" name="cin" accept="image/*" #fileInput class=" input-file" type="file" id="formFile"
                   (change)="onFileSelect($event)" ngModel #cin="ngModel">
-               
-                  <img src="{{cinURL}}" class="cin-preview" *ngIf='cinURL'>
-                  
+
+                <img src="{{cinURL}}" class="cin-preview" *ngIf='cinURL'>
+
                 <button mat-mini-fab color="primary" class=" btn btn-round upload-btn" (click)="fileInput.click()">
-                  <i class="fa fa-upload" aria-hidden="true"></i>  Upload </button>
+                  <i class="fa fa-upload" aria-hidden="true"></i> Upload </button>
               </div>
 
 
@@ -191,7 +197,7 @@
               You should upload an image ( .jpg , .png , .jpeg ...)
             </div>
           </div>
-    
+
 
         </div>
         <hr>
@@ -215,8 +221,8 @@
           <div class="col-sm-6 col-lg-3">
             <div class="form-group">
               <label>Card expiration Date</label>
-              <input type="date" name="expirationDate" [ngModel]="user.bankDetails.expirationDate | date:'yyyy-MM-dd'" (ngModel)="user.bankDetails.expirationDate = $event"
-                class="form-control">
+              <input type="date" name="expirationDate" [ngModel]="user.bankDetails.expirationDate | date:'yyyy-MM-dd'"
+                (ngModel)="user.bankDetails.expirationDate = $event" class="form-control">
             </div>
           </div>
         </div>

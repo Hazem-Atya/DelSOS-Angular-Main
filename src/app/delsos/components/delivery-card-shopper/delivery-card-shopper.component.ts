@@ -9,7 +9,8 @@ import { Component, Input, OnInit } from '@angular/core';
 export class DeliveryCardShopperComponent implements OnInit {
 
   @Input() delivery: any; 
-percent = 100
+  percent = 100
+  
   constructor() { }
 
   ngOnInit(): void {
