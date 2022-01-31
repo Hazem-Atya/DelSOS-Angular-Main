@@ -171,4 +171,3 @@ export class StoreProfileComponent implements OnInit {
   }
 }
 
-

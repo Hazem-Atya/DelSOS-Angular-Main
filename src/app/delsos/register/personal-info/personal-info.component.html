@@ -1,10 +1,10 @@
 <form
         (keyup)="checkFormValidity()"
         [formGroup]="registerForm">
-    <div class="input-group form-group-no-border input-lg" [ngClass]="{'input-group-focus':focus===true}">
+    <div class="input-group form-group-no-border input-lg" [ngClass]="{'input-group-focus':focus===true, 'bg-error':f.name.touched && f.name.invalid}">
         <div class="input-group-prepend">
         <span class="input-group-text">
-            <i class="now-ui-icons users_circle-08"></i>
+            <i class="now-ui-icons users_circle-08" [ngClass]="{'icon-error':f.name.touched && f.name.invalid}"></i>
         </span>
         </div>
         <input
@@ -16,31 +16,31 @@
                 placeholder="Full name"
                 (focus)="focus=true" (blur)="focus=false">
     </div>
-    <div class="badge badge-danger" *ngIf="f.name.touched && f.name.invalid">
+    <div class="text-danger" *ngIf="f.name.touched && f.name.invalid">
         Name should not be empty
     </div>
-    <div class="input-group form-group-no-border input-lg" [ngClass]="{'input-group-focus':focus===true}">
+    <div class="input-group form-group-no-border input-lg" [ngClass]="{'input-group-focus':focus===true, 'bg-error':f.address.touched && f.address.invalid}">
         <div class="input-group-prepend">
         <span class="input-group-text">
-            <i class="now-ui-icons users_circle-08"></i>
+            <i class="now-ui-icons location_pin" [ngClass]="{'icon-error':f.address.touched && f.address.invalid}"></i>
         </span>
         </div>
         <input
             id="address"
                 formControlName="address"
-                name="name"
+                name="address"
                 type="text"
                 class="form-control"
                 placeholder="Address"
                 (focus)="focus=true" (blur)="focus=false">
     </div>
-    <div class="badge badge-danger" *ngIf="f.address?.touched && f.address?.invalid">
+    <div class="text-danger" *ngIf="f.address?.touched && f.address?.invalid">
         Adress should have at least 6 characters
     </div>
-    <div class="input-group form-group-no-border input-lg" [ngClass]="{'input-group-focus':focus===true}">
+    <div class="input-group form-group-no-border input-lg" [ngClass]="{'input-group-focus':focus===true, 'bg-error':f.phoneNumber.touched && f.phoneNumber.invalid}">
         <div class="input-group-prepend">
         <span class="input-group-text">
-            <i class="now-ui-icons users_circle-08"></i>
+            <i class="now-ui-icons tech_mobile " [ngClass]="{'icon-error':f.phoneNumber.touched && f.phoneNumber.invalid}"></i>
         </span>
         </div>
         <input
@@ -52,44 +52,33 @@
                 (focus)="focus=true" (blur)="focus=false">
 
     </div>
-    <div class="badge badge-danger" *ngIf="
+    <div class="text-danger" *ngIf="
      f.phoneNumber.touched&&(f.phoneNumber.errors?.required||f.phoneNumber.errors?.minlength)">
         Phone number must have at least 8 digits
     </div>
-    <div class="badge badge-danger" *ngIf=" f.phoneNumber.errors?.pattern">
+    <div class="text-danger" *ngIf=" f.phoneNumber.errors?.pattern">
         Phone must be a number
     </div>
 
-    <div class="input-group form-group-no-border input-lg" [ngClass]="{'input-group-focus':focus===true}">
+    <div class="input-group form-group-no-border input-lg" [ngClass]="{'input-group-focus':focus===true, 'bg-error':f.birthdate.touched && f.birthdate.invalid}">
         <div class="input-group-prepend">
         <span class="input-group-text">
-            <i class="now-ui-icons users_circle-08"></i>
+            <i class="now-ui-icons business_badge" [ngClass]="{'icon-error':f.birthdate.touched && f.birthdate.invalid}"></i>
         </span>
         </div>
         <input
-                formControlName="age"
-                type="text"
-                class="form-control"
-                placeholder="Age"
-                (focus)="focus=true" (blur)="focus=false">
+        #birthdate
+        formControlName="birthdate"
+        type="date" class="form-control"
+        placeholder="Birthdate"
+        (focus)="focus=true" (blur)="focus=false">
+
 
     </div>
-    <div class="badge badge-danger" *ngIf="f.age.touched && f.age.invalid">
-        Age should not be empty
+    <div class="text-danger" *ngIf="f.birthdate.touched && f.birthdate.invalid">
+        Date should not be empty
     </div>
     <br>
     <br>
-    <!--    <div class="input-group form-group-no-border input-lg" [ngClass]="{'input-group-focus':focus===true}">-->
-<!--        <div class="input-group-prepend">-->
-<!--        <span class="input-group-text">-->
-<!--            <i class="now-ui-icons users_circle-08"></i>-->
-<!--        </span>-->
-<!--        </div>-->
-<!--        <input-->
-<!--                formControlName=""-->
-<!--                type="text"-->
-<!--               class="form-control"-->
-<!--               placeholder="Address"-->
-<!--               (focus)="focus=true" (blur)="focus=false">-->
-<!--    </div>-->
+
 </form>

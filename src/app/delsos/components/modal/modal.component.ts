@@ -6,6 +6,10 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
   templateUrl: './modal.component.html'
 })
 export class NgbdModalBasic {
+    @Input() buttonText: string;
+    @Input() title: string;
+    @Input() body: any;
+
     closeResult: string;
 
     constructor(private modalService: NgbModal) {}

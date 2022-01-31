@@ -3,7 +3,7 @@
     <div class="container">
         <div class="col-md-4 content-center">
             <div class="card card-login card-plain">
-                <form class="form" method="" action="" #signinForm="ngForm" (ngSubmit)="login(signinForm)" >
+                <form class="form" method="" action="" #signinForm="ngForm" (ngSubmit)="login(signinForm)">
                     <div class="header header-primary text-center">
                         <div class="logo-container">
                             <img (click)="printPath()" src="{{logoPath}}" alt="logo">
@@ -12,54 +12,44 @@
                     <div class="content">
 
                         <div class="input-group form-group-no-border input-lg"
-                             [ngClass]="{'input-group-focus':focus===true}">
+                            [ngClass]="{'input-group-focus':focus===true}">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"> <i class="now-ui-icons users_circle-08"></i></span>
                             </div>
 
-                            <input type="email" 
-                            ngModel
-                            email
-                            name="email"
-                            #email="ngModel"
-                            required
-                            class="form-control" placeholder="Email ..."
-                                   (focus)="focus=true" (blur)="focus=false">
+                            <input type="email" ngModel email name="email" #email="ngModel" required
+                                class="form-control" placeholder="Email ..." (focus)="focus=true" (blur)="focus=false">
                         </div>
-                        <div class="badge badge-danger" *ngIf="email.errors?.required && email.touched" >
+                        <div class="text-danger" *ngIf="email.errors?.required && email.touched">
                             Email is required
-                            </div>
+                        </div>
 
-                            <div class="badge badge-danger" *ngIf="email.errors?.email && email.touched" >
-                                Email format is invalid
-                                </div>
- 
+                        <div class="text-danger" *ngIf="email.errors?.email && email.touched">
+                            Email format is invalid
+                        </div>
+
                         <div class="input-group form-group-no-border input-lg"
-                             [ngClass]="{'input-group-focus':focus1===true}">
+                            [ngClass]="{'input-group-focus':focus1===true}">
                             <div class="input-group-prepend">
                                 <span class="input-group-text">
                                     <i class="now-ui-icons ui-1_lock-circle-open  "></i></span>
                             </div>
-                            <input type="password" required
-                            
-                            ngModel
-                            #password="ngModel"
-                            minlength="8"
-                            name="password"
-                            placeholder="Password..." class="form-control" (focus)="focus1=true"
-                                   (blur)="focus1=false"/>
-                                   
+                            <input type="password" required ngModel #password="ngModel" minlength="8" name="password"
+                                placeholder="Password..." class="form-control" (focus)="focus1=true"
+                                (blur)="focus1=false" />
+
                         </div>
-          
-                        <div  class="badge badge-danger"  *ngIf="password.errors?.required && password.touched" >
+
+                        <div class="badge badge-danger" *ngIf="password.errors?.required && password.touched">
                             Password is required
-                            </div>
-                            <div  class="badge badge-danger"  *ngIf="password.errors?.minlength && password.touched" >
-                                Password must have at least 8 characters
-                                </div>
+                        </div>
+                        <div class="badge badge-danger" *ngIf="password.errors?.minlength && password.touched">
+                            Password must have at least 8 characters
+                        </div>
                     </div>
                     <div class="footer text-center">
-                        <button type="submit" [disabled]="signinForm.invalid"  class="btn btn-primary btn-round btn-lg btn-block">Sign in </button>
+                        <button type="submit" [disabled]="signinForm.invalid"
+                            class="btn btn-primary btn-round btn-lg btn-block">Sign in </button>
                     </div>
                     <div class="pull-left">
                         <h6>

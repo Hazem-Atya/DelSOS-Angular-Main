@@ -6,20 +6,25 @@
     <div class="container">
       <div class="content-center">
         <div class="photo-container">
-          <img src="assets/img/placeholder.png" alt="">
-          <i class="fa fa-edit"></i>
+          <img src="{{picture}}" alt="">
+          <i class="fa fa-edit" *ngIf="editable" (click)="pic.click()"></i>
+          <input accept="image/*" class=" input-pic" type="file" id="formFile" (change)="onPicSelect($event)" #pic>
+
         </div>
-        <h3 class="title">{{user.name}} Name</h3>
+        <button class="btn btn-round btn-default" (click)="editPic()" *ngIf="editable && displayButton">Confirm this
+          picture</button>
+        <h3 class="title" *ngIf="!editable">{{user.name}}</h3>
+        <h2 class="title" *ngIf="editable">Update Profile</h2>
         <div class="content">
-          <div class="social-description">
-            <h2>{{user.range}}5 Km</h2>
+          <div class="social-description" *ngIf="!editable">
+            <h2>{{user.range}} Km</h2>
             <p>Range</p>
           </div>
-          <div class="social-description">
+          <div class="social-description" *ngIf="!editable">
             <h2>26</h2>
             <p>Shippments</p>
           </div>
-          <div class="social-description">
+          <div class="social-description" *ngIf="!editable">
             <h2>48</h2>
             <p>Reviews</p>
           </div>
@@ -27,25 +32,24 @@
       </div>
     </div>
   </div>
-  <div class="section">
+  <div class="section" *ngIf="!editable">
     <div class="container">
       <div class="button-container">
-        <ngbd-modal-component></ngbd-modal-component>
-
-        <a href="#button" class="btn btn-default btn-round btn-lg btn-icon" rel="tooltip" title="Follow me on Twitter">
-          <i class="fab fas fa-edit    "></i>
+        <ngbd-modal-component [buttonText]="'My Reviews'" [title]="'Rate 4.5/5'" [body]="'body'"></ngbd-modal-component>
+        <a class="btn btn-default btn-round btn-update" rel="tooltip" title="Edit your profile" (click)="edit()">
+          <i class="far fa-edit"></i> Update profile
         </a>
-        <a href="#button" class="btn btn-default btn-round btn-lg btn-icon" rel="tooltip"
+        <!--  <a href="#button" class="btn btn-default btn-round btn-lg btn-icon" rel="tooltip"
           title="Follow me on Instagram">
           <i class="fab fa-instagram"></i>
-        </a>
+        </a>-->
       </div>
       <h3 class="title">About me</h3>
       <div class=" row about">
         <div class="col-md-2"></div>
         <div class="col-3"><i class="fa fa-user-circle " aria-hidden="true"></i> {{user.age}} years old</div>
-        <div class="col-3"><i class="fas fa-location-arrow"></i>{{user.address}} Tunis,Tunisia</div>
-        <div class="col-3"> <i class="fa fa-phone" aria-hidden="true"></i> {{user.phoneNumber}}(+216) 23 654 896</div>
+        <div class="col-3"><i class="fas fa-location-arrow"></i>{{user.address}} </div>
+        <div class="col-3"> <i class="fa fa-phone" aria-hidden="true"></i> {{user.phoneNumber}}</div>
       </div>
       <!--<h5 class="description">An artist of considerable range, Ryan — the name taken by Melbourne-raised, Brooklyn-based
         Nick Murphy — writes, performs and records all of his own music, giving it a warm, intimate feel with a solid
@@ -58,82 +62,8 @@
               <div class="row ">
                 <div class="col-md-1"></div>
                 <div class="col-md-12">
-
-                  <div class="card card-nav-tabs text " *ngFor="let delivery of deliveries">
-                    <div class="row card-row">
-
-                      <div class="col-md-8">
-                        <div class="card-body ">
-                          <h4 class="row ">
-                            <div class="col-md-4 blod date ">{{delivery.date}}</div>
-                            <div class="col-md-8">
-                              <div class="row">
-                                <div class="col-md-5 smaller"><i class="fas fa-map-marker-alt"></i> Hay L khadhra</div>
-                                <div class="col-md-2"><i class="fas fa-arrow-right "></i></div>
-                                <div class="col-md-5 smaller"><i class="fas fa-map-marker-alt"></i> Mannouba  </div>
-                              </div>
-                            </div>
-                       
-                            
-                          </h4>
-                          <div class="row">
-                            <span class="badge bg-default badge-pill  small">BREAKABLE</span>
-                            <span class="badge bg-default badge-pill  small">Package</span>
-                          </div>
-                          <p class="row">{{delivery.desc}}</p>
-
-
-
-                          <!--
-                                                   <a href="javascript:;" class="btn btn-primary btn-tracking">Tracking</a>
-                                                 <div class="row text-center">
-                                             
-                                                  <div class="col-md-4 text-center">
-                                                    <div class="row blod text-center">Height</div>
-                                                    <div class="row  text-center">25 cm</div>
-                                                  </div>
-                                                  <div class="col-md-4 text-center">
-                                                    <div class="row blod text-center">Width</div>
-                                                    <div class="row text-center">25 cm</div>
-                                                  </div>
-                                                  <div class="col-md-4 text-center">
-                                                    <div class="row blod text-center">Weight</div>
-                                                    <div class="row text-center">25 g</div>
-                                                  </div>
-
-                                                </div>-->
-
-                        </div>
-                      </div>
-
-                      <div class="col-md-4 card-right-side bg-light text-center">
-
-                        <div class="progress-circle-container">
-                          <circle-progress [percent]="percent" [radius]="60" [outerStrokeWidth]="5"
-                            [innerStrokeWidth]="3" [outerStrokeColor]="outerStrokeColor()" [innerStrokeColor]="'#e9ecef'"
-                            [showTitle]="true" [backgroundPadding]="0"
-                            [titleFontSize]="15"
-                            [title]="formatSubtitle(percent)" [showSubtitle]="false" [showUnits]="false" >
-                          </circle-progress>
-                        </div>
-                        <!-- <div class="bs-stepper">
-                                                  <div class="bs-stepper-header" role="tablist">
-                                             
-                                              
-                                                    <div class="step" data-target="#information-part">
-                                                     
-                                                        <span class="bs-stepper-circle"><i class="fas fa-map-marker-alt"></i></span>
-                                                        <span class="bs-stepper-label">Destination</span>
-                                
-                                                    </div>
-                                                  </div>
-                                          
-                                                </div>-->
-                        <!---->
-                      </div>
-                    </div>
-
-                  </div>
+                  <app-delivery-card-shopper *ngFor="let delivery of deliveries" [delivery]="delivery">
+                  </app-delivery-card-shopper>
 
                 </div>
 
@@ -154,13 +84,167 @@
       </div>
     </div>
   </div>
+  <div class="section" *ngIf="editable">
+    <div class="container">
+      <div class="button-container">
+
+
+        <!--  <a href="#button" class="btn btn-default btn-round btn-lg btn-icon" rel="tooltip"
+          title="Follow me on Instagram">
+          <i class="fab fa-instagram"></i>
+        </a>-->
+      </div>
+
+
+      <form class="form" #form="ngForm">
+        <div class="row row-links">
+          <h6><span class="link" (click)="back()">Profile</span> / <span class="disabled">Edit </span> </h6>
+          <span class="link" (click)="back()">Back</span>
+        </div>
+        <hr>
+        <h4>Login Details</h4>
+        <div class="row">
+          <div class="col-sm-6 col-lg-3">
+            <div class="form-group">
+              <label>Name</label>
+              <input type="text" [(ngModel)]="user.name" name="name" placeholder="name" class="form-control">
+            </div>
+          </div>
+
+          <div class="col-sm-6 col-lg-3">
+            <div class="form-group">
+              <label>Username</label>
+              <input type="text" [(ngModel)]="user.username" name="username" placeholder="username"
+                class="form-control">
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-3">
+            <div class="form-group">
+              <label>E-mail</label>
+              <input type="email" [(ngModel)]="user.email" name="email" placeholder="email" class="form-control">
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-3">
+            <div class="form-group password">
+              <app-update-password-model *ngIf="editable"></app-update-password-model>
+            </div>
+          </div>
+          <!-- <div class="col-sm-6 col-lg-3">
+          <div class="form-group has-success"><input type="text" value="Success"
+              class="form-control form-control-success"></div>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+          <div class="form-group has-danger"><input type="email" value="Error Input"
+              class="form-control form-control-danger"></div>
+        </div>
+
+      </div>-->
+        </div>
+        <hr>
+        <h4>Personal Details</h4>
+        <div class="row">
+          <div class="col-sm-6 col-lg-3">
+
+
+            <div class="form-group">
+              <label>Birthdate</label>
+              <input type="date" name="birthdate" [ngModel]="user.birthdate | date:'yyyy-MM-dd'"
+                (ngModel)="user.birthdate = $event" class="form-control">
+            </div>
+            <br />
+            <br />
+            <div class="form-group">
+              <label>Phone Number</label>
+
+              <input type="text" name="phoneNumber" minlength="8" [(ngModel)]="user.phoneNumber"
+                placeholder="Phone Number" class="form-control">
+            </div>
+
+          </div>
+          <div class="col-sm-6 col-lg-3">
+
+
+            <div class="form-group">
+              <label>Range</label>
+              <input type="text" name="range" [(ngModel)]="user.range" placeholder="Range" class="form-control">
+            </div>
+            <br />
+            <br />
+            <div class="form-group">
+              <label>CIN Number</label>
+              <input type="number" name="cinNumber" minlength="8" [(ngModel)]="user.cinNumber" placeholder="CIN Number"
+                class="form-control">
+            </div>
+          </div>
+
+          <div class="col-sm-6 col-lg-6">
+
+            <div class="form-group">
+              <label>CIN Card</label>
+              <div class="input-file-container">
+                <input id="cin" name="cin" accept="image/*" #fileInput class=" input-file" type="file" id="formFile"
+                  (change)="onFileSelect($event)" ngModel #cin="ngModel">
+
+                <img src="{{cinURL}}" class="cin-preview" *ngIf='cinURL'>
+
+                <button mat-mini-fab color="primary" class=" btn btn-round upload-btn" (click)="fileInput.click()">
+                  <i class="fa fa-upload" aria-hidden="true"></i> Upload </button>
+              </div>
+
+
+            </div>
+            <div class="text-danger" *ngIf="cin.invalid && cin.touched">
+              You should upload an image ( .jpg , .png , .jpeg ...)
+            </div>
+          </div>
+
+
+        </div>
+        <hr>
+        <h4>Bank details</h4>
+        <div class="row">
+
+          <div class="col-sm-6 col-lg-3">
+            <div class="form-group">
+              <label>Card Owner Name</label>
+              <input type="text" name="owner" [(ngModel)]="user.bankDetails.owner" placeholder="Card Owner"
+                class="form-control">
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-3">
+            <div class="form-group">
+              <label>Card Number</label>
+              <input type="text" name="cardNumber" [(ngModel)]="user.bankDetails.cardNumber" placeholder="Card Number"
+                class="form-control">
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-3">
+            <div class="form-group">
+              <label>Card expiration Date</label>
+              <input type="date" name="expirationDate" [ngModel]="user.bankDetails.expirationDate | date:'yyyy-MM-dd'"
+                (ngModel)="user.bankDetails.expirationDate = $event" class="form-control">
+            </div>
+          </div>
+        </div>
+
+        <div class="forms-buttons">
+          <button type="submit" class="btn btn-round btn-primary" (click)="onSubmit(form)">Update</button>
+          <button class="btn btn-round btn-secondary" (click)="back()">cancel</button>
+        </div>
+
+      </form>
+    </div>
+
+
+
+  </div>
   <footer class="footer footer-default">
     <div class="container">
       <nav>
         <ul>
           <li>
             <a href="https://www.creative-tim.com">
-              Creative Tim
+              DelSOS
             </a>
           </li>
           <li>
@@ -173,18 +257,14 @@
               Blog
             </a>
           </li>
-          <li>
-            <a href="https://github.com/creativetimofficial/now-ui-kit/blob/master/LICENSE.md">
-              MIT License
-            </a>
-          </li>
+
         </ul>
       </nav>
       <div class="copyright">
         &copy;
         {{data | date: 'yyyy'}}, Designed by
         <a href="https://www.invisionapp.com" target="_blank">Invision</a>. Coded by
-        <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a>.
+        <a href="https://www.creative-tim.com" target="_blank">DelSOS TEAM</a>.
       </div>
     </div>
   </footer>

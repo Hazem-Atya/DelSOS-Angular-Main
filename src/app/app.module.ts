@@ -29,6 +29,10 @@ import { NgbdModalBasic } from './delsos/components/modal/modal.component';
 import { NgCircleProgressModule } from 'ng-circle-progress';
 import { StoreProfileComponent } from './delsos/store-profile/store-profile.component';
 import { InfoItemComponent } from './delsos/store-profile/info-item/info-item/info-item.component';
+import { StoreRegisterComponent } from './delsos/store-register/register.component';
+import { CommonModule } from '@angular/common';
+import { DeliveryCardShopperComponent } from './delsos/components/delivery-card-shopper/delivery-card-shopper.component';
+import { UpdatePasswordModelComponent } from './delsos/components/update-password-model/update-password-model.component';
 import { StoreProfileModalComponent } from './delsos/store-profile/modal/modal.component';
 
 
@@ -52,6 +56,10 @@ import { StoreProfileModalComponent } from './delsos/store-profile/modal/modal.c
         NgbdModalBasic,
         StoreProfileComponent,
         InfoItemComponent,
+        StoreRegisterComponent,
+        DeliveryCardShopperComponent,
+        UpdatePasswordModelComponent,
+
         StoreProfileModalComponent,
     ],
     imports: [
@@ -64,6 +72,7 @@ import { StoreProfileModalComponent } from './delsos/store-profile/modal/modal.c
         ExamplesModule,
         HttpClientModule,
         ReactiveFormsModule,
+        CommonModule,
         ToastrModule.forRoot(),
         NgCircleProgressModule.forRoot({
             // set defaults here

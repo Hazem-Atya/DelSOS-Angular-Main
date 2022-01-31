@@ -4,7 +4,7 @@ import {FormGroup, NgForm, NgModel} from '@angular/forms';
 @Component({
     selector: 'app-login-info',
     templateUrl: './login-info.component.html',
-    styleUrls: ['./login-info.component.css']
+    styleUrls: ['./login-info.component.scss']
 })
 export class LoginInfoComponent implements OnInit {
     // @ViewChild('usernameInput')

@@ -1,0 +1,125 @@
+@import '../../../assets/sass/variables.scss' ;
+
+.logo-register-page{
+
+font-size: 30px;
+padding-top: 70%;
+//padding-bottom: 10%;
+
+img{
+    padding-bottom: 5%;  
+}
+
+.dots{
+    text-align:center;
+    //@at-root:10px;
+    .step{
+        height: 12px;
+        width: 12px;
+     margin: 0 2px;
+        background-color: #bbbbbb;
+        border: none;
+        border-radius: 50%;
+        display: inline-block;
+        opacity: 0.5;
+        &.active{
+            opacity: 1;
+        }
+        &.finish{
+          //  opacity: 1;
+            background-color: rgb(219, 101, 46);
+        }
+    }
+
+}
+}
+
+.pull-left{
+    h6{
+        p{
+            a{
+                text-decoration: underline;
+                font-size: medium;
+            }
+        }
+    }
+}
+
+.link{
+    font-size: 15px;
+    width : 100%;
+    background-color: white;
+    color: orange;
+
+}
+.step-title{
+ font-size: 18px !important;
+ font-weight: bold;
+ text-align: left !important;
+ text-decoration: underline;
+}
+
+.footer{
+    margin-top:-50px !important;
+}
+
+.small-message{
+    font-size: 11px !important;
+    font-stretch: normal !important;
+    width: 100% !important;
+
+    
+}
+.bg-error{
+    border : 2px solid $red;
+    border-radius: 50px;
+    
+}
+.icon-error{
+    color: $red;
+}
+.label{
+    margin-left: 5% !important;
+    margin-bottom: 2%;
+}
+
+.input-file{
+    display:none;
+}
+
+.custom-file-upload {
+    display: inline-block;
+    background: linear-gradient(top, #f9f9f9, #e3e3e3);
+    padding: 5px 8px;
+    outline: none;
+    white-space: nowrap;
+    -webkit-user-select: none;
+    cursor: pointer;
+    text-shadow: 1px 1px black;
+    font-weight: 600;
+    font-size: 10pt;
+}
+
+
+.divider{
+    height : 10vh;
+}
+.page-headerimage{
+    //background-repeat: no-repeat;
+    background-position: right top;
+    background-attachment: scroll;
+background-size: cover;
+}
+
+
+.scrollable-bg{
+    margin-top: 1%;
+   height: 80vh !important;
+    max-height: 80vh !important;
+    overflow-y: scroll;
+
+}
+
+.scrollable-bg::-webkit-scrollbar {
+    display: none;
+}

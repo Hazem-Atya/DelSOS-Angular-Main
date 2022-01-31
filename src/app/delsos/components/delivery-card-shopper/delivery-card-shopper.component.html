@@ -1,0 +1,73 @@
+<div class="card card-nav-tabs text ">
+  <div class="row card-row">
+
+    <div class="col-md-8">
+      <div class="card-body ">
+        <h4 class="row ">
+          <div class="col-md-4 blod date ">{{delivery.date}}</div>
+          <div class="col-md-8">
+            <div class="row">
+              <div class="col-md-5 smaller"><i class="fas fa-map-marker-alt"></i> Hay L khadhra</div>
+              <div class="col-md-2"><i class="fas fa-arrow-right "></i></div>
+              <div class="col-md-5 smaller"><i class="fas fa-map-marker-alt"></i> Mannouba </div>
+            </div>
+          </div>
+
+
+        </h4>
+        <div class="row">
+          <span class="badge bg-default badge-pill  small">BREAKABLE</span>
+          <span class="badge bg-default badge-pill  small">Package</span>
+        </div>
+        <p class="row">{{delivery.desc}}</p>
+
+    
+     
+                                <!-- <div class="row text-center sizes">
+                             
+                                  <div class="col-md-4 text-center sizes-element">
+                                    <div class="row blod text-center">Height</div>
+                                    <div class="row  text-center">25 cm</div>
+                                  </div>
+                                  <div class="col-md-4 text-center sizes-element">
+                                    <div class="row blod text-center">Width</div>
+                                    <div class="row text-center">25 cm</div>
+                                  </div>
+                                  <div class="col-md-4 text-center sizes-element">
+                                    <div class="row blod text-center">Weight</div>
+                                    <div class="row text-center">25 g</div>
+                                  </div>
+
+                                </div>-->
+
+      </div>
+    </div>
+
+    <div class="col-md-4 card-right-side text-center">
+
+      <div class="illustartion-container">
+
+        <div  *ngIf="delivery.status == 'arrived'">
+          <img src="assets/img/arrived1.png" />
+          <h6 class="text-arrived">Arrived <i class="fas fa-check"></i> </h6>
+        </div>
+
+        <div  *ngIf="delivery.status == 'on_the_way'">
+          <img src="assets/img/on_the_way.png" />
+          <h6 class="text-ontheway">On The Way  </h6>
+        </div>
+
+        <div  *ngIf="delivery.status == 'not_picked_up'">
+          <img src="assets/img/notpickedup.png" />
+          <h6 class="text-notpickedup">Not Picked Up Yet</h6>
+        </div>
+
+        <div class="btn-container">
+          <button class="btn  btn-primary ">Tracking</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
