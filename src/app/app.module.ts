@@ -34,6 +34,7 @@ import { CommonModule } from '@angular/common';
 import { DeliveryCardShopperComponent } from './delsos/components/delivery-card-shopper/delivery-card-shopper.component';
 import { UpdatePasswordModelComponent } from './delsos/components/update-password-model/update-password-model.component';
 import { StoreProfileModalComponent } from './delsos/store-profile/modal/modal.component';
+import { TrackModalComponent } from './shared/track-modal/track-modal.component';
 
 
 @NgModule({
@@ -61,6 +62,8 @@ import { StoreProfileModalComponent } from './delsos/store-profile/modal/modal.c
         UpdatePasswordModelComponent,
 
         StoreProfileModalComponent,
+
+        TrackModalComponent,
     ],
     imports: [
         BrowserAnimationsModule,

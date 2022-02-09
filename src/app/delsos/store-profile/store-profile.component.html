@@ -56,7 +56,7 @@
                                                                 {{delivery.description}}
                                                             </div>
                                                         </td>
-                                                        <td>{{delivery.priority}}</td>
+                                                        <td>{{PRIORITE[delivery.priority-1]}}</td>
                                                         <td>
                                                             <div>
                                                                 <span class="badge badge-primary" *ngFor="let item of delivery.type">{{item}}</span>
@@ -67,9 +67,10 @@
                                                             <div class="destination-wrapper" *ngIf="delivery.status == 2"><t [ngClass]="{'on-the-way':delivery.status == 2}">On the way</t> from <strong>{{delivery.source}}</strong><i> to </i><strong>{{delivery.destination}}</strong></div>
                                                         </td>
                                                         <td>
-                                                            <storeProfile-modal-component [delivery]="delivery" [type]="'TRACK'"></storeProfile-modal-component>
+                                                            <!-- <storeProfile-modal-component [delivery]="delivery" [type]="'TRACK'"></storeProfile-modal-component> -->
+                                                            <app-track-modal [delivery]="delivery"></app-track-modal>
                                                             <br>
-                                                            <storeProfile-modal-component [delivery]="delivery" [type]="'APPLICANT'" *ngIf="delivery.status == 1"></storeProfile-modal-component>
+                                                            <storeProfile-modal-component [delivery]="delivery" *ngIf="delivery.status == 1"></storeProfile-modal-component>
                                                         </td>
                                                     </tr>
                                                 </tbody>
@@ -105,7 +106,7 @@
                                                             description is required
                                                         </div>
                                                         <div class="badge badge-danger" *ngIf="description.errors?.minlength && description.touched" >
-                                                            description must have at least 4 characters
+                                                            description must have at least 1 characters
                                                         </div>
                                                     </div>
                                                 </div>

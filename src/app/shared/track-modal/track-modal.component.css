@@ -1,0 +1,51 @@
+.delivery-tracking-modal .delivery-tracking-info-section-header{
+    display:flex;
+    justify-content: space-between;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+}
+.delivery-tracking-modal .delivery-tracking-info-section-body{
+display: flex;
+flex-direction: row;
+gap: 2%;
+}
+.delivery-tracking-modal .delivery-tracking-info-section-body > div{
+display: flex;
+flex-direction: row;
+gap: 1%;  
+flex-wrap: wrap;
+}
+.delivery-tracking-modal #accordion {
+margin-top:2vh
+}
+
+.delivery-tracking-modal td {
+text-align: center;
+vertical-align: middle;
+}
+
+.delivery-tracking-modal th {
+text-align: center;
+}
+
+
+.delivery-tracking-modal .number-wrapper {
+background: lightgray;
+margin-top: 1vh;
+margin-bottom : 1vh;
+font-weight:bolder;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+.delivery-tracking-modal .delivery-tracking-info-section-footer{
+display:flex;
+margin-top:2vh;
+gap: 1pc;
+}
+.delivery-tracking-modal .error-footer-text{
+color:red;
+}
+.delivery-tracking-modal .card-header button {
+width: 100%;
+}

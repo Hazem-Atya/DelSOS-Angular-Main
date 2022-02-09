@@ -70,7 +70,7 @@ export class StoreProfileComponent implements OnInit {
 
     await this.storeProfileService.getDeliveries().subscribe(
       deliveries => {
-        console.log(deliveries);
+        console.log("deliveries",deliveries);
         this.deliveries = deliveries
         if (deliveries.length != 0) {
           this.shownDeliveries = deliveries.slice(0, 4)
@@ -144,7 +144,7 @@ export class StoreProfileComponent implements OnInit {
         description,
         destination,
         height,
-        priority: parseInt(priority),
+        priority: parseInt(priority)-1,
         source,
         weight,
         width,

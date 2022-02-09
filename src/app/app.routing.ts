@@ -31,7 +31,7 @@ const routes: Routes = [
     {
         path: 'store',
         children: [
-            { path: 'profile', component: ShopperProfileComponent, canActivate: [SigninGuard], },
+            { path: 'profile', component: StoreProfileComponent, canActivate: [SigninGuard], },
             { path: 'register', component: StoreRegisterComponent, },
         ]
     },

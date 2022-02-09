@@ -9,6 +9,35 @@
                 <img class="n-logo" src="{{logoPath}}" alt="">
                 <h1 class="h1-seo">Wecome to DELSOS</h1>
                 <h3>Your best solution for fast delivery</h3>
+                <form #trackDeliveryForm="ngForm" style="width: 60%;margin-left: 20%;">
+                            <div class="form-group">
+                                <input 
+                                    style="height: 7vh;"
+                                    type="text" 
+                                    class="form-control" 
+                                    placeholder="Track by Delivery Id ..."
+                                    #deliveryId="ngModel"
+                                    ngModel         
+                                    required   
+                                    name="deliveryId"
+                                    minlength="24"
+                                >
+                                <div class="badge badge-danger" *ngIf="deliveryId.errors?.required && deliveryId.touched" >
+                                    delivery Id is required
+                                </div>
+                                <div class="badge badge-danger" *ngIf="deliveryId.errors?.minlength && deliveryId.touched" >
+                                    delivery Id must have at least 24 characters
+                                </div>
+                                <div class="delivery-button">
+                                    <button
+                                    [disabled]="trackDeliveryForm.invalid "
+                                    (click)="submitTrackDelivery(trackDeliveryForm)"
+                                    type="submit" 
+                                    class="btn btn-primary">
+                                    Track</button>
+                                </div>
+                            </div>
+                </form>
             </div>
             <h6 class="category category-absolute">
                 <!-- <a href="https://invisionapp.com/" target="_blank">
