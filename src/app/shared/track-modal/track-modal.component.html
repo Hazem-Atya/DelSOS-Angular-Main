@@ -1,82 +1,84 @@
-<i class="now-ui-icons location_pin" (click)="open(track)"></i>
+<i class="now-ui-icons location_pin" (click)="open(track)" *ngIf="buttonOption == false"></i>
+<button *ngIf="buttonOption" (click)="open(track)" class="btn btn-primary">Track <i class="now-ui-icons location_pin"></i></button>
 <ng-template #track let-c="close" let-d="dismiss">
-    <div class="modal-header justify-content-center">
-      <button type="button" class="close" (click)="d('Cross click')">
-        <i class="now-ui-icons ui-1_simple-remove"></i>
-      </button>
-      <h4 class="title title-up">Delivery Status</h4>
-      <span class="badge badge-danger" *ngIf="delivery.status == 1">Pending</span>
-      <span class="badge badge-warning" *ngIf="delivery.status == 2">On the way</span>
-      <span class="badge badge-success" *ngIf="delivery.status == 3">Delivered</span>
-    </div>
-    <div class="modal-body" style="height: 70vh;overflow: auto;">
-      <div class="delivery-tracking-info-section">
-        <div class="delivery-tracking-info-section-header">
-          <div><strong>Description:</strong> {{delivery.description}}</div>
-          <div><strong>Trajectory:</strong> from <strong>{{delivery.source}} </strong> to
-            <strong>{{delivery.destination}}</strong> </div>
-        </div>
-        <div class="delivery-tracking-info-section-body">
-          <strong>Characteristics:</strong>
-          <div>
-            <span class="badge badge-default" *ngFor="let item of delivery.type">{{item}}</span>
-          </div>
-        </div>
-        <div class="delivery-tracking-info-section-footer">
-          <strong>The shopper:</strong>
-          <div *ngIf="delivery.shopper">
-            {{delivery.shopper.username}}
-          </div>
-          <div class="error-footer-text" *ngIf="!delivery.shopper">
-            No shopper is affected, check your applicants!
-          </div>
+  <div class="modal-header justify-content-center">
+    <button type="button" class="close" (click)="d('Cross click')">
+      <i class="now-ui-icons ui-1_simple-remove"></i>
+    </button>
+    <h4 class="title title-up">Delivery Status</h4>
+    <span class="badge badge-danger" *ngIf="delivery.status == 1">Pending</span>
+    <span class="badge badge-warning" *ngIf="delivery.status == 2">On the way</span>
+    <span class="badge badge-success" *ngIf="delivery.status == 3">Delivered</span>
+  </div>
+  <div class="modal-body" style="height: 70vh;overflow: auto;">
+    <div class="delivery-tracking-info-section">
+      <div class="delivery-tracking-info-section-header">
+        <div><strong>Description:</strong> {{delivery.description}}</div>
+        <div><strong>Trajectory:</strong> from <strong>{{delivery.source}} </strong> to
+          <strong>{{delivery.destination}}</strong>
         </div>
       </div>
-      <div id="accordion">
-        <div class="card" *ngFor="let item of trackingtable ; let j = index">
-          <div class="card-header" id="headingOne{{j}}">
-            <h5 class="mb-0">
-              <button class="btn btn-link" data-toggle="collapse" (click)="openTrackSection(j)" data-target="#collapse{{j}}"
-                aria-expanded="true" aria-controls="collapseOne">
-                {{item.date}}
-              </button>
-            </h5>
-          </div>
-  
-          <div id="collapse{{j}}" class="collapse" [ngClass]="{'show':item.isOpen}" aria-labelledby="heading{{j}}"
-            data-parent="#accordion">
-            <div class="card-body">
-              <table class="table" *ngIf="item.length != 0">
-                <thead>
-                  <tr>
-                    <th scope="col" colspan="1" style="width: 5%;">Number</th>
-                    <th scope="col" colspan="1" style="width: 35%;">Description</th>
-                    <th scope="col" colspan="1" style="width: 35%;">Location</th>
-                    <th scope="col" colspan="1" style="width: 25%;">Time</th>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let location of item.locations ; let i = index">
-                    <td class="number-wrapper">
-                      {{i+1}}
-                    </td>
-                    <td>
-                      {{location.description}}
-                    </td>
-                    <td>
-                      {{location.location}}
-                    </td>
-                    <td>
-                      {{location.hour}}
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
+      <div class="delivery-tracking-info-section-body">
+        <strong>Characteristics:</strong>
+        <div>
+          <span class="badge badge-default" *ngFor="let item of delivery.type">{{item}}</span>
+        </div>
+      </div>
+      <div class="delivery-tracking-info-section-footer">
+        <strong>The shopper:</strong>
+        <div *ngIf="delivery.shopper">
+          {{delivery.shopper.username}}
+        </div>
+        <div class="error-footer-text" *ngIf="!delivery.shopper">
+          No shopper is affected, check your applicants!
         </div>
       </div>
     </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-danger" (click)="c('Close click')" style="margin-top: 2vh;">Close</button>
+    <div id="accordion">
+      <div class="card" *ngFor="let item of trackingtable ; let j = index">
+        <div class="card-header" id="headingOne{{j}}">
+          <h5 class="mb-0">
+            <button class="btn btn-link" data-toggle="collapse" (click)="openTrackSection(j)"
+              data-target="#collapse{{j}}" aria-expanded="true" aria-controls="collapseOne">
+              {{item.date}}
+            </button>
+          </h5>
+        </div>
+
+        <div id="collapse{{j}}" class="collapse" [ngClass]="{'show':item.isOpen}" aria-labelledby="heading{{j}}"
+          data-parent="#accordion">
+          <div class="card-body">
+            <table class="table" *ngIf="item.length != 0">
+              <thead>
+                <tr>
+                  <th scope="col" colspan="1" style="width: 5%;">Number</th>
+                  <th scope="col" colspan="1" style="width: 35%;">Description</th>
+                  <th scope="col" colspan="1" style="width: 35%;">Location</th>
+                  <th scope="col" colspan="1" style="width: 25%;">Time</th>
+              </thead>
+              <tbody>
+                <tr *ngFor="let location of item.locations ; let i = index">
+                  <td class="number-wrapper">
+                    {{i+1}}
+                  </td>
+                  <td>
+                    {{location.description}}
+                  </td>
+                  <td>
+                    {{location.location}}
+                  </td>
+                  <td>
+                    {{location.hour}}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
     </div>
-  </ng-template>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger" (click)="c('Close click')" style="margin-top: 2vh;">Close</button>
+  </div>
+</ng-template>

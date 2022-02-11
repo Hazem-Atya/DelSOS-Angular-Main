@@ -69,6 +69,7 @@ export class TrackModalComponent implements OnInit,AfterContentInit {
   closeResult: string;
 
   @Input() delivery
+  @Input() buttonOption = false;
   @Input() type :string
   trackingtable = []
 
