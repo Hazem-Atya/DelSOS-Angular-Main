@@ -24,6 +24,12 @@
           <span class="badge badge-default" *ngFor="let item of delivery.type">{{item}}</span>
         </div>
       </div>
+      <div style="display: flex;gap: 2%;margin-top: 2vh;">
+        <strong>Delivery Id:</strong>
+        <div>
+          {{delivery._id}}
+        </div>
+      </div>
       <div class="delivery-tracking-info-section-footer">
         <strong>The shopper:</strong>
         <div *ngIf="delivery.shopper">

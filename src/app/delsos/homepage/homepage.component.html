@@ -14,7 +14,7 @@
                                 <input 
                                     style="height: 7vh;"
                                     type="text" 
-                                    class="form-control" 
+                                    class="form-control customized-input" 
                                     placeholder="Track by Delivery Id ..."
                                     #deliveryId="ngModel"
                                     ngModel         
@@ -33,7 +33,7 @@
                                     [disabled]="trackDeliveryForm.invalid "
                                     (click)="submitTrackDelivery(trackDeliveryForm)"
                                     type="submit" 
-                                    class="btn btn-primary">
+                                    class="btn btn-primary"> 
                                     Track</button>
                                     <button *ngIf="delivery"
                                     (click)="reset(trackDeliveryForm)"

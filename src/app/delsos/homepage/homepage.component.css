@@ -1,0 +1,7 @@
+.customized-input{
+    color: white;
+}
+
+.customized-input:focus{
+    color: black;
+}
