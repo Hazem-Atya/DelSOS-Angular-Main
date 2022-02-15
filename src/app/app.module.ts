@@ -36,6 +36,7 @@ import { UpdatePasswordModelComponent } from './delsos/components/update-passwor
 import { StoreProfileModalComponent } from './delsos/store-profile/modal/modal.component';
 import { ModalReview } from './delsos/reviews/modal_reviews/modal.component';
 import { AvatarModule } from 'ngx-avatar';
+import { TrackModalComponent } from './shared/track-modal/track-modal.component';
 
 @NgModule({
     declarations: [
@@ -62,6 +63,7 @@ import { AvatarModule } from 'ngx-avatar';
         UpdatePasswordModelComponent,
         ModalReview,
         StoreProfileModalComponent,
+        TrackModalComponent,
     ],
     imports: [
         BrowserAnimationsModule,
