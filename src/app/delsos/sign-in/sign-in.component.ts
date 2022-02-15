@@ -66,11 +66,12 @@ export class SignInComponent implements OnInit {
                     this.signinService.getProfile().subscribe(
                         (user) => {
                             //this.localStorageService.set('role', user.role)
-
-                            if (user['role'] == 'SHOPPER') {
+                            
+                            if (user.role == 'SHOPPER') {
                                 this.router.navigateByUrl('/deliveries', {state: user});
+                            } else {
+                                this.router.navigateByUrl('/store/profile', {state: user});
                             }
-                            this.router.navigateByUrl('/store/profile', {state: user});
                             this.loading = false;
                             this.toastr.success('Welcome Back !');
                         },

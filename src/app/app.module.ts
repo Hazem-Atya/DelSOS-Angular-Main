@@ -35,6 +35,8 @@ import { DeliveryCardShopperComponent } from './delsos/components/delivery-card-
 import { UpdatePasswordModelComponent } from './delsos/components/update-password-model/update-password-model.component';
 import { StoreProfileModalComponent } from './delsos/store-profile/modal/modal.component';
 import { TrackModalComponent } from './shared/track-modal/track-modal.component';
+import { DeliveriesCatalogComponent } from './delsos/deliveries-catalog/deliveries-catalog.component';
+import { JwtService } from './shared/Services/JWTService.service';
 
 
 @NgModule({
@@ -64,6 +66,8 @@ import { TrackModalComponent } from './shared/track-modal/track-modal.component'
         StoreProfileModalComponent,
 
         TrackModalComponent,
+
+        DeliveriesCatalogComponent,
     ],
     imports: [
         BrowserAnimationsModule,
@@ -89,7 +93,7 @@ import { TrackModalComponent } from './shared/track-modal/track-modal.component'
           }) // ToastrModule added
 
     ],
-    providers: [AuthentificationInterceptorProvider],
+    providers: [AuthentificationInterceptorProvider,JwtService],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

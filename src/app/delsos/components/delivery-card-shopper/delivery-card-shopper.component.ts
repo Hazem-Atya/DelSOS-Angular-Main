@@ -14,6 +14,7 @@ export class DeliveryCardShopperComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+  
   } outerStrokeColor() {
     if(this.percent >= 100){
       return "#28a745"

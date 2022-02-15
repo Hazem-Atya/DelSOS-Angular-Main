@@ -63,8 +63,10 @@
         </div>
 
         <div class="btn-container">
-          <button class="btn  btn-primary ">Tracking</button>
+          <!-- <button class="btn  btn-primary ">Tracking</button> -->
+          <app-track-modal [delivery]="delivery" [buttonOption]="true" *ngIf="delivery"></app-track-modal>
         </div>
+        
       </div>
 
     </div>

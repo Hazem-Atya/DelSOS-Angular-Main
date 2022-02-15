@@ -1,0 +1,98 @@
+<div class="wrapper">
+    <div class="page-header page-header-small" filter-color="orange">
+        <div class="page-header-image rellax-header" data-rellax-speed="-8"
+            style="background-image: url('assets/img/bg5.jpg') ;">
+        </div>
+    </div>
+
+    <div class="card-container">
+        <div class="card outer">
+            <ngb-tabset [justify]="'center'" class="text-center">
+                <ngb-tab>
+                    <ng-template ngbTabTitle>
+                        <ngb-pagination [collectionSize]="deliveries.length" [pageSize]="4" [(page)]="page"
+                            (pageChange)="changePage()" aria-label="Default pagination" class="pagination-primary">
+                        </ngb-pagination>
+                    </ng-template>
+                    <ng-template ngbTabContent>
+                        <div id="accordion" class="card-outer-body">
+                            <div class="card" *ngFor="let delivery of shownDeliveries;let j = index">
+                                <div class="card-header" id="heading{{j}}">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link button-customized" data-toggle="collapse"
+                                            aria-expanded="true" (click)="openTrackSection(j)">
+                                            <div class="row" style="align-items: center;">
+                                                <div class="col-md-8">
+                                                    <div class="row">
+                                                        <div class="col-md-4 smaller"><i
+                                                                class="fas fa-map-marker-alt"></i> {{delivery.source}}
+                                                        </div>
+                                                        <div class="col-md-1"><i class="fas fa-arrow-right "></i></div>
+                                                        <div class="col-md-4 smaller"><i
+                                                                class="fas fa-map-marker-alt"></i>
+                                                            {{delivery.destination}} </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1">
+                                                    <span class="badge badge-danger"
+                                                        *ngIf="delivery.priority == 1">High</span>
+                                                    <span class="badge badge-warning"
+                                                        *ngIf="delivery.priority == 2">Normal</span>
+                                                    <span class="badge badge-success"
+                                                        *ngIf="delivery.priority == 3">Low</span>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <button *ngIf="!delivery.applicants.includes(storeId)"
+                                                        (click)="getAffected(delivery._id)" type="submit"
+                                                        class="btn btn-primary">
+                                                        Apply for !</button>
+                                                    <button *ngIf="delivery.applicants.includes(storeId)"
+                                                        class="btn btn-success" disabled>
+                                                        Already Applied!</button>
+                                                </div>
+
+                                            </div>
+
+                                        </button>
+                                    </h5>
+                                </div>
+                                <div id="collapse{{j}}" class="collapse" [ngClass]="{'show':delivery.isOpen}"
+                                    data-parent="#accordion">
+                                    <div class="card-body">
+                                        <div class="card-body-header">
+                                            <div>
+                                                <strong>Description: </strong>
+                                                {{delivery.description}}
+                                            </div>
+                                            <div class="card-body-header-characteristics">
+                                                <strong>Characteristics: </strong>
+                                                <div>
+                                                    <span class="badge badge-default"
+                                                        *ngFor="let item of delivery.type">{{item}}</span>
+                                                </div>
+                                            </div>
+                                            <div class="card-body-header-other">
+                                                <div>
+                                                    <strong>Weight: </strong>
+                                                    {{delivery.weight}} (Kg)
+                                                </div>
+                                                <div>
+                                                    <strong>Width: </strong>
+                                                    {{delivery.width}} (m)
+                                                </div>
+                                                <div>
+                                                    <strong>Height: </strong>
+                                                    {{delivery.height}} (m)
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>
+                </ngb-tab>
+            </ngb-tabset>
+        </div>
+    </div>
+</div>

@@ -9,26 +9,27 @@
   </div>
   <div class="modal-body" style="height: 70vh;overflow: auto;">
     <div class="card-wrapper" *ngIf="delivery.applicants.length != 0">
-        <div class="card" *ngFor="let applicant of applicantsTable">
-          <div class="front">
-            <div class="content">
-              <div class="main" style="margin-top: 2vh;">
-                <h3 style="text-align: center;">{{applicant.username}}</h3>
-                <p  style="text-align: center;">{{applicant.name}}</p>
-                <p style="text-align: center;">{{applicant.email}} <br>{{applicant.address}}<br>{{applicant.phoneNumber}}"
-                </p>
-              </div>
-              <div class="footer">
-                <button class="btn btn-primary" (click)="chooseApplicant(applicant.email)">
-                  <i class="fa fa-mail-forward"></i> Choose {{applicant.name}}
-                </button>
-              </div>
+      <div class="card" *ngFor="let applicant of applicantsTable">
+        <div class="front">
+          <div class="content">
+            <div class="main" style="margin-top: 2vh;">
+              <h3 style="text-align: center;">{{applicant.username}}</h3>
+              <p style="text-align: center;">{{applicant.name}}</p>
+              <p style="text-align: center;">{{applicant.email}} <br>{{applicant.address}}<br>{{applicant.phoneNumber}}</p>
+              <p style="text-align: center;"><strong>Rate : </strong>{{applicant.rate}}</p>
+              <p style="text-align: center;"><strong>Reviews : </strong>{{applicant.reviews}}</p>
+            </div>
+            <div class="footer">
+              <button class="btn btn-primary" (click)="chooseApplicant(applicant.email)">
+                <i class="fa fa-mail-forward"></i> Choose {{applicant.name}}
+              </button>
             </div>
           </div>
         </div>
       </div>
-      <h3 *ngIf="delivery.applicants.length == 0" style="text-align: center;color: red;"> There are no applicants !!</h3>
     </div>
+    <h3 *ngIf="delivery.applicants.length == 0" style="text-align: center;color: red;"> There are no applicants !!</h3>
+  </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-danger" (click)="c('Close click')" style="margin-top: 2vh;">Close</button>
   </div>

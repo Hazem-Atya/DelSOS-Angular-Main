@@ -56,13 +56,14 @@ export class StoreProfileModalComponent implements AfterContentInit {
             await this.DeliveryModalService.getShopper(applicants[i]).subscribe(
               shopper => {
                 this.applicantsTable.push(shopper)
+                console.log(this.applicantsTable);
               },
               error => {
                 this.toastr.error("something went wrong !! contact your admin")
               }
             )
           }
-        }       
+        }               
     }
         
     open(content) {

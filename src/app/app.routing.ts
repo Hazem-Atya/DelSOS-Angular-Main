@@ -15,6 +15,7 @@ import {NotFoundPageComponent} from './delsos/components/not-found-page/not-foun
 import {  SigninGuard } from './guards/signin.guard';
 import { StoreProfileComponent } from './delsos/store-profile/store-profile.component';
 import { StoreRegisterComponent } from './delsos/store-register/register.component';
+import { DeliveriesCatalogComponent } from './delsos/deliveries-catalog/deliveries-catalog.component';
 
 
 const routes: Routes = [
@@ -34,7 +35,8 @@ const routes: Routes = [
             { path: 'profile', component: StoreProfileComponent, canActivate: [SigninGuard], },
             { path: 'register', component: StoreRegisterComponent, },
         ]
-    },
+    }, 
+    { path: 'deliveries', component: DeliveriesCatalogComponent},
     { path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: 'index', component: ComponentsComponent },
     { path: 'nucleoicons', component: NucleoiconsComponent },

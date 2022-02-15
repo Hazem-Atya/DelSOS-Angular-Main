@@ -1,0 +1,71 @@
+.card-container {
+    margin-top: -45vh;
+    max-width: 90%;
+    margin-left: 5%;
+}
+
+.outer {
+    height: 80vh;
+    width: 100%;
+    overflow: auto;
+}
+
+.card-outer{
+
+    &-body{
+        .button-customized{
+            width: 100%;
+        }
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+        margin-top: 5vh;
+        .card{
+            width: 85%;
+            margin-left: 5%;
+        }
+    }
+}
+
+.card-body-header{
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start;
+    align-items: flex-start;
+    gap: 3vh;
+    &-characteristics{
+        display: flex;
+        flex-direction: row;
+        gap: 1%; 
+        width: 100%;
+        flex-wrap: wrap;
+        >div{
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 1.5%;
+            width:88%;
+        }   
+    }
+    &-other{
+        display: flex;
+        flex-direction: row;
+        gap: 5%;  
+        flex-wrap: wrap;
+        width: 100%;
+    }
+}
+
+.card-body-footer{
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    &>button{
+        width: 15%;
+    }
+}
+ul{
+    overflow: auto!important;
+}
