@@ -36,7 +36,7 @@ const routes: Routes = [
         ]
     },
     { path: '', redirectTo: 'home', pathMatch: 'full' },
-    { path: 'index', component: ComponentsComponent },
+    { path: 'index', component: ComponentsComponent }, 
     { path: 'nucleoicons', component: NucleoiconsComponent },
     { path: 'examples/landing', component: LandingComponent },
     { path: 'examples/login', component: LoginComponent },
