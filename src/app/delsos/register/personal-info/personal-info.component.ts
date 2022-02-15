@@ -33,8 +33,8 @@ export class PersonalInfoComponent implements OnInit {
         }
     }
     checkFormValidity() {
-        console.log("birthdate" ,this.f.birthdate.invalid )
-        this.nextButton.disabled=this.f.name.invalid ||this.f.phoneNumber.invalid
+        console.log("birthdate" ,this.f.birthdate )
+     this.nextButton.disabled=this.f.name.invalid ||this.f.phoneNumber.invalid
             || this.f.birthdate.invalid || this.f.address.invalid;
         console.log(this.registerForm);
 

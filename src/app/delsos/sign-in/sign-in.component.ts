@@ -58,19 +58,19 @@ export class SignInComponent implements OnInit {
 
 
     login(signinForm : NgForm) {
-
+        this.loading = true;
         if (signinForm.status === 'VALID') {
            
             this.signinService.login(signinForm.value).subscribe(
                 (response) => {
-
+                    this.loading = false;
                     this.signinService.getProfile().subscribe(
                         (user) => {
                             //this.localStorageService.set('role', user.role)
                             if (user['role'] == 'SHOPPER')
                             this.router.navigateByUrl('/deliveries',{ state: user });
                             this.router.navigateByUrl('/store/profile',{ state: user });
-                            this.loading = false;
+                          
                             this.toastr.success("Welcome Back !");
                         },
                         (error) => {
@@ -81,6 +81,7 @@ export class SignInComponent implements OnInit {
 
                 },
                 (error: HttpErrorResponse) => {
+                    this.loading = false;
                     console.log(error)
                     this.toastr.error("Wrong credentials");
                 }
@@ -103,7 +104,4 @@ export class SignInComponent implements OnInit {
 
     }
 
-    onSubmit(formulaire: NgForm) {
-        console.log(formulaire);
-    }
 }

@@ -34,7 +34,8 @@ import { CommonModule } from '@angular/common';
 import { DeliveryCardShopperComponent } from './delsos/components/delivery-card-shopper/delivery-card-shopper.component';
 import { UpdatePasswordModelComponent } from './delsos/components/update-password-model/update-password-model.component';
 import { StoreProfileModalComponent } from './delsos/store-profile/modal/modal.component';
-
+import { ModalReview } from './delsos/reviews/modal_reviews/modal.component';
+import { AvatarModule } from 'ngx-avatar';
 
 @NgModule({
     declarations: [
@@ -59,13 +60,14 @@ import { StoreProfileModalComponent } from './delsos/store-profile/modal/modal.c
         StoreRegisterComponent,
         DeliveryCardShopperComponent,
         UpdatePasswordModelComponent,
-
+        ModalReview,
         StoreProfileModalComponent,
     ],
     imports: [
         BrowserAnimationsModule,
         NgbModule,
         FormsModule,
+        AvatarModule,
         RouterModule,
         AppRoutingModule,
         ComponentsModule,

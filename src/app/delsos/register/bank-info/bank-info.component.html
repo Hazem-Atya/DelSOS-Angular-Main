@@ -1,5 +1,5 @@
 <form
-        (keyup)="checkFormValidity()"
+        (mouseout)="checkFormValidity()"
         [formGroup]="registerForm">
     <div class="input-group form-group-no-border input-lg" [ngClass]="{'input-group-focus':focus===true, 'bg-error':f.cardNumber.touched && f.cardNumber.invalid}">
         <div class="input-group-prepend">

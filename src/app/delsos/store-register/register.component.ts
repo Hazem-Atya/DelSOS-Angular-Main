@@ -22,7 +22,7 @@ export class StoreRegisterComponent implements OnInit {
     filename;
     valid = false;
     file;
-
+    disabled = true
 
     constructor(
         private toastr: ToastrService,
@@ -60,7 +60,7 @@ export class StoreRegisterComponent implements OnInit {
     }
 
     sendRequest(file: FormData) {
-        console.log("send Request",this.registerFormData)
+
         file.append('website', this.registerFormData.value.website.toString());
         file.append('email', this.registerFormData.value.email.toString());
         file.append('name', this.registerFormData.value.name.toString());
@@ -68,7 +68,7 @@ export class StoreRegisterComponent implements OnInit {
 
         this.storeService.sendRequest(file).subscribe(
             (response) => {
-                console.log(response);
+
                 this.router.navigate(['home'])
                 this.loading = false;
                 this.toastr.success('Your request has been successfully sent! wait for the admin approvement')
@@ -76,7 +76,6 @@ export class StoreRegisterComponent implements OnInit {
             },
             (error: HttpErrorResponse) => {
                 this.toastr.error('There is an error')
-                console.log(error);
                 this.loading = false;
 
             }
@@ -106,10 +105,9 @@ export class StoreRegisterComponent implements OnInit {
 
         if (event.target.files.length > 0) {
             const file = event.target.files[0];
-            console.log("onFileSelect",file)
             this.filename = file.name;
             this.file = file;
-            console.log(this.file)
+
         }
     }
     onSubmit() {
@@ -120,9 +118,12 @@ export class StoreRegisterComponent implements OnInit {
         }
         else {
             this.toastr.error('Something went wrong')
-            console.log('not valid')
         }
-     
+
+    }
+
+    checkFormValidity() {
+        this.disabled = this.f.name.invalid || this.f.email.invalid || this.f.website.invalid || this.f.file.invalid
     }
 
 }

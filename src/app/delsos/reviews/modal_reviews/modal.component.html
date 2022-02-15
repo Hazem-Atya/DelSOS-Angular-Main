@@ -1,0 +1,47 @@
+<button class="btn btn-primary btn-round btn-lg" (click)="open(classic,'' , '')">
+    My Reviews
+</button>
+<ng-template #classic let-c="close" let-d="dismiss">
+    <div class="modal-header justify-content-center">
+        <button type="button" class="close" (click)="d('Cross click')">
+            <i class="now-ui-icons ui-1_simple-remove"></i>
+        </button>
+        <!-- <h4 class="title title-up">{{reviews.length}} reviews     <br></h4>-->
+        <br>
+        <h5 class="title title-up">My Reviews</h5>
+    </div>
+    <div class="modal-body">
+        <div class="spinner-border text-secondary text_align-center" role="status" *ngIf="loading">
+            <span class="sr-only">Loading...</span>
+        </div>
+        <div  class="" *ngIf="reviews.length === 0"> You don't have any reviews</div>
+        <div class="container bg-light review-container" *ngFor="let review of reviews">
+            <div class="row">
+                <!--                <ngx-avatar name="John Doe"></ngx-avatar>-->
+                <h6>{{review.name}}</h6>
+            </div>
+            <div class="row">
+                <div class="stars " *ngFor="let number of [1,2,3,4,5]">
+                    <i class="fas fa-star yellow-star" *ngIf="number <= review.rate" ></i>
+                    <i class="fas fa-star grey-star" *ngIf="number > review.rate"></i>
+                </div>
+            </div>
+            <div class="row">
+                <div class="review-date small">Today</div>
+            </div>
+
+            <div class="row">
+                <div class="text-review">
+                    {{review.text}}
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+
+        <button type="button" class="btn btn-default" (click)="c('Close click')">Close</button>
+    </div>
+</ng-template>
+

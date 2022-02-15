@@ -1,4 +1,4 @@
-<div class=" page-header " filter-color="orange">
+<div class=" page-header " (mouseout)="checkFormValidity()" filter-color="orange">
     <div class="page-header-image" style="background-image:url(assets/img/bg/fast-delivery.jpg)"></div>
     <div class="divider"></div>
     <div class="container scrollable-bg ">
@@ -113,7 +113,7 @@
                             </div>
                           
                             <button type="submit" 
-                            [disabled]="!(f.status.toString() === 'VALID')"
+                            [disabled]="disabled"
                             class="btn btn-primary btn-round btn-lg btn-block" (click)="onSubmit()"> Submit your
                                 request</button>
                         </form>

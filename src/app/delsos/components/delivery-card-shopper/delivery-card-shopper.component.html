@@ -4,41 +4,41 @@
     <div class="col-md-8">
       <div class="card-body ">
         <h4 class="row ">
-          <div class="col-md-4 blod date ">{{delivery.date}}</div>
-          <div class="col-md-8">
+          <div class="col-md-3  date ">{{delivery.updatedAt | date : "yyyy/MM/dd"}} </div>
+          <div class="col-md-9">
             <div class="row">
-              <div class="col-md-5 smaller"><i class="fas fa-map-marker-alt"></i> Hay L khadhra</div>
-              <div class="col-md-2"><i class="fas fa-arrow-right "></i></div>
-              <div class="col-md-5 smaller"><i class="fas fa-map-marker-alt"></i> Mannouba </div>
+              <div class="col-md-6 smaller"><i class="fas fa-map-marker-alt"></i> {{delivery.source}}</div>
+              <div class="col-md-1"><i class="fas fa-arrow-right "></i></div>
+              <div class="col-md-5 smaller"><i class="fas fa-map-marker-alt"></i> {{delivery.destination}} </div>
             </div>
           </div>
 
 
         </h4>
         <div class="row">
-          <span class="badge bg-default badge-pill  small">BREAKABLE</span>
-          <span class="badge bg-default badge-pill  small">Package</span>
+          <span class="badge bg-default badge-pill  small" *ngFor="let type of delivery.type">{{type}}</span>
+
         </div>
-        <p class="row">{{delivery.desc}}</p>
+        <p class="row">{{delivery.description}}</p>
 
     
      
-                                <!-- <div class="row text-center sizes">
-                             
-                                  <div class="col-md-4 text-center sizes-element">
-                                    <div class="row blod text-center">Height</div>
-                                    <div class="row  text-center">25 cm</div>
-                                  </div>
-                                  <div class="col-md-4 text-center sizes-element">
-                                    <div class="row blod text-center">Width</div>
-                                    <div class="row text-center">25 cm</div>
-                                  </div>
-                                  <div class="col-md-4 text-center sizes-element">
-                                    <div class="row blod text-center">Weight</div>
-                                    <div class="row text-center">25 g</div>
-                                  </div>
+<!--                                 <div class="row text-center sizes">-->
+<!--                             -->
+<!--                                  <div class="col-md-4 text-center sizes-element">-->
+<!--                                    <div class="row blod text-center">Height</div>-->
+<!--                                    <div class="row  text-center"> {{delivery.height}} m</div>-->
+<!--                                  </div>-->
+<!--                                  <div class="col-md-4 text-center sizes-element">-->
+<!--                                    <div class="row blod text-center">Width</div>-->
+<!--                                    <div class="row text-center">{{delivery.width}} m</div>-->
+<!--                                  </div>-->
+<!--                                  <div class="col-md-4 text-center sizes-element">-->
+<!--                                    <div class="row blod text-center">Weight</div>-->
+<!--                                    <div class="row text-center">{{delivery.weight}} kg</div>-->
+<!--                                  </div>-->
 
-                                </div>-->
+<!--                                </div>-->
 
       </div>
     </div>
@@ -47,17 +47,17 @@
 
       <div class="illustartion-container">
 
-        <div  *ngIf="delivery.status == 'arrived'">
+        <div  *ngIf="delivery.status == 3">
           <img src="assets/img/arrived1.png" />
           <h6 class="text-arrived">Arrived <i class="fas fa-check"></i> </h6>
         </div>
 
-        <div  *ngIf="delivery.status == 'on_the_way'">
+        <div  *ngIf="delivery.status == 2">
           <img src="assets/img/on_the_way.png" />
           <h6 class="text-ontheway">On The Way  </h6>
         </div>
 
-        <div  *ngIf="delivery.status == 'not_picked_up'">
+        <div  *ngIf="delivery.status == 1">
           <img src="assets/img/notpickedup.png" />
           <h6 class="text-notpickedup">Not Picked Up Yet</h6>
         </div>

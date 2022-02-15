@@ -43,7 +43,9 @@
                     <div class="footer text-center">
                         <button class="btn btn-primary btn-round btn-lg btn-block"
                             [disabled]="nextOrSubmitButton.disabled"
-                           (click)="onChangeStep()">{{step < 2 ? "Next" : "Submit"}} </button>
+                           (click)="onChangeStep()"><span class="spinner-border spinner-border-sm" role="status" 
+                           *ngIf="loading"
+                           aria-hidden="true"></span>{{step < 2 ? " Next" : " Submit"}} </button>
                         <p class="link btn-secondary btn btn-round"
                            (click)="back()"
                            *ngIf="step !== 0">Back</p>
@@ -52,7 +54,9 @@
                         <h6>
                             <p>
                                 Already have an account?
-                                <a   [routerLink]="['/sign-in']" class=""> Login</a>
+                                <a   [routerLink]="['/sign-in']" class=""><span class="spinner-border spinner-border-sm" role="status" 
+                            *ngIf="loading"
+                            aria-hidden="true"></span> Login</a>
                             </p>
                         </h6>
                     </div>

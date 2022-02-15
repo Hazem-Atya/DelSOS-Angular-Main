@@ -7,6 +7,7 @@ import {ShopperService} from './service/shopper.service';
 import {Router} from '@angular/router';
 import {ToastrService} from 'ngx-toastr';
 import {validate} from 'codelyzer/walkerFactory/walkerFn';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
     selector: 'app-register',
@@ -100,10 +101,11 @@ export class RegisterComponent implements OnInit {
     }
 
     addShopper() {
-
+        this.loading = true;
 
         this.shopperService.addShopper(this.registerFormData.value).subscribe(
             (response) => {
+                
                 console.log(response);
                 this.router.navigate(['sign-in'],
                     {
